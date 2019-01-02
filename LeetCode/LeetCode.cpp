@@ -2,11 +2,14 @@
 //
 
 #include "pch.h"
-#include <iostream>
+#include "LeetCode.h"
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	Solution solution;
+	vector<int> nums = { 2,7,11,15 };
+	int target = 9;
+	solution.twoSum(nums, target);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
