@@ -15,6 +15,8 @@ public:
 	bool isPalindrome(int x);
 	//190103
 	int romanToInt(string s);
+	//190104
+	string longestCommonPrefix(vector<string>& strs);
 };
 
 
@@ -66,4 +68,13 @@ int Solution::romanToInt(string s) {
 	}
 
 	return sum;
+}
+
+string Solution::longestCommonPrefix(vector<string>& strs) {
+	string prefix = "";
+	for (int idx = 0; strs.size() > 0; prefix += strs[0][idx], idx++)
+		for (int i = 0; i < strs.size(); i++)
+			if (idx >= strs[i].size() || (i > 0 && strs[i][idx] != strs[i - 1][idx]))
+				return prefix;
+	return prefix;
 }

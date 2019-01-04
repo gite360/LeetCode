@@ -10,6 +10,9 @@ int main()
 	vector<int> nums = { 2,7,11,15 };
 	int target = 9;
 	solution.twoSum(nums, target);
+
+	vector<string> strs = { "flower","flow","flight" };
+	cout << strs.size() << " "<< strs[1].size() << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
