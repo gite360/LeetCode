@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <queue> 
+#include <stack> 
 using namespace std;
 
 class Solution {
@@ -17,6 +19,9 @@ public:
 	int romanToInt(string s);
 	//190104
 	string longestCommonPrefix(vector<string>& strs);
+
+	//190105
+	bool isValid(string s);
 };
 
 
@@ -77,4 +82,19 @@ string Solution::longestCommonPrefix(vector<string>& strs) {
 			if (idx >= strs[i].size() || (i > 0 && strs[i][idx] != strs[i - 1][idx]))
 				return prefix;
 	return prefix;
+}
+
+//190105
+bool Solution::isValid(string s) {
+	stack<char> stk;
+	for(auto&& c:s)
+		switch (c) {
+		case'(': stk.push(')'); break;
+		case'[': stk.push(']'); break;
+		case'{': stk.push('}'); break;
+		default:
+			if(stk.empty()||c!=stk.top()) return false;
+			else stk.pop();
+		}
+	return stk.empty();
 }

@@ -9,10 +9,17 @@ int main()
 	Solution solution;
 	vector<int> nums = { 2,7,11,15 };
 	int target = 9;
+	string s = "()";
 	solution.twoSum(nums, target);
 
 	vector<string> strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;
+
+	if (solution.isValid(s)) {
+		cout << "true" << endl;
+	}
+	else
+		cout << "false" << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
