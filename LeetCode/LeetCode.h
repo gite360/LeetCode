@@ -19,9 +19,12 @@ public:
 	int romanToInt(string s);
 	//190104
 	string longestCommonPrefix(vector<string>& strs);
-
 	//190105
 	bool isValid(string s);
+	//190106
+	struct ListNode;
+	ListNode* mergeTwoLists(ListNode *l1, ListNode *l2);
+
 };
 
 
@@ -97,4 +100,24 @@ bool Solution::isValid(string s) {
 			else stk.pop();
 		}
 	return stk.empty();
+}
+
+//190106
+struct Solution::ListNode {
+	int val;
+	Solution::ListNode *next;
+	Solution::ListNode(int x) : val(x), next(nullptr) {}
+};
+Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode *l1, Solution::ListNode *l2) {
+	Solution::ListNode header(LONG_MIN);
+	Solution::ListNode* tail_ptr=&header;
+
+	while (l1&&l2) {
+		Solution::ListNode** next_node = (l1->val<l2->val?&l1:&l2);
+		tail_ptr->next = *next_node;
+		*next_node = (*next_node)->next;
+		tail_ptr = tail_ptr->next;
+	}
+	tail_ptr->next = l1 ? l1 : l2;
+	return header.next;
 }
