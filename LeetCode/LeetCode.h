@@ -24,6 +24,8 @@ public:
 	//190106
 	struct ListNode;
 	ListNode* mergeTwoLists(ListNode *l1, ListNode *l2);
+	//190107
+	int removeDuplicates(vector<int>& nums);
 
 };
 
@@ -120,4 +122,26 @@ Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode *l1, Solution::Li
 	}
 	tail_ptr->next = l1 ? l1 : l2;
 	return header.next;
+}
+
+//190107
+int Solution::removeDuplicates(vector<int>& nums) {
+	//auto* first_ptr=nums
+	//auto count = 0;
+
+	//if (nums.empty()) return count;
+	//for (int i = 1; i < nums.size();i++) {
+	//	if (nums[i] == nums[i-1]){
+	//		count++;
+	//	}
+	//	else{
+	//		nums[i-count]=nums[i];
+	//		//++it;
+	//	}
+	//		
+	//}
+
+	//return nums.size()-count;
+	nums.erase(unique(nums.begin(), nums.end()),nums.end());
+	return nums.size();
 }

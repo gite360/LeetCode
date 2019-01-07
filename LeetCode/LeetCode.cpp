@@ -7,10 +7,10 @@
 int main()
 {
 	Solution solution;
-	vector<int> nums = { 2,7,11,15 };
+	vector<int> nums = { 1,1,2 };
 	int target = 9;
 	string s = "()";
-	solution.twoSum(nums, target);
+	//solution.twoSum(nums, target);
 
 	vector<string> strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;
@@ -22,6 +22,7 @@ int main()
 		cout << "false" << endl;
 
 	
+	cout<< solution.removeDuplicates(nums);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
