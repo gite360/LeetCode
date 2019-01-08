@@ -22,7 +22,9 @@ int main()
 		cout << "false" << endl;
 
 	
-	cout<< solution.removeDuplicates(nums);
+	///cout << solution.removeDuplicates(nums) << endl;
+	cout<< solution.removeElement(nums, 1);
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

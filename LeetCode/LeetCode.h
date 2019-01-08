@@ -26,6 +26,8 @@ public:
 	ListNode* mergeTwoLists(ListNode *l1, ListNode *l2);
 	//190107
 	int removeDuplicates(vector<int>& nums);
+	//190108
+	int removeElement(vector<int>& nums, int val);
 
 };
 
@@ -145,3 +147,19 @@ int Solution::removeDuplicates(vector<int>& nums) {
 	nums.erase(unique(nums.begin(), nums.end()),nums.end());
 	return nums.size();
 }
+
+//190108
+int Solution::removeElement(vector<int>& nums, int val) {
+	/*int length = nums.size();
+	int i = 0;
+	while(i<length) {
+		nums[i] == val ? nums[i] = nums[--length] : i++;
+	}
+
+	return length;*/
+
+	while (find(nums.begin(), nums.end(), val) != nums.end())
+		nums.erase(find(nums.begin(), nums.end(), val));
+	return nums.size();
+}
+	
