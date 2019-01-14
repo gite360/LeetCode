@@ -9,6 +9,7 @@ int main()
 	Solution solution;
 	vector<int> nums = { 1,1,2 };
 	int target = 9;
+	bool modified = false;
 	string s = "()";
 	//solution.twoSum(nums, target);
 
@@ -21,9 +22,11 @@ int main()
 	else
 		cout << "false" << endl;
 
-	
-	///cout << solution.removeDuplicates(nums) << endl;
-	cout<< solution.removeElement(nums, 1);
+	//cout << solution.removeDuplicates(nums) << endl;
+	//cout<< solution.removeElement(nums, 1);
+
+	if (++modified) cout << "aaa" << endl;
+	else cout << "bbb" << endl;
 
 }
 

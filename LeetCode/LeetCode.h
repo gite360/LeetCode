@@ -28,6 +28,8 @@ public:
 	int removeDuplicates(vector<int>& nums);
 	//190108
 	int removeElement(vector<int>& nums, int val);
+	//190114
+	bool checkPossibility(vector<int>& nums);
 
 };
 
@@ -161,5 +163,18 @@ int Solution::removeElement(vector<int>& nums, int val) {
 	while (find(nums.begin(), nums.end(), val) != nums.end())
 		nums.erase(find(nums.begin(), nums.end(), val));
 	return nums.size();
+}
+
+//190114
+bool Solution::checkPossibility(vector<int>& nums) {
+	bool modified = false;
+	for (int i = 1; i < nums.size();i++) {
+		if (nums[i - 1] > nums[i]) {
+			if (modified++) return false;
+			i - 2 < 0 || nums[i - 2] <= nums[i] ? nums[i - 1] = nums[i] : nums[i] = nums[i - 1];
+		}
+
+	}
+	return true;
 }
 	
