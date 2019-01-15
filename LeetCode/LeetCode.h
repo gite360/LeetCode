@@ -5,6 +5,9 @@
 #include <map>
 #include <queue> 
 #include <stack> 
+#include <string>
+#include <cstring>
+#include <algorithm>    // std::reverse
 using namespace std;
 
 class Solution {
@@ -30,6 +33,8 @@ public:
 	int removeElement(vector<int>& nums, int val);
 	//190114
 	bool checkPossibility(vector<int>& nums);
+	//190115
+	int largestPalindrome(int n);
 	
 
 };
@@ -255,5 +260,19 @@ bool Solution::checkPossibility(vector<int>& nums) {
 
 	}
 	return true;
+}
+
+//190115
+int Solution::largestPalindrome(int n) {
+	if (n == 1)return 9;
+	long long max = pow(10, n) - 1;
+	for (int v = max - 1; v > (max / 10); v--) {
+		string s = to_string(v), s0 = s;
+		std::reverse(s.begin(), s.end());
+		long long u = atoll((s0 + s).c_str());
+		long long u = stoll(s0 + s);
+		for (long long x = max; x*x >= u; x--)if (u%x == 0)return(int)(u % 1337);
+	}
+	return 0;
 }
 	
