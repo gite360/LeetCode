@@ -8,6 +8,7 @@
 #include <string>
 #include <cstring>
 #include <algorithm>    // std::reverse
+#include <unordered_set>
 using namespace std;
 
 class Solution {
@@ -35,8 +36,8 @@ public:
 	bool checkPossibility(vector<int>& nums);
 	//190115
 	int largestPalindrome(int n);
-	
-
+	//190116
+	bool buddyStrings(string A, string B);
 };
 
 class MyLinkedList {
@@ -270,9 +271,26 @@ int Solution::largestPalindrome(int n) {
 		string s = to_string(v), s0 = s;
 		std::reverse(s.begin(), s.end());
 		long long u = atoll((s0 + s).c_str());
-		long long u = stoll(s0 + s);
+		//long long u = stoll(s0 + s);
 		for (long long x = max; x*x >= u; x--)if (u%x == 0)return(int)(u % 1337);
 	}
 	return 0;
 }
+
+//190116
+bool Solution::buddyStrings(string A, string B) {
+	if (A.size() == 1 || A.size() != B.size()) return false;
+
+	int numChar_A = unordered_set<char>(A.begin(), A.end()).size();
+	if (A == B && numChar_A < B.size()) return true;
+	int i = 0, N = (int)A.size(), j = N - 1;
+	while (i < N - 1 && A[i] == B[i]) ++i;
+	while (j > 0 && A[j] == B[j]) --j;
+	swap(A[i], A[j]);
+	return A == B;
+	
+}
+
+
+
 	
