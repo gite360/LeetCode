@@ -38,6 +38,8 @@ public:
 	int largestPalindrome(int n);
 	//190116
 	bool buddyStrings(string A, string B);
+	//190117
+	int countPrimes(int n);
 };
 
 class MyLinkedList {
@@ -289,6 +291,25 @@ bool Solution::buddyStrings(string A, string B) {
 	swap(A[i], A[j]);
 	return A == B;
 	
+}
+
+//190117
+int Solution::countPrimes(int n) {
+	if (n <= 2) return 0;
+	vector<bool> Primes(n, true);
+	int sum = 1;
+	int low = sqrt(n);
+	for (int i = 3; i < n; i += 2) {
+		if (Primes[i]) {
+			sum++;
+			if (i > low) continue;
+			for (int j = i * i; j < n; j += i * 2) {
+				Primes[j] = false;
+			}
+		}
+	}
+
+	return sum;
 }
 
 
