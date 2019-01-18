@@ -40,6 +40,8 @@ public:
 	bool buddyStrings(string A, string B);
 	//190117
 	int countPrimes(int n);
+	//190118
+	void rotate(vector<int>& nums, int k);
 };
 
 class MyLinkedList {
@@ -310,6 +312,17 @@ int Solution::countPrimes(int n) {
 	}
 
 	return sum;
+}
+
+//190118
+void Solution::rotate(vector<int>& nums, int k) {
+	k %= nums.size();
+	std::reverse(nums.begin(), nums.end());
+	std::reverse(nums.begin(), nums.begin()+k);
+	std::reverse(nums.begin() + k, nums.end());
+	//2
+	std::rotate(nums.begin(), nums.end() - k, nums.end());
+
 }
 
 
