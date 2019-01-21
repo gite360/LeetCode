@@ -1,8 +1,13 @@
-// LeetCode.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// LeetCode.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "pch.h"
 #include "LeetCode.h"
+
+//class SortPolygon{
+//public:
+
+	
 
 int main()
 {
@@ -27,6 +32,10 @@ int main()
 
 	if (++modified) cout << "aaa" << endl;
 	else cout << "bbb" << endl;
+
+
+
+	
 
 }
 

@@ -42,6 +42,8 @@ public:
 	int countPrimes(int n);
 	//190118
 	void rotate(vector<int>& nums, int k);
+	//190121
+	string convertToTitle(int n);
 };
 
 class MyLinkedList {
@@ -323,6 +325,11 @@ void Solution::rotate(vector<int>& nums, int k) {
 	//2
 	std::rotate(nums.begin(), nums.end() - k, nums.end());
 
+}
+
+//190121
+string Solution::convertToTitle(int n) {
+	return n == 0 ? "" : convertToTitle((n-1)/26)+(char)((n-1)%26+'A');
 }
 
 
