@@ -44,6 +44,9 @@ public:
 	void rotate(vector<int>& nums, int k);
 	//190121
 	string convertToTitle(int n);
+	//190122
+	bool isBadVersion(int n);
+	int firstBadVersionRec(int L, int R);
 };
 
 class MyLinkedList {
@@ -330,6 +333,21 @@ void Solution::rotate(vector<int>& nums, int k) {
 //190121
 string Solution::convertToTitle(int n) {
 	return n == 0 ? "" : convertToTitle((n-1)/26)+(char)((n-1)%26+'A');
+}
+
+//190122
+bool Solution::isBadVersion(int n) {
+
+}
+
+int Solution::firstBadVersionRec(int L, int R) {
+	if (L == R) return L;
+	else {
+		int Middle = L + (R - L) / 2;
+		if (isBadVersion(Middle)) return firstBadVersionRec(L, Middle);
+		else return firstBadVersionRec(Middle+1, R);
+		
+	}
 }
 
 
