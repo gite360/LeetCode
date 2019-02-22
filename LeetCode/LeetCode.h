@@ -47,6 +47,10 @@ public:
 	//190122
 	bool isBadVersion(int n);
 	int firstBadVersionRec(int L, int R);
+	//190221
+	int findPairs(vector<int>& nums, int k);
+	//190222
+	int findUnsortedSubarray(vector<int>& nums);
 };
 
 class MyLinkedList {
@@ -337,7 +341,7 @@ string Solution::convertToTitle(int n) {
 
 //190122
 bool Solution::isBadVersion(int n) {
-
+	return true;
 }
 
 int Solution::firstBadVersionRec(int L, int R) {
@@ -348,6 +352,39 @@ int Solution::firstBadVersionRec(int L, int R) {
 		else return firstBadVersionRec(Middle+1, R);
 		
 	}
+}
+
+//190221
+int findPairs(vector<int>& nums, int k) {
+	if (k < 0) return 0;
+	int count = 0;
+	unordered_multiset<int> ums(nums.begin(),nums.end());
+	unordered_set<int> us(nums.begin(), nums.end());
+	for (auto i : us) { 
+		if (ums.count(i + k) > !k) count++; 
+	}
+	return count;
+}
+
+//190222
+int findUnsortedSubarray(vector<int>& nums) {
+	int n = nums.size();
+
+	vector<int> maxlhs(n);  //max number from left to cur
+	vector<int> minrhs(n);  //min number from right to cur
+
+	for (int i = n - 1, minr = INT_MAX; i >= 0; i--) 
+		minrhs[i] = minr = min(minr,nums[i]);
+
+	for (int i = 0, maxl = INT_MIN; i < n; i++)
+		maxlhs[i] = maxl = max(maxl, nums[i]);
+
+	int i = 0, j = n - 1;
+
+	while (i < n && nums[i] <= minrhs[i]) i++;
+	while (j > i && nums[j] >= maxlhs[j]) j--;
+
+	return j - i + 1;
 }
 
 

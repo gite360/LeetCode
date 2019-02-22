@@ -13,7 +13,7 @@ int main()
 {
 	Solution solution;
 	vector<int> nums = { 1,1,2 };
-	int target = 9;
+	int target = 0;
 	bool modified = false;
 	string s = "()";
 	//solution.twoSum(nums, target);
@@ -33,7 +33,7 @@ int main()
 	if (++modified) cout << "aaa" << endl;
 	else cout << "bbb" << endl;
 
-
+	cout << target <<"! int : "<< !target << endl;
 
 	
 
