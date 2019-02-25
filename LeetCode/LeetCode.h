@@ -9,6 +9,7 @@
 #include <cstring>
 #include <algorithm>    // std::reverse
 #include <unordered_set>
+#include <bitset>
 using namespace std;
 
 class Solution {
@@ -51,6 +52,10 @@ public:
 	int findPairs(vector<int>& nums, int k);
 	//190222
 	int findUnsortedSubarray(vector<int>& nums);
+	//190223
+	int findNthDigit(int n);
+	//190224
+	uint32_t reverseBits(uint32_t n);
 };
 
 class MyLinkedList {
@@ -387,6 +392,30 @@ int findUnsortedSubarray(vector<int>& nums) {
 	return j - i + 1;
 }
 
+//190223
+int findNthDigit(int n) {
+	int base = 9;
+	long digits = 1;
+
+	while (n-base*digits >0 ) {
+		n -= base * digits;
+		base *= 10;
+		digits++;
+	}
+
+	int index = (n - 1) % digits;
+	int offset = (n - 1) / digits;
+	long start = pow(10,digits-1);
+	return to_string(start + offset)[index] - '0';
+}
+
+//190224
+uint32_t reverseBits(uint32_t n) {
+	string str = bitset<32>(n).to_string();
+	reverse(str.begin(),str.end());
+
+	return (bitset<32>(str).to_ullong());
+}
 
 
 	
