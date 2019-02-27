@@ -56,6 +56,8 @@ public:
 	int findNthDigit(int n);
 	//190224
 	uint32_t reverseBits(uint32_t n);
+	//190227
+	bool isPalindrome(string s);
 };
 
 class MyLinkedList {
@@ -360,7 +362,7 @@ int Solution::firstBadVersionRec(int L, int R) {
 }
 
 //190221
-int findPairs(vector<int>& nums, int k) {
+int Solution::findPairs(vector<int>& nums, int k) {
 	if (k < 0) return 0;
 	int count = 0;
 	unordered_multiset<int> ums(nums.begin(),nums.end());
@@ -372,7 +374,7 @@ int findPairs(vector<int>& nums, int k) {
 }
 
 //190222
-int findUnsortedSubarray(vector<int>& nums) {
+int Solution::findUnsortedSubarray(vector<int>& nums) {
 	int n = nums.size();
 
 	vector<int> maxlhs(n);  //max number from left to cur
@@ -393,7 +395,7 @@ int findUnsortedSubarray(vector<int>& nums) {
 }
 
 //190223
-int findNthDigit(int n) {
+int Solution::findNthDigit(int n) {
 	int base = 9;
 	long digits = 1;
 
@@ -410,12 +412,29 @@ int findNthDigit(int n) {
 }
 
 //190224
-uint32_t reverseBits(uint32_t n) {
+uint32_t Solution::reverseBits(uint32_t n) {
 	string str = bitset<32>(n).to_string();
-	reverse(str.begin(),str.end());
-
+	std::reverse(str.begin(),str.end());
 	return (bitset<32>(str).to_ullong());
 }
 
+
+//190227
+bool Solution::isPalindrome(string s) {
+	if (s.size() <= 1) return true;
+
+	auto left_end = s.begin();
+	auto right_end = s.end();
+
+	while (left_end < right_end) {
+		while (!isalnum(*left_end)&&left_end<s.end()) left_end++;
+		while (!isalnum(*right_end) && right_end > s.begin()) right_end--;
+		if (left_end > right_end) return true;
+		if (tolower(*left_end) != tolower(*right_end)) return false;
+		left_end++;
+		right_end--;
+	}
+	return true;
+}
 
 	
