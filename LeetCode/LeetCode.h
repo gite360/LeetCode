@@ -58,6 +58,10 @@ public:
 	uint32_t reverseBits(uint32_t n);
 	//190227
 	bool isPalindrome(string s);
+	//190303
+	int mySqrt(int x);
+	//190304
+	bool canPlaceFlowers(vector<int>& flowerbed, int n);
 };
 
 class MyLinkedList {
@@ -435,6 +439,30 @@ bool Solution::isPalindrome(string s) {
 		right_end--;
 	}
 	return true;
+}
+
+//190303
+int Solution::mySqrt(int x) {
+	long val = x;
+	while (val*val>x) {
+		val = (val+x/val) / 2;
+	}
+
+	return val;
+}
+
+//190304
+bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+	flowerbed.insert(flowerbed.begin(),0);
+	flowerbed.push_back(0);
+
+	for (int i = 1; i < flowerbed.size() - 1; ++i) {
+		if (flowerbed[i-1]+ flowerbed[i] + flowerbed[i+1]==0) {
+			--n;
+			++i;
+		}
+	}
+	return n <= 0;
 }
 
 	
