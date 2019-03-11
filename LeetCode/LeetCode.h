@@ -62,6 +62,8 @@ public:
 	int mySqrt(int x);
 	//190304
 	bool canPlaceFlowers(vector<int>& flowerbed, int n);
+	//190310
+	int findRadius(vector<int>& houses, vector<int>& heaters);
 };
 
 class MyLinkedList {
@@ -452,7 +454,7 @@ int Solution::mySqrt(int x) {
 }
 
 //190304
-bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+bool Solution::canPlaceFlowers(vector<int>& flowerbed, int n) {
 	flowerbed.insert(flowerbed.begin(),0);
 	flowerbed.push_back(0);
 
@@ -463,6 +465,36 @@ bool canPlaceFlowers(vector<int>& flowerbed, int n) {
 		}
 	}
 	return n <= 0;
+}
+
+//190310
+int Solution::findRadius(vector<int>& houses, vector<int>& heaters) {
+	sort(houses.begin(),houses.end());
+	sort(heaters.begin(),heaters.end());
+	vector<int> res(houses.size(), INT_MAX);
+
+	for (int i = 0, h = 0; i < houses.size() && h < heaters.size();) {
+		if (houses[i] <= heaters[h]) {
+			res[i] = heaters[h] - houses[i];
+			i++;
+
+		}
+		else {
+			h++;
+		}
+	}
+
+	for (int i = houses.size() - 1, h = heaters.size() - 1; i >= 0 && h >= 0) {
+		if (houses[i] >= heaters[h]) {
+			res[i] = min(res[i], houses[i] - heaters[h]);
+			i--;
+		}
+		else {
+			h--;
+		}
+	}
+
+	return *max_element(res.begin(),res.end());
 }
 
 	
