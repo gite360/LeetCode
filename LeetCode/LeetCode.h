@@ -64,6 +64,8 @@ public:
 	bool canPlaceFlowers(vector<int>& flowerbed, int n);
 	//190310
 	int findRadius(vector<int>& houses, vector<int>& heaters);
+	//190316
+	int repeatedStringMatch(string A, string B);
 };
 
 class MyLinkedList {
@@ -495,6 +497,29 @@ int Solution::findRadius(vector<int>& houses, vector<int>& heaters) {
 	}
 
 	return *max_element(res.begin(),res.end());
+}
+
+//190316
+int Solution::repeatedStringMatch(string A, string B) {
+	// auto searcher = boyer_moore_searcher(begin(B), end(B));
+	auto searcher = boyer_moore_horspool_searcher(begin(B), end(B));
+
+	auto N = 1;
+	auto T = A;
+
+	auto iter = search(begin(A), end(A), searcher);
+	while (iter == end(A))
+	{
+		A.append(T);
+		N++;
+
+		iter = search(begin(A), end(A), searcher);
+
+		if (B.size() + T.size() <= A.size())
+			break;
+	}
+
+	return (iter != end(A)) ? N : -1;
 }
 
 	
