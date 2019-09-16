@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "LeetCode.h"
+#include <map>
 
 //class SortPolygon{
 //public:
@@ -11,6 +12,14 @@
 
 int main()
 {
+
+#if _DEBUG
+	cout << "1 current id: " << 55555555555 << ", vector size: " <<555555555555 << endl;
+
+
+#endif
+
+
 	Solution solution;
 	vector<int> nums = { 1,1,2 };
 	int target = 0;
@@ -30,12 +39,26 @@ int main()
 	//cout << solution.removeDuplicates(nums) << endl;
 	//cout<< solution.removeElement(nums, 1);
 
-	if (++modified) cout << "aaa" << endl;
-	else cout << "bbb" << endl;
+	//if (++modified) cout << "aaa" << endl;
+	//else cout << "bbb" << endl;
 
 	cout << target <<"! int : "<< !target << endl;
 
+	cout << solution.findNthDigit(5) << endl; 
+	cout << solution.convertToTitle(19) << endl;
+	cout << solution.convertToTitle(43) << endl;
+
+
+	multimap<int, char> multiple_map{ {0,'a'},{1,'b'},{1,'c'},{1,'d'},{2,'e'},{3,'f'} };
+
+	auto density_nodeHandler = multiple_map.extract(1);
+	density_nodeHandler.key() = 2;
+	multiple_map.insert(std::move(density_nodeHandler));
+	//density_nodeHandler.key() = getMergedSubSegmentInformation(splited_node);
+	//merge_segment_density_map.insert(std::move(density_nodeHandler));
+
 	
+	system("pause");
 
 }
 

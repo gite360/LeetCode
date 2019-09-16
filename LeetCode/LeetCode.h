@@ -280,14 +280,14 @@ int Solution::removeElement(vector<int>& nums, int val) {
 
 //190114
 bool Solution::checkPossibility(vector<int>& nums) {
-	bool modified = false;
-	for (int i = 1; i < nums.size();i++) {
-		if (nums[i - 1] > nums[i]) {
-			if (modified++) return false;
-			i - 2 < 0 || nums[i - 2] <= nums[i] ? nums[i - 1] = nums[i] : nums[i] = nums[i - 1];
-		}
+	//bool modified = false;
+	//for (int i = 1; i < nums.size();i++) {
+	//	if (nums[i - 1] > nums[i]) {
+	//		if (modified++) return false;
+	//		i - 2 < 0 || nums[i - 2] <= nums[i] ? nums[i - 1] = nums[i] : nums[i] = nums[i - 1];
+	//	}
 
-	}
+	//}
 	return true;
 }
 
@@ -469,57 +469,57 @@ bool Solution::canPlaceFlowers(vector<int>& flowerbed, int n) {
 	return n <= 0;
 }
 
-//190310
-int Solution::findRadius(vector<int>& houses, vector<int>& heaters) {
-	sort(houses.begin(),houses.end());
-	sort(heaters.begin(),heaters.end());
-	vector<int> res(houses.size(), INT_MAX);
-
-	for (int i = 0, h = 0; i < houses.size() && h < heaters.size();) {
-		if (houses[i] <= heaters[h]) {
-			res[i] = heaters[h] - houses[i];
-			i++;
-
-		}
-		else {
-			h++;
-		}
-	}
-
-	for (int i = houses.size() - 1, h = heaters.size() - 1; i >= 0 && h >= 0) {
-		if (houses[i] >= heaters[h]) {
-			res[i] = min(res[i], houses[i] - heaters[h]);
-			i--;
-		}
-		else {
-			h--;
-		}
-	}
-
-	return *max_element(res.begin(),res.end());
-}
-
-//190316
-int Solution::repeatedStringMatch(string A, string B) {
-	// auto searcher = boyer_moore_searcher(begin(B), end(B));
-	auto searcher = boyer_moore_horspool_searcher(begin(B), end(B));
-
-	auto N = 1;
-	auto T = A;
-
-	auto iter = search(begin(A), end(A), searcher);
-	while (iter == end(A))
-	{
-		A.append(T);
-		N++;
-
-		iter = search(begin(A), end(A), searcher);
-
-		if (B.size() + T.size() <= A.size())
-			break;
-	}
-
-	return (iter != end(A)) ? N : -1;
-}
+////190310
+//int Solution::findRadius(vector<int>& houses, vector<int>& heaters) {
+//	sort(houses.begin(),houses.end());
+//	sort(heaters.begin(),heaters.end());
+//	vector<int> res(houses.size(), INT_MAX);
+//
+//	for (int i = 0, h = 0; i < houses.size() && h < heaters.size();) {
+//		if (houses[i] <= heaters[h]) {
+//			res[i] = heaters[h] - houses[i];
+//			i++;
+//
+//		}
+//		else {
+//			h++;
+//		}
+//	}
+//
+//	for (int i = houses.size() - 1, h = heaters.size() - 1; i >= 0 && h >= 0;) {
+//		if (houses[i] >= heaters[h]) {
+//			res[i] = min(res[i], houses[i] - heaters[h]);
+//			i--;
+//		}
+//		else {
+//			h--;
+//		}
+//	}
+//
+//	return *max_element(res.begin(),res.end());
+//}
+//
+////190316
+//int Solution::repeatedStringMatch(string A, string B) {
+//	// auto searcher = boyer_moore_searcher(begin(B), end(B));
+//	auto searcher = 0;// boyer_moore_horspool_searcher(begin(B), end(B));
+//
+//	auto N = 1;
+//	auto T = A;
+//
+//	auto iter = search(begin(A), end(A), searcher);
+//	while (iter == end(A))
+//	{
+//		A.append(T);
+//		N++;
+//
+//		iter = search(begin(A), end(A), searcher);
+//
+//		if (B.size() + T.size() <= A.size())
+//			break;
+//	}
+//
+//	return (iter != end(A)) ? N : -1;
+//}
 
 	
