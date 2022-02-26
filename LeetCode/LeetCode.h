@@ -66,6 +66,10 @@ public:
 	int findRadius(vector<int>& houses, vector<int>& heaters);
 	//190316
 	int repeatedStringMatch(string A, string B);
+	//220222
+	bool isPowerOfThree(int n);
+	//220225
+	int strStr(string haystack, string needle);
 };
 
 class MyLinkedList {
@@ -521,5 +525,108 @@ bool Solution::canPlaceFlowers(vector<int>& flowerbed, int n) {
 //
 //	return (iter != end(A)) ? N : -1;
 //}
+
+//220222
+bool Solution::isPowerOfThree(int n) {
+
+	if (n == 0) return false;
+	if (n == 1) return true;
+
+	while (n % 3 == 0) {
+		int temp = n % 10;
+		switch (temp) {
+		case 1:
+		case 3:
+		case 7:
+		case 9: {
+			//int sum = 0;
+			//while( n != 0){
+				//sum += n % 10;
+				//n /= 10;
+			//}
+
+			//while(abs(sum) != 1 && sum % 3 == 0){
+				//sum /= 3;
+			//}
+
+			//if(sum % 3 == 0) return true;
+
+			n /= 3;
+
+			//return false;
+		}
+		default:
+			return false;
+		}
+	}
+
+	if (n == 1) return true;
+	else return false;
+}
+
+//220225
+int Solution::strStr(string haystack, string needle) {
+
+	/*if (haystack.size() == 0 && needle.size() == 0) return 0;
+	if (haystack.size() == 0) return -1;
+	if (needle.size() == 0) return 0;
+	if (haystack.size() < needle.size()) return -1;
+
+	if (haystack.size() == needle.size()) {
+		int count = 0;
+		for (int i = 0; i < haystack.size(); i++) {
+			if (haystack[i] == needle[i]) {
+				count++;
+				if (haystack[i] != needle[i]) {
+					return -1;
+				}
+			}
+		}
+
+		if (count == haystack.size()) {
+			return  0;
+		}
+	}
+
+	for (int i = 0; i < haystack.size() - needle.size() + 1; i++) {
+
+		if (haystack[i] == needle[0]) {
+			int position = i;
+			int i_tmep = i;
+			int j = 1;
+			for (; j < needle.size(); j++) {
+				i_tmep++;
+				if (haystack[i_tmep] != needle[j]) {
+					break;
+				}
+			}
+
+			if (j == needle.size()) return position;
+		}
+	}
+
+	return -1;*/
+}
+
+
+vector<int> find_KMP(const string& const needle) {
+	vector<int> lsp;
+
+	int len = 0;
+	int i = 0;
+
+	while (i < needle.size()) {
+		if (needle[i] == needle[len]) {
+			vector.empalce_back(i);
+			i++;
+			len++;
+		}
+		else if (len > 0) {
+
+			len = needle[len--];
+
+		}
+	}
+}
 
 	

@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "LeetCode.h"
 #include <map>
+#include <assert.h>
 
 //class SortPolygon{
 //public:
@@ -29,6 +30,15 @@ int main()
 
 	vector<string> strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;
+
+	string haystack = "a";
+	string needle = "a";
+	solution.strStr(haystack, needle);
+	assert(0);
+
+	int n = 27;
+	solution.isPowerOfThree(n);
+	assert(0);
 
 	if (solution.isValid(s)) {
 		cout << "true" << endl;
