@@ -22,6 +22,12 @@ int main()
 
 
 	Solution solution;
+
+	/*==================================*/
+	string result = solution.countAndSay(4);
+
+	assert(0);
+
 	vector<int> nums = { 1,1,2 };
 	int target = 0;
 	bool modified = false;

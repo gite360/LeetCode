@@ -70,6 +70,9 @@ public:
 	bool isPowerOfThree(int n);
 	//220225
 	int strStr(string haystack, string needle);
+	//220412
+	string countAndSay(int n);
+	string count_and_say(int i, int& n, string temp);
 };
 
 class MyLinkedList {
@@ -606,27 +609,75 @@ int Solution::strStr(string haystack, string needle) {
 	}
 
 	return -1;*/
+
+	return 0;
 }
 
-
-vector<int> find_KMP(const string& const needle) {
-	vector<int> lsp;
-
-	int len = 0;
-	int i = 0;
-
-	while (i < needle.size()) {
+//vector<int> Solution::find_KMP(const string& const needle) {
+	//vector<int> lsp;
+	//int len = 0;
+	//int i = 0;
+	/*while (i < needle.size()) {
 		if (needle[i] == needle[len]) {
 			vector.empalce_back(i);
 			i++;
 			len++;
 		}
 		else if (len > 0) {
-
 			len = needle[len--];
-
 		}
+	}*/
+//}
+
+string Solution::countAndSay(int n) {
+	string temp = "1";
+	if (n == 1) return temp;
+	string result;
+	int i = 1;
+	while(i < n){
+		int j = 0;
+		while (j < temp.size()) {
+			int count = 1;
+			while (j + 1 < temp.size() && temp[j] == temp[j + 1]) {
+				count++;
+				j++;
+			}
+			result += std::to_string(count) + temp[j];
+			j++;
+		}
+		temp = result;
+		result = "";
+		i++;
 	}
+
+	return temp;
+
+	//return count_and_say(1, n, result);
+}
+
+string Solution::count_and_say(int i, int& n, string temp) {
+	i++;
+	string result;
+
+	if (temp.size() == 1) {
+		result += "1";
+		result += temp[0];
+		return count_and_say(i, n, result);
+	}
+
+	for (int j = 0; j < temp.size(); j++) {
+		int count = 1;
+		while (j + 1< temp.size() && temp[j] == temp[j + 1]) {
+			count++;
+			j++;
+		}
+		result += std::to_string(count);
+		result += temp[j];
+	}
+
+	if (i == n) return result;
+
+	return count_and_say(i, n, result);
 }
 
 	
