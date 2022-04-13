@@ -73,6 +73,8 @@ public:
 	//220412
 	string countAndSay(int n);
 	string count_and_say(int i, int& n, string temp);
+	//220413
+	void setZeroes(vector<vector<int>>& matrix);
 };
 
 class MyLinkedList {
@@ -678,6 +680,45 @@ string Solution::count_and_say(int i, int& n, string temp) {
 	if (i == n) return result;
 
 	return count_and_say(i, n, result);
+}
+
+//220413
+void Solution::setZeroes(vector<vector<int>>& matrix) {
+	int n = matrix.size();
+	int m = matrix[0].size();
+
+	bool row0 = false;
+	bool col0 = false;
+
+	for (int i = 0; i < n; i++) { if (matrix[i][0] == 0) col0 = true; }
+
+	for (int j = 0; j < m; j++) { if (matrix[0][j] == 0) row0 = true; }
+
+	for (int i = 1; i < n; i++) {
+		for (int j = 1; j < m; j++) {
+			if (matrix[i][j] == 0) {
+				matrix[i][0] = matrix[0][j] = 0;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+				matrix[i][j] = 0;
+			}
+
+		}
+
+	}
+
+	for (int i = 0; i < n; i++) {
+		if (col0) matrix[i][0] = 0;
+	}
+
+	for (int j = 0; j < m; j++) {
+		if (row0) matrix[0][j] = 0;
+	}
 }
 
 	

@@ -24,6 +24,11 @@ int main()
 	Solution solution;
 
 	/*==================================*/
+	vector<vector<int>> matrix = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+	solution.setZeroes(matrix);
+
+
+	/*==================================*/
 	string result = solution.countAndSay(4);
 
 	assert(0);
