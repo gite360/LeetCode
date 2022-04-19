@@ -14,6 +14,7 @@ using namespace std;
 
 class Solution {
 public:
+
 	//181230
 	vector<int> twoSum(vector<int>& nums, int target);
 	//181231
@@ -75,6 +76,14 @@ public:
 	string count_and_say(int i, int& n, string temp);
 	//220413
 	void setZeroes(vector<vector<int>>& matrix);
+	//220415
+	struct Node138;
+	Node138* copyRandomList(Node138* head);
+    //
+	//void GetResult(int* p, int& Get_Result);
+
+	//void get_result(vector<vector<int>>& v, int& sum_m, int sum, int& Get_Result);
+	int huawei0();
 };
 
 class MyLinkedList {
@@ -719,6 +728,174 @@ void Solution::setZeroes(vector<vector<int>>& matrix) {
 	for (int j = 0; j < m; j++) {
 		if (row0) matrix[0][j] = 0;
 	}
+}
+
+struct Solution::Node138 {
+public:
+	int val;
+	Node138* next;
+	Node138* random;
+
+	Node138(int _val) {
+		val = _val;
+		next = NULL;
+		random = NULL;
+	}
+};
+
+Solution::Node138* Solution::copyRandomList(Node138* head) {
+	if (!head) return nullptr;
+	Node138* temp = head;
+
+	if (!head->next) {
+		return temp;
+	}
+
+	while (temp) {
+		Node138* ne = new Node138(0);
+		ne->next = temp->next;
+		ne->val = temp->val;
+		temp->next = ne;
+		//if(temp->random->next) ne->random
+		temp = ne->next;
+	}
+
+	temp = head;
+	Node138* new_head = head->next;
+
+	while (temp && temp->next) {
+		if(temp->random){
+			temp->next->random = temp->random->next;
+		}
+		else {
+			temp->next->random = nullptr;
+		}
+		temp = temp->next->next;
+	}
+
+	temp = head->next;
+	Node138* temp_o = head;
+
+	while (temp->next) {
+		temp_o->next = temp_o->next->next;
+		temp_o = temp_o->next;
+
+		if (!temp_o->next->next) temp_o = nullptr;
+
+		temp->next = temp->next->next;
+		temp = temp->next;
+	}
+
+	temp = head;
+	while (temp) {
+		
+		if (!temp->next->next){
+			temp -> next = nullptr;
+			break;
+		}
+
+		temp = temp->next;
+	}
+
+	
+
+	return new_head;
+}
+
+//void Solution::GetResult(int* p, int& Get_Result) {
+//
+//	//int a[6][2] = { {1000,5}, {800,2}, {400,5}, {300,5}, {400,3} , {200,2} };
+//	//p = a[0];
+//	int N = p[0];
+//	int n = p[1];
+//	vector<vector<int>> v;
+//	for (int i = 2; i < n*2+2; i+=2) {
+//		vector<int> temp = { p[i], p[i + 1] };
+//		v.emplace_back(temp);
+//	}
+//	cout << v[0][0] << endl;
+//	//get_result(v, Get_Result);
+//}
+//
+//void Solution::get_result(vector<vector<int>>& v, int& sum_m, int sum, int& Get_Result) {
+//	for () {
+//
+//	}
+//}
+
+int Solution::huawei0() {
+	/*int N = 1000;
+	int m = 3;
+	vector<vector<int>> bag;
+	vector<vector<int>>dp(m + 1,vector<int>(N + 1, 0));
+	vector<vector<int>> price = { {0,0,0}, {800,400,300}, {400,0,0},  {500,0,0} };
+	vector<vector<int>> priority = { {0,0,0}, {2,5,5}, {3,0,0},  {2,0,0} };*/
+
+	int N;
+	int m;
+	cin >> N >> m;
+	//vector<vector<int>> bag;
+	vector<vector<int>>dp(m + 1, vector<int>(N + 1, 0));
+	vector<vector<int>> price(61, vector<int>(3, 0));
+	vector<vector<int>> priority(61, vector<int>(3, 0));
+
+	int a, b, c;
+
+	for (int i = 1; i <= m; i++) {
+		cin >> a >> b >> c;
+		if (c == 0) {
+			price[i][0] = a;
+			priority[i][0] = b;
+		}
+		else if (price[c][1] == 0) {
+			price[c][1] = a;
+			priority[c][1] = b;
+		}
+		else {
+			price[c][2] = a;
+			priority[c][2] = b;
+		}
+	}
+
+	for (int i = 1; i <= m; i++) {
+		for (int j = 1; j <= N; j++) {
+
+			int a = price[i][0], b = priority[i][0];
+			int c = price[i][1], d = priority[i][1];
+			int e = price[i][2], f = priority[i][2];
+
+			if(j >= a){
+				dp[i][j] = max(dp[i-1][j], dp[i-1][j - a] + a * b);
+			}
+			else {
+				dp[i][j] = dp[i-1][j];
+			}
+
+			if (j >= (a + c)) {
+				dp[i][j] = max(dp[i][j], dp[i - 1][j - a - c] + a * b + c * d);
+			}
+			else {
+				dp[i][j] = dp[i][j];
+			}
+
+			if (j >= (a + e)) {
+				dp[i][j] = max(dp[i][j], dp[i-1][j - a - e] + a * b + e * f);
+			}
+			else {
+				dp[i][j] = dp[i][j];
+			}
+
+			if(j >= (a + c + e)){
+				dp[i][j] = max(dp[i][j], dp[i-1][j - a - c - e] + a * b + c * d + e * f);
+			}
+			else {
+				dp[i][j] = dp[i][j];
+			}
+		}
+	}
+	int result = dp[m][N];
+	cout << result << endl;
+	return dp[m][N];
 }
 
 	

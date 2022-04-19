@@ -23,6 +23,60 @@ int main()
 
 	Solution solution;
 
+	/*===============================*/
+
+	//int N = 1000;
+	//int m = 3;
+	//cin >> N >> m;
+	////vector<vector<int>> bag;
+	//vector<vector<int>>dp(m + 1, vector<int>(N + 1, 0));
+	//vector<vector<int>> price(61, vector<int>(3, 0));
+	//vector<vector<int>> priority(61, vector<int>(3, 0));
+
+	//int a, b, c;
+
+	//for (int i = 1; i <= m; i++) {
+	//	cin >> a >> b >> c;
+	//	if (c == 0) {
+	//		price[i][0] = a;
+	//		priority[i][0] = b;
+	//	}
+	//	else if (price[c][1] == 0) {
+	//		price[c][1] = a;
+	//		priority[c][1] = b;
+	//	}
+	//	else {
+	//		price[c][2] = a;
+	//		priority[c][2] = b;
+	//	}
+	//}
+
+	solution.huawei0();
+
+	/*===============================*/
+	//int result_h = 0;
+	//int a[6][2] = { {1000,5}, {800,2}, {400,5}, {300,5}, {400,3} , {200,2} };
+	//int* p = a[0];
+	//solution.GetResult(p, result_h);
+	/*================================*/
+	typename Solution::Node138 head0(7);
+	typename Solution::Node138 head1(13);
+	typename Solution::Node138 head2(11);
+	typename Solution::Node138 head3(10);
+	typename Solution::Node138 head4(1);
+	head0.next = &head1;
+	head1.next = &head2;
+	head1.random = &head0;
+	head2.next = &head3;
+	head2.random = &head4;
+	head3.next = &head4;
+	head3.random = &head2;
+	head4.next = nullptr;
+	head4.random = &head0;
+
+
+	solution.copyRandomList(&head0);
+
 	/*==================================*/
 	vector<vector<int>> matrix = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
 	solution.setZeroes(matrix);
