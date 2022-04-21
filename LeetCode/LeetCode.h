@@ -84,9 +84,13 @@ public:
 
 	//void get_result(vector<vector<int>>& v, int& sum_m, int sum, int& Get_Result);
 	int huawei0();
-
+	//220420
 	int trap(vector<int>& height);
 	void recursive(vector<int>& height, stack<int> s, int r, int& result);
+
+	//220421
+	int rob(vector<int>& nums);
+	int job_recursive(vector<int>& nums, int k, vector<int>& dp);
 };
 
 class MyLinkedList {
@@ -991,6 +995,44 @@ void Solution::recursive(vector<int>& height, stack<int> s, int r, int& result) 
 		}
 	}
 	result += temp;
+}
+
+int Solution::rob(vector<int>& nums) {
+	
+	if (nums.size() == 1) return nums.front();
+
+	int n = nums.size();
+	int k = 0;
+	int result = 0;
+	vector<int> dp(n,0);
+	dp[1] = max(nums[0], nums[1]);
+	//result = job_recursive(nums, 0, dp);
+
+	int a = 0;
+	int b = max(nums[0], nums[1]);
+	int c = 0;
+
+	for (int i = 2; i < n; i++) {
+		c = max(a + nums[i], b);
+		a = b;
+		b = c;
+	}
+
+	result = c;
+
+	return result;
+}
+
+int Solution::job_recursive(vector<int>& nums, int k, vector<int>& dp) {
+	if (k >= nums.size()) {
+		return 0;
+	}
+
+	if (dp[k]>-1) {
+		return dp[k];
+	}
+
+	return dp[k] = max(job_recursive(nums, k + 2, dp) + nums[k], job_recursive(nums, k + 1, dp));
 }
 
 	
