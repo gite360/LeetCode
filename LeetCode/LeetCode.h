@@ -84,6 +84,9 @@ public:
 
 	//void get_result(vector<vector<int>>& v, int& sum_m, int sum, int& Get_Result);
 	int huawei0();
+
+	int trap(vector<int>& height);
+	void recursive(vector<int>& height, stack<int> s, int r, int& result);
 };
 
 class MyLinkedList {
@@ -896,6 +899,83 @@ int Solution::huawei0() {
 	int result = dp[m][N];
 	cout << result << endl;
 	return dp[m][N];
+}
+
+int Solution::trap(vector<int>& height) {
+	int n = height.size();
+
+	if (n == 1 || n == 2) return 0;
+
+	int i = 0, j = 1;
+	int result = 0;
+
+	stack<int> s;
+
+	vector<int> left_max(n);
+	vector<int> right_max(n);
+
+	left_max[0] = height[0];
+	for (int i = 1; i < n; i++) {
+		left_max[i] = max(left_max[i - 1], height[i]);
+	}
+
+	right_max[n - 1] = height[n-1];
+	for (int i = n - 1; i > 0; i--) {
+		right_max[i - 1] = max(right_max[i], height[i - 1]);
+	}
+
+	for (int i = 0; i < n; i++) {
+		result += min(left_max[i], right_max[i]) - height[i];
+	}
+
+	/*while (j < n) {
+		if (height[i] > height[j]) {
+			if(!s.empty()){
+				while (!s.empty() && height[s.top()] < height[i]) {
+					s.pop();
+				}
+
+				s.emplace(i);
+			}
+			else {
+				s.emplace(i);
+			}
+		}
+		else if (height[i] < height[j] && !s.empty()) {
+			recursive(height, s, j, result);
+			if(height[s.top()] <= height[s.top()+1]){
+				int t = s.top() + 1;
+				while(!s.empty() && s.top()+1 < j && height[s.top()] <= height[s.top()+1]){
+					t = s.top() + 1;
+					s.pop();
+				}
+				s.emplace(t);
+			}
+		}
+		i++;
+		j++;
+	}*/
+
+	return result;
+}
+
+
+void Solution::recursive(vector<int>& height, stack<int> s, int r, int& result) {
+
+	while (height[s.top()] < height[r] && s.size() > 1) {
+		s.pop();
+	}
+
+	int l = s.top();
+	int h = min(height[l], height[r]);
+	int temp = 0;
+	for (int i = l + 1; i < r; i++) {
+		if(h > height[i]){
+			temp += h - height[i];
+			height[i] = h;
+		}
+	}
+	result += temp;
 }
 
 	
