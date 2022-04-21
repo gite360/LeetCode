@@ -909,7 +909,22 @@ int Solution::trap(vector<int>& height) {
 	int i = 0, j = 1;
 	int result = 0;
 
-	stack<int> s;
+	int ans = 0, current = 0;
+	stack<int> st;
+	while (current < height.size()) {
+		while (!st.empty() && height[current] > height[st.top()]) {
+			int top = st.top();
+			st.pop();
+			if (st.empty())
+				break;
+			int distance = current - st.top() - 1;
+			int bounded_height = min(height[current], height[st.top()]) - height[top];
+			ans += distance * bounded_height;
+		}
+		st.push(current++);
+	}
+
+	/*stack<int> s;
 
 	vector<int> left_max(n);
 	vector<int> right_max(n);
@@ -926,7 +941,7 @@ int Solution::trap(vector<int>& height) {
 
 	for (int i = 0; i < n; i++) {
 		result += min(left_max[i], right_max[i]) - height[i];
-	}
+	}*/
 
 	/*while (j < n) {
 		if (height[i] > height[j]) {
@@ -956,7 +971,7 @@ int Solution::trap(vector<int>& height) {
 		j++;
 	}*/
 
-	return result;
+	return ans;
 }
 
 
