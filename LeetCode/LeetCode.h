@@ -91,6 +91,87 @@ public:
 	//220421
 	int rob(vector<int>& nums);
 	int job_recursive(vector<int>& nums, int k, vector<int>& dp);
+
+	void dfs_order(int& i, map<int, vector<int>>& G, vector<bool>& V, vector<bool>& P, stack<int>& S, bool& cycle) {
+
+		if (cycle) return;
+
+		V[i] = true;
+		P[i] = true;
+
+		for (int j : G[i]) {
+			if (P[j]) 
+				cycle = true;
+			if (!V[j])
+				dfs_order(j,G,V,P,S,cycle);
+		}
+
+		S.emplace(i);
+		P[i] = false;
+		/*auto it = mp.begin();
+		while (it != mp.end()) {
+			for (int i = 0; i < it->second.size(); i++) {
+				if (!mp[it->second[i]].empty()) {
+					dfs_order(mp, mp[it->second[i]]);
+				}
+				else {
+
+				}
+			}
+		}*/
+	}
+
+	vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+		int n = prerequisites.size();
+
+		if (numCourses == 1 && n == 0) {
+			return { 0 };
+		}
+
+		if (numCourses == 2 && n == 0) {
+			return {1,0};
+		}
+
+		vector<int> Ans;
+		vector<bool> V(numCourses, false);
+		vector<int> degree(numCourses, 0);
+
+		map<int, vector<int>> G;
+		queue<int> q;
+
+		for (int i = 0; i < n; i++) {
+			G[prerequisites[i][1]].emplace_back(prerequisites[i][0]);
+		}
+
+		for (auto adj : G) {
+			for (int v : adj.second) {
+				degree[v]++;
+			}
+		}
+
+		for (int i = 0; i < degree.size(); i++) {
+			if (degree[i] == 0) {
+				q.emplace(i);
+			}
+		}
+
+		while (!q.empty()) {
+			int cur = q.front();
+			q.pop();
+			Ans.emplace_back(cur);
+
+			for (auto au : G[cur]) {
+				degree[au]--;
+				if (degree[au] == 0) {
+					q.emplace(au);
+				}
+			}
+		}
+
+		if (Ans.size() == numCourses) return Ans;
+
+		return {};
+	}
 };
 
 class MyLinkedList {
