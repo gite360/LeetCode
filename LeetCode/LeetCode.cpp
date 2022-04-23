@@ -24,6 +24,10 @@ int main()
 	Solution solution;
 
 	/*===============================*/
+	vector<int> nums_peak = { 1,2};
+	solution.findPeakElement(nums_peak);
+
+	/*===============================*/
 	int numCourses = 2;
 	vector<vector<int>> prerequisites = { {0, 1} };//{ {1, 0}, {2, 0}, {3, 1}, {3, 2} };
 	solution.findOrder(numCourses, prerequisites);

@@ -172,6 +172,54 @@ public:
 
 		return {};
 	}
+
+
+	int binary_search(vector<int>& nums, int& l, int& r) {
+		int m = (l + r) / 2;
+
+		if (l == m) return l;
+
+		if (nums[m] < nums[m + 1]) {
+			l = m + 1;
+		}
+		else {
+			r = m;
+		}
+		return binary_search(nums, l, r);
+	}
+
+	int findPeakElement(vector<int>& nums) {
+		int n = nums.size();
+		int l = 0;
+		int r = n-1;
+		int m = 0;
+		/*while (l <= r) {
+			m = (l + r) / 2;
+			if (l == m) break;
+			if (nums[m] < nums[m+1]) {
+				l = m + 1;
+			}
+			else {
+				r = m;
+			}
+		}*/
+
+		m = binary_search(nums, l, r);
+
+		if(m + 1 < n){
+			if (nums[m] > nums[m + 1]) {
+				return m;
+			}
+			else {
+				return m + 1;
+			}
+		}
+		else {
+			return l;
+		}
+	}
+
+	
 };
 
 class MyLinkedList {
