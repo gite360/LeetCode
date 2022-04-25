@@ -219,6 +219,132 @@ public:
 		}
 	}
 
+	bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+		if (numCourses == 1) return true;
+
+		vector<vector<int>> G(numCourses);
+		vector<bool> done(numCourses, false);
+		vector<bool> todo(numCourses, false);
+		vector<int> T(numCourses, 0);
+		//int count = 0;
+		bool cycle = true;
+
+		for (auto&& au : prerequisites) {
+			G[au[1]].emplace_back(au[0]);
+		}
+
+		for (int i = 0; i < numCourses; i++) {
+			//if(!done[i] && !dfs_topo(i, G, done, todo, T, cycle))
+				//return false;
+			if (is_cycle(i, G, done, todo, T, cycle)) 
+				return false;
+				 
+		}
+
+		return true;
+	}
+
+	bool is_cycle(int i, vector<vector<int>>& G, vector<bool>& done, vector<bool>& todo, vector<int>& T, bool& cycle) {
+		/*if (done[i]) return true;
+
+		if (todo[i]) return false;
+
+		done[i] = todo[i] = true;*/
+		if (T[i] == 1) return true;
+
+		if (T[i] == 0) {
+			T[i] = 1;
+			for (int j = 0; j < G[i].size(); j++) {
+				if (is_cycle(G[i][j], G, done, todo, T, cycle)) 
+					return true;
+			}
+		}
+
+		T[i] = 2;
+		//todo[i] = false;
+		return false;
+	}
+
+	vector<vector<int>> merge(vector<vector<int>>& intervals) {
+		int n = intervals.size();
+		if (n == 1) return intervals;
+		vector<vector<int>> result;
+		vector<vector<int>> t;
+
+		map<int, vector<int>> M;
+
+		sort(intervals.begin(), intervals.end());
+
+		for (auto au : intervals) {
+			M[au.front()].emplace_back(au.back());
+		}
+
+		vector<int> temp(2, 0);
+
+		for (auto it = M.begin(); it != M.end(); it++) {
+			temp.front() = it->first;
+			sort(it->second.begin(), it->second.end());
+			temp.back() = it->second.back();
+			t.emplace_back(temp);
+		}
+
+		int m = t.size();
+		result.emplace_back(t.front());
+
+		for (int i = 1; i < m; i++) {
+			//temp.front() = result.back().front();
+			if (result.back().back() >= t[i].front()) {
+				result.back().back() = max(result.back().back(), t[i].back());
+				continue;
+			}
+			else {
+				//temp.back() = t[i].back();
+				result.emplace_back(t[i]);
+				continue;
+			}
+		}
+
+		/*for (int i = 0; i < m; i++) {
+			if (result.empty()) {
+				temp.front() = t[i].front();
+				if (i + 1 < m && t[i].back() >= t[i + 1].front()) {
+					temp.back() = t[i + 1].back();
+					if (t[i].back() >= t[i + 1].back()) {
+						temp.back() = t[i].back();
+					}
+					i++;
+					result.emplace_back(temp);
+					continue;
+				}
+				else {
+					temp.back() = t[i].back();
+					result.emplace_back(temp);
+					continue;
+				}
+			}
+			else {
+				temp.front() = result.back().front();
+				if (i < m && result.back().back() >= t[i].front()) {
+					temp.back() = t[i + 1].back();
+					if (t[i].back() >= t[i + 1].back()) {
+						temp.back() = t[i].back();
+					}
+					i++;
+					result.emplace_back(temp);
+					continue;
+				}
+				else {
+					temp.back() = t[i].back();
+					result.emplace_back(temp);
+					continue;
+				}
+			}
+		}*/
+
+
+		return result;
+	}
+
 	
 };
 

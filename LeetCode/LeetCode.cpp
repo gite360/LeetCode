@@ -23,13 +23,21 @@ int main()
 
 	Solution solution;
 
+	/*=================================*/
+	vector<vector<int>> intervals = { {1, 4}, { 0, 2 },  { 3, 5 } };// { {1, 4}, { 0, 2 },  { 3, 5 } }; // { {4, 5}, { 1, 4 } }; // { {1, 3}, { 2, 6 }, { 8, 10 }, { 15, 18 } };
+	solution.merge(intervals);
+
+	/*===============================*/
+	int numCourses = 4;
+	vector<vector<int>> prerequisites = { {1, 0}, {2, 0}, {3, 1}, {3, 2} };//{ {1, 0}, {2, 0}, {3, 1}, {3, 2} };
+	solution.canFinish(numCourses, prerequisites);
+
 	/*===============================*/
 	vector<int> nums_peak = { 1,2};
 	solution.findPeakElement(nums_peak);
 
 	/*===============================*/
-	int numCourses = 2;
-	vector<vector<int>> prerequisites = { {0, 1} };//{ {1, 0}, {2, 0}, {3, 1}, {3, 2} };
+	
 	solution.findOrder(numCourses, prerequisites);
 
 	/*===============================*/
