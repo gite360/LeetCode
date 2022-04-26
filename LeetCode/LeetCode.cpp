@@ -24,6 +24,13 @@ int main()
 	Solution solution;
 
 	/*=================================*/
+	string s_sub = "baaabcb"; 
+	int k = 3;
+	int rrrrr;
+	int sssss = solution.longestSubstring(s_sub,k, rrrrr);
+	cout << rrrrr << endl;
+
+	/*=================================*/
 	vector<vector<int>> intervals = { {1, 4}, { 0, 2 },  { 3, 5 } };// { {1, 4}, { 0, 2 },  { 3, 5 } }; // { {4, 5}, { 1, 4 } }; // { {1, 3}, { 2, 6 }, { 8, 10 }, { 15, 18 } };
 	solution.merge(intervals);
 

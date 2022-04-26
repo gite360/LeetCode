@@ -345,7 +345,51 @@ public:
 		return result;
 	}
 
-	
+	int longestSubstring(string s, int k, int& result) {
+		if (k == 0) return 0;
+		//if (s.size() < k) return 0;
+
+		map<char, int> M;
+
+		for (int i = 0; i < s.size(); i++) {
+			M[s[i]]++;
+		}
+
+		int count = 0;
+
+		for (auto au : M) {
+			if (au.second >= k) {
+				count++;
+			}
+		}
+
+		int n = s.size();
+
+		int id = 0;
+		while (id < n && M[s[id]] >= k) {
+			id++;
+		}
+
+		if (id == n) return n;
+
+		//int result = 0;
+
+		//for (int i = 1; i < n; i++) {
+			//string s1 = s.substr(0, i);
+			//string s2 = s.substr(i);
+
+			//if (s1=="aaa") {
+				//cout << s2;
+			//}
+
+			result = max(longestSubstring(s.substr(0, id), k, result), longestSubstring(s.substr(id+1), k, result));
+		//}
+
+		return result;
+		//return max(longestSubstring(s.substr(0, id), k), longestSubstring(s.substr(id+1, n), k));
+		
+	}
+
 };
 
 class MyLinkedList {
