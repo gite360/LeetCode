@@ -398,14 +398,10 @@ public:
 		for (int i = 0; i < n; i++) {
 			for (int j = n - i; j > 0; j--) {
 
-				if (i == 5) 
-					cout << "a";
-
 				if (dp[i]) {
 					string ts = s.substr(i, j);
 					if (find(wordDict.begin(), wordDict.end(), ts) != wordDict.end()) {
 						dp[i + j] = true;
-						//break;
 					}
 				}
 			}
