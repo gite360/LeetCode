@@ -24,6 +24,12 @@ int main()
 	Solution solution;
 
 	/*=================================*/
+	string s_139 = "applepenapple";
+	vector<string> wordDict("apple", "pen");
+
+	solution.wordBreak(s_139, wordDict);
+
+	/*=================================*/
 	string s_sub = "baaabcb"; 
 	int k = 3;
 	int rrrrr;
