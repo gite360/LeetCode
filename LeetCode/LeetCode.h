@@ -392,9 +392,54 @@ public:
 
 	bool wordBreak(string s, vector<string>& wordDict) {
 		int n = s.size();
-		for (int i = 0; i < n; i++) {
-			for (int j = i; j < n; j++) {
+		vector<bool> dp(n + 1);
+		dp[0] = true;
 
+		for (int i = 0; i < n; i++) {
+			for (int j = n - i; j > 0; j--) {
+
+				if (i == 5) 
+					cout << "a";
+
+				if (dp[i]) {
+					string ts = s.substr(i, j);
+					if (find(wordDict.begin(), wordDict.end(), ts) != wordDict.end()) {
+						dp[i + j] = true;
+						//break;
+					}
+				}
+			}
+		}
+
+		return dp[s.size()];
+	}
+
+	void ffind_result(string s, vector<string>& wordDict, bool& r) {
+		int n = s.size();
+		int m = wordDict.size();
+
+		if (n == 0) {
+			r = true;
+			return;
+		}
+
+		for (int i = 0; i < m; i++) {
+			string ts = s.substr(0, wordDict[i].size());
+			if (ts == wordDict[i]) {
+				ffind_result(s.substr(ts.size()), wordDict, r);
+			}
+		}
+	}
+
+	void find_result(vector<vector<string>>& ss, int i, bool& r) {
+		int n = ss[0].size();
+		for (int j = 0; j < n; j++) {
+			if (ss[i][j] != "") {
+				if (j==n-1) {
+					r = true;
+					return;
+				}
+				find_result(ss, j + 1, r);
 			}
 		}
 	}

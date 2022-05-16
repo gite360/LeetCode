@@ -24,11 +24,11 @@ int main()
 	Solution solution;
 
 	/*=================================*/
-	string s_139 = "applepenapple";
-	vector<string> wordDict("apple", "pen");
+	string s_139 = "catsandog";
+	vector<string> wordDict{ "cats","dog","sand","and","cat" };
 
 	solution.wordBreak(s_139, wordDict);
-
+	assert(0);
 	/*=================================*/
 	string s_sub = "baaabcb"; 
 	int k = 3;
