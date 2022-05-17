@@ -24,6 +24,9 @@ int main()
 	Solution solution;
 
 	/*=================================*/
+	string s_763 = "eccbbbbdec";
+	solution.partitionLabels(s_763);
+	/*=================================*/
 	string s_139 = "catsandog";
 	vector<string> wordDict{ "cats","dog","sand","and","cat" };
 

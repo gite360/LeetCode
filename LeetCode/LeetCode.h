@@ -440,7 +440,53 @@ public:
 		}
 	}
 
+	vector<int> partitionLabels(string s) {
+		size_t n = s.size();
+		vector<int> r;
+		vector<char> t{s[0]};
+		vector<vector<char>> tt{t};
+		map<char, int> dic;
+		dic[s[0]]++;
+
+		for (int i = 1; i < n; i++) {
+			vector<char> ttt;
+			if (dic[s[i]]) {
+
+				for (int j = 0; j < tt.size(); j++) {
+					if (find(tt[j].begin(), tt[j].end(), s[i]) != tt[j].end()) {
+						tt.back().emplace_back(s[i]);
+						int m = tt.size() - 1;
+						while (m > j) {
+							tt[j].insert(tt[j].end(), tt[m].begin(),tt[m].end());
+							tt.erase(tt.begin() + m);
+							m--;
+						}
+
+						break;
+					}
+				}
+			}
+			else {
+				ttt.emplace_back(s[i]);
+				tt.emplace_back(ttt);
+				dic[s[i]]++;
+			}
+			
+		}
+
+		for (int j = 0; j < tt.size(); j++) {
+			r.emplace_back(tt[j].size());
+		}
+
+		return r;
+
+	}
+
+
+
+
 };
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 class MyLinkedList {
 public:
