@@ -482,8 +482,33 @@ public:
 
 	}
 
+	//220518 739. Daily Temperatures
+	vector<int> dailyTemperatures(vector<int>& temperatures) {
+		size_t n = temperatures.size();
+		vector<int> r(n, 0);
+		stack<int> s;
 
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			while (!s.empty() && temperatures[s.top()] < temperatures[i]) {
+				r[s.top()] = i - s.top();
+				s.pop();
+			}
+			s.emplace(i);
+		}
 
+		/*for (int i = 0; i < n-1; i++) {
+			int count = 0;
+			for (int j = i + 1; j < n; j++) {
+				count++;
+				if (temperatures[i] < temperatures[j]) {
+					r[i]+=count;
+					break;
+				}
+			}
+		}*/
+		return r;
+	}
 
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
