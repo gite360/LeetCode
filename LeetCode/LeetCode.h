@@ -510,6 +510,44 @@ public:
 		return r;
 	}
 
+	/*===== 220519 39. Combination Sum ======*/
+	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+		vector<int> tr;
+		vector<vector<int>> r;
+		int begin = 0;
+
+		for (int i = 0; i < candidates.size(); i++) {
+			tr.emplace_back(candidates[i]);
+			back_track(candidates, target, i, tr, r);
+			tr.pop_back();
+		}
+
+		return r;
+	}
+
+	void back_track(vector<int>& candidates, int& target, int begin, vector<int>& tr, vector<vector<int>>& r) {
+		int temp = 0;
+
+		for (int i = 0; i < tr.size(); i++) {
+			temp += tr[i];
+		}
+
+		if (temp == target) {
+			r.emplace_back(tr);
+			return;
+		}
+		else if (temp > target) {
+			return;
+		}
+
+		for (int i = begin; i < candidates.size(); i++) {
+			tr.emplace_back(candidates[i]);
+			back_track(candidates, target, i, tr, r);
+			tr.pop_back();
+		}
+	}
+
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

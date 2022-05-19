@@ -16,12 +16,16 @@ int main()
 
 #if _DEBUG
 	cout << "1 current id: " << 55555555555 << ", vector size: " <<555555555555 << endl;
-
-
 #endif
 
 
 	Solution solution;
+
+	/*===== 220519 39. Combination Sum ======*/
+	vector<int> candidates = { 2, 3, 6, 7 };
+	int target_39 = 7;
+	solution.combinationSum(candidates, target_39);
+
 	/*=== 220518 739. Daily Temperatures ====*/
 	vector<int> temperatures{ 64,40,49,73,72,35,68,83,35,73,84,88,96,43,74,63,41,95,48,46,89,72,34,85,72,59,87,49,30,32,47,34,74,58,31,75,73,88,64,92,83,64,100,99,81,41,48,83,96,92,82,32,35,68,68,92,73,92,52,33,44,38,47,88,71,50,57,95,33,65,94,44,47,79,41,74,50,67,97,31,68,50,37,70,77,55,48,30,77,100,31,100,69,60,47,95,68,47,33,64 };
 	solution.dailyTemperatures(temperatures);
