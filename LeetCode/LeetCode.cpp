@@ -21,6 +21,12 @@ int main()
 
 	Solution solution;
 
+	/*===== 220520 64. Minimum Path Sum ======*/
+
+	vector<vector<int>> grid{ {1,3,1}, {1,5,1}, {4,2,1} };
+
+	solution.minPathSum(grid);
+
 	/*===== 220519 39. Combination Sum ======*/
 	vector<int> candidates = { 2, 3, 6, 7 };
 	int target_39 = 7;

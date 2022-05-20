@@ -547,6 +547,45 @@ public:
 		}
 	}
 
+	/*===== 220520 64. Minimum Path Sum ======*/
+	int minCost(vector<vector<int>>& cost, int m, int n) {
+		cout << m << ", " << n << endl;
+		if (n < 0 || m < 0)
+			return INT_MAX;
+		else if (m == 0 && n == 0)
+			return cost[m][n];
+
+		return cost[m][n] + min(minCost(cost, m - 1, n), minCost(cost, m, n - 1));
+	}
+
+	int minPathSum(vector<vector<int>>& grid) {
+		int M = grid.size(), N = grid[0].size();
+		return minCost(grid, M - 1, N - 1);
+	}
+
+	void back_track_64(vector<vector<int>>& grid, int begin_row, int begin_colume, int temp_sum, vector<int>& sum) {
+		
+		size_t m = grid.size();
+		size_t n = grid[0].size();
+
+		if (begin_row == m - 1 && begin_colume == n - 1) {
+			sum.emplace_back(temp_sum);
+		}
+
+		if (begin_row > m - 1 || begin_colume > n-1) {
+			return;
+		}
+		if(begin_row + 1 < m){
+			temp_sum += grid[begin_row + 1][begin_colume];
+			back_track_64(grid, begin_row + 1, begin_colume, temp_sum, sum);
+			temp_sum -= grid[begin_row + 1][begin_colume];
+		}
+		if (begin_colume + 1 < n) {
+			temp_sum += grid[begin_row][begin_colume + 1];
+			back_track_64(grid, begin_row, begin_colume + 1, temp_sum, sum);
+		}
+	}
+
 
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
