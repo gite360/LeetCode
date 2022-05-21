@@ -12,8 +12,20 @@
 #include <bitset>
 using namespace std;
 
+
+
+
 class Solution {
 public:
+
+	//190106
+	struct ListNode {
+		int val;
+		ListNode* next;
+		ListNode() : val(0), next(nullptr) {}
+		ListNode(int x) : val(x), next(nullptr) {}
+		ListNode(int x, ListNode* next) : val(x), next(next) {}
+	};
 
 	//181230
 	vector<int> twoSum(vector<int>& nums, int target);
@@ -586,8 +598,54 @@ public:
 		}
 	}
 
+	/*===== 220521 24. Swap Nodes in Pairs ======*/
+	ListNode* swapPairs(ListNode* head) {
+
+		if (!head) {
+			return nullptr;
+		}
+		else if (!head->next) {
+			return head;
+		}
+
+		ListNode* h = head->next;
+		ListNode* t = head;
+		ListNode* n = head->next;
+		ListNode* p = head;
+		ListNode* pr = nullptr;
+
+		while (p && p->next) {
+
+			if (!p->next) break;
+
+			t = p;
+			n = p->next;
+			if(pr)
+				pr->next = n;
+
+			t->next = n->next;
+			n->next = t;
+
+			p = t->next;
+			pr = t;
+
+			
+		}
+		
+
+		return h;
+	}
+
+
 
 };
+
+
+
+
+
+
+
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 class MyLinkedList {
@@ -658,6 +716,11 @@ public:
 		temp_del->next = nullptr;
 	}
 };
+
+
+
+
+
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
@@ -743,12 +806,8 @@ bool Solution::isValid(string s) {
 	return stk.empty();
 }
 
-//190106
-struct Solution::ListNode {
-	int val;
-	Solution::ListNode *next;
-	Solution::ListNode(int x) : val(x), next(nullptr) {}
-};
+
+
 Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode *l1, Solution::ListNode *l2) {
 	Solution::ListNode header(LONG_MIN);
 	Solution::ListNode* tail_ptr=&header;

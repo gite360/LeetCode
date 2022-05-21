@@ -21,6 +21,19 @@ int main()
 
 	Solution solution;
 
+	/*===== 220521 24. Swap Nodes in Pairs ======*/
+	
+	Solution::ListNode* p = new Solution::ListNode(1);
+	Solution::ListNode* head_24 = p;
+
+	for (int i = 1; i < 5; i++) {
+		Solution::ListNode* t = new Solution::ListNode(i+1);
+		p->next = t;
+		p = p->next;
+	}
+
+	solution.swapPairs(head_24);
+
 	/*===== 220520 64. Minimum Path Sum ======*/
 
 	vector<vector<int>> grid{ {1,3,1}, {1,5,1}, {4,2,1} };
