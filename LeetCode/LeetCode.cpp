@@ -21,6 +21,34 @@ int main()
 
 	Solution solution;
 
+	/*==== 114. Flatten Binary Tree to Linked List ====*/
+	vector<Solution::TreeNode> node_vector_114 = { 1,2,5,3,4,-1,6 };
+	vector<int> v_114 = { 1,2,5,3,4,-1,6 };
+	Solution::TreeNode* root_114 = &node_vector_114[0];
+	queue<Solution::TreeNode*> q_114;
+
+	q_114.emplace(&node_vector_114[0]);
+	int i = 0;
+	//i++;
+	while (!q_114.empty() && i < v_114.size()) {
+		Solution::TreeNode* temp_node_114 = q_114.front();
+		q_114.pop();
+		i++;
+		if (i < v_114.size() && v_114[i] != -1) {
+			temp_node_114->left = &node_vector_114[i];
+			q_114.emplace(temp_node_114->left);
+		}
+		i++;
+		if (i < v_114.size() && v_114[i] != -1) {
+			temp_node_114->right = &node_vector_114[i];
+			q_114.emplace(temp_node_114->right);
+		}
+
+	}
+		
+
+	solution.flatten(root_114);
+
 	/*====96. Unique Binary Search Trees====*/
 	int n_96 = 4;
 	solution.numTrees(n_96);

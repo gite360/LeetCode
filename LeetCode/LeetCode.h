@@ -27,6 +27,16 @@ public:
 		ListNode(int x, ListNode* next) : val(x), next(next) {}
 	};
 
+	struct TreeNode {
+		int val;
+		TreeNode* left;
+		TreeNode* right;
+		TreeNode() : val(0), left(nullptr), right(nullptr) {}
+		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+		TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
+		
+	};
+
 	//181230
 	vector<int> twoSum(vector<int>& nums, int target);
 	//181231
@@ -636,7 +646,7 @@ public:
 		return h;
 	}
 
-	/*====96. Unique Binary Search Trees====*/
+	/*====  96. Unique Binary Search Trees  ====*/
 	int numTrees(int n) {
 		vector<int> t(n+1, 0);
 		t[0] = t[1] = 1;
@@ -667,6 +677,43 @@ public:
 		}
 
 		return t[n] = rr;
+	}
+
+
+	/*==== 114. Flatten Binary Tree to Linked List  ====*/
+	void flatten(TreeNode* root) {
+
+		if (!root) return;
+		if (!root->left && !root->right) return;
+
+		vector<TreeNode*> result = { root };
+
+		dfs_114(root, result);
+		TreeNode* t = result[0];
+		for (int i = 1; i < result.size(); i++) {
+			t->left = nullptr;
+			t->right = result[i];
+			t = t->right;
+		}
+
+		root = result[0];
+
+		return;
+	}
+
+	void dfs_114(TreeNode* node, vector<TreeNode*>& result) {
+
+		if (node->left) {
+			result.emplace_back(node->left);
+			dfs_114(node->left, result);
+		}
+		
+		if(node->right) {
+			result.emplace_back(node->right);
+			dfs_114(node->right, result);
+		}
+
+		return;
 	}
 
 };
