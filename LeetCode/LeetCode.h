@@ -636,7 +636,38 @@ public:
 		return h;
 	}
 
+	/*====96. Unique Binary Search Trees====*/
+	int numTrees(int n) {
+		vector<int> t(n+1, 0);
+		t[0] = t[1] = 1;
+		int r = 0; 
+		//r = dp_tree(n,t);
 
+		for (int i = 2; i <= n;  i++) {
+			for (int j = 0; j < i; j++) {
+				t[i] += t[j] * t[i - j - 1];
+			}
+		}
+
+
+		return t[n];
+	}
+
+	int dp_tree(int n, vector<int>& t) {
+		
+		if (n == 1 || n == 0) {
+			return 1;
+		}
+		if (t[n] != -1) {
+			return t[n];
+		}
+		int rr = 0;
+		for (int i = 0; i < n; i++) {
+			rr += dp_tree(i,t) * dp_tree(n-i-1,t);
+		}
+
+		return t[n] = rr;
+	}
 
 };
 

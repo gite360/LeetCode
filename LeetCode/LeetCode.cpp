@@ -21,6 +21,10 @@ int main()
 
 	Solution solution;
 
+	/*====96. Unique Binary Search Trees====*/
+	int n_96 = 4;
+	solution.numTrees(n_96);
+
 	/*===== 220521 24. Swap Nodes in Pairs ======*/
 	
 	Solution::ListNode* p = new Solution::ListNode(1);
