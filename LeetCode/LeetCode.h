@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include <assert.h>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -715,6 +716,42 @@ public:
 		}
 
 		return;
+	}
+
+	/*==== 394. Decode String ====*/
+
+	string decodeString(const string& s, int& i) {
+		string res;
+		while (i < s.size() && s[i] != ']') {
+			if (!isdigit(s[i])) {
+				res += s[i];
+				i++;
+			}
+			else {
+				string nn;
+				while (isdigit(s[i])) {
+					nn += s[i];
+					i++;
+				}
+				int n = stoi(nn);
+				i++;
+				string t = decodeString(s, i);
+				i++;
+
+				while (n-- > 0) {
+					res += t;
+				}
+
+			}
+			
+		}
+
+		return res;
+	}
+
+	string decodeString(string s) {
+		int i = 0;
+		return decodeString(s, i);
 	}
 
 };

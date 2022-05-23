@@ -21,6 +21,16 @@ int main()
 
 	Solution solution;
 
+	/*======= 394. Decode String =======*/
+	string s_394 = "sd2[f2[e]g]i";
+	//string s_394 = "2[a]2[b]89[c]";
+	//string s_394 = "2[l3[e4[c5[t]]]]";
+	s_394 = "3[ab2[cd]e]fg10[h]";
+	//string s_394 = "2[2[y]pq4[2[jk]e1[f]]]ef";
+	//string s_394 = "3[a2[c]]";
+	s_394 = "sd2[f2[e]g]i";
+	solution.decodeString(s_394);
+
 	/*==== 114. Flatten Binary Tree to Linked List ====*/
 	vector<Solution::TreeNode> node_vector_114 = { 1,2,5,3,4,-1,6 };
 	vector<int> v_114 = { 1,2,5,3,4,-1,6 };
