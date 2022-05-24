@@ -754,15 +754,76 @@ public:
 		return decodeString(s, i);
 	}
 
+	/*===== 134. Gas Station =====*/
+
+	int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+		size_t n = gas.size();
+		int tank = 0;
+		int begin = -1;
+		int count = 0;
+		int cs = 0;
+		int ns = 0;
+		for (int i = 0; i < n; i++) {
+			cs += gas[i] - cost[i];
+			ns += gas[i] - cost[i];
+			if (ns < 0) {
+				begin = i + 1;
+				ns = 0;
+			}
+
+			/*int od = i % n;
+			tank += gas[od] - cost[od];
+			count++;
+			if (tank < 0) {
+				tank = 0;
+				count = 0;
+			}
+			if (count == n) {
+				begin = (i + 1) % n;
+			}*/
+
+			//tank = begin_circle(gas, cost, i);
+			//if (tank >= 0) {
+				//return i;
+			//}
+		}
+		if (cs<0) {
+			begin = -1;
+		}
+
+		return begin;
+	}
+
+	int begin_circle(vector<int>& gas, vector<int>& cost, int begin) {
+		size_t n = gas.size();
+
+		int tank = gas[begin];
+
+		for (int j = begin; j < begin + n; j++) {
+			int od = (j) % n;
+			int nex = (j + 1) % n;
+			
+			if (tank < cost[od]) {
+				return -1;
+			}
+
+			tank +=  gas[nex] - cost[od];
+			if (tank < 0) {
+				return tank;
+			}
+		}
+		
+		return tank;
+	}
 };
-
-
-
-
-
-
-
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+
+
+
+
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&    class MyLinkedList   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 class MyLinkedList {
 public:

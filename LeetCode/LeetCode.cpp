@@ -15,11 +15,20 @@ int main()
 {
 
 #if _DEBUG
-	cout << "1 current id: " << 55555555555 << ", vector size: " <<555555555555 << endl;
+	cout << "1 current id: " << 55555555555 << ", vector size: " << 555555555555 << endl;
 #endif
 
 
 	Solution solution;
+
+	/*======= 134. Gas Station =======*/
+	vector<int> gas_134 = {1, 2, 3, 4, 5};
+	vector<int> cost_134 = {3, 4, 5, 1, 2};
+
+	gas_134 = { 2, 3, 4 };
+	cost_134 = { 3, 4, 3 };
+
+	solution.canCompleteCircuit(gas_134, cost_134);
 
 	/*======= 394. Decode String =======*/
 	string s_394 = "sd2[f2[e]g]i";
