@@ -21,6 +21,14 @@ int main()
 
 	Solution solution;
 
+	/*===== 150. Evaluate Reverse Polish Notation =====*/
+	vector<string> tokens = { "2", "1", "+", "3", "*" };
+	//tokens = { "4","13","5","/","+" };
+	tokens = { "10","6","9","3","+","-11","*","/","*","17","+","5","+" };
+	//tokens = { "4","13","5","/","+" };
+	solution.evalRPN(tokens);
+	/*================================================*/
+
 	/*======= 134. Gas Station =======*/
 	vector<int> gas_134 = {1, 2, 3, 4, 5};
 	vector<int> cost_134 = {3, 4, 5, 1, 2};
@@ -29,6 +37,7 @@ int main()
 	cost_134 = { 3, 4, 3 };
 
 	solution.canCompleteCircuit(gas_134, cost_134);
+	/*================================================*/
 
 	/*======= 394. Decode String =======*/
 	string s_394 = "sd2[f2[e]g]i";
@@ -39,6 +48,7 @@ int main()
 	//string s_394 = "3[a2[c]]";
 	s_394 = "sd2[f2[e]g]i";
 	solution.decodeString(s_394);
+	/*================================================*/
 
 	/*==== 114. Flatten Binary Tree to Linked List ====*/
 	vector<Solution::TreeNode> node_vector_114 = { 1,2,5,3,4,-1,6 };
@@ -65,12 +75,13 @@ int main()
 
 	}
 		
-
 	solution.flatten(root_114);
+	/*================================================*/
 
 	/*====96. Unique Binary Search Trees====*/
 	int n_96 = 4;
 	solution.numTrees(n_96);
+	/*================================================*/
 
 	/*===== 220521 24. Swap Nodes in Pairs ======*/
 	
@@ -84,17 +95,21 @@ int main()
 	}
 
 	solution.swapPairs(head_24);
+	/*================================================*/
 
 	/*===== 220520 64. Minimum Path Sum ======*/
 
 	vector<vector<int>> grid{ {1,3,1}, {1,5,1}, {4,2,1} };
 
 	solution.minPathSum(grid);
+	/*================================================*/
+
 
 	/*===== 220519 39. Combination Sum ======*/
 	vector<int> candidates = { 2, 3, 6, 7 };
 	int target_39 = 7;
 	solution.combinationSum(candidates, target_39);
+	/*================================================*/
 
 	/*=== 220518 739. Daily Temperatures ====*/
 	vector<int> temperatures{ 64,40,49,73,72,35,68,83,35,73,84,88,96,43,74,63,41,95,48,46,89,72,34,85,72,59,87,49,30,32,47,34,74,58,31,75,73,88,64,92,83,64,100,99,81,41,48,83,96,92,82,32,35,68,68,92,73,92,52,33,44,38,47,88,71,50,57,95,33,65,94,44,47,79,41,74,50,67,97,31,68,50,37,70,77,55,48,30,77,100,31,100,69,60,47,95,68,47,33,64 };

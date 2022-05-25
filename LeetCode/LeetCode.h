@@ -569,7 +569,7 @@ public:
 			tr.pop_back();
 		}
 	}
-
+	/*================================================*/
 	/*===== 220520 64. Minimum Path Sum ======*/
 	int minCost(vector<vector<int>>& cost, int m, int n) {
 		cout << m << ", " << n << endl;
@@ -608,7 +608,7 @@ public:
 			back_track_64(grid, begin_row, begin_colume + 1, temp_sum, sum);
 		}
 	}
-
+	/*================================================*/
 	/*===== 220521 24. Swap Nodes in Pairs ======*/
 	ListNode* swapPairs(ListNode* head) {
 
@@ -646,7 +646,7 @@ public:
 
 		return h;
 	}
-
+	/*================================================*/
 	/*====  96. Unique Binary Search Trees  ====*/
 	int numTrees(int n) {
 		vector<int> t(n+1, 0);
@@ -679,7 +679,7 @@ public:
 
 		return t[n] = rr;
 	}
-
+	/*================================================*/
 
 	/*==== 114. Flatten Binary Tree to Linked List  ====*/
 	void flatten(TreeNode* root) {
@@ -717,7 +717,7 @@ public:
 
 		return;
 	}
-
+	/*================================================*/
 	/*==== 394. Decode String ====*/
 
 	string decodeString(const string& s, int& i) {
@@ -753,7 +753,7 @@ public:
 		int i = 0;
 		return decodeString(s, i);
 	}
-
+	/*================================================*/
 	/*===== 134. Gas Station =====*/
 
 	int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
@@ -815,6 +815,108 @@ public:
 		
 		return tank;
 	}
+	/*================================================*/
+
+	/*===== 150. Evaluate Reverse Polish Notation =====*/
+	int evalRPN(vector<string>& tokens) {
+		int n = tokens.size();
+
+		if (n == 1) {
+			return stoi(tokens.front());
+		}
+
+		int result = 0;
+		map<char, int> operator_map{ {'+', 0}, { '-', 1 }, { '*', 2 }, { '/', 3 }};
+		map<string, int> operator_mmap{ {" + ", 0}, { " - ", 1 }, { " * ", 2 }, { " / ", 3 } };
+		stack<int> digit;
+		stack<char> opera;
+		digit.emplace(stoi(tokens[0]));
+		digit.emplace(stoi(tokens[1]));
+
+		//recursive_150(tokens, operator_map, 0);
+
+		/*---------------------------   Recursive   -------------------------------------------*/
+		int m = n - 1;
+		result = resursive_150(tokens, operator_map, m);
+		return result;
+		/*-------------------------------------------------------------------------------------*/
+
+		/*---------------------------   Stack   ------------------------------------------------*/
+		/*
+
+		int i = 2;
+		while (!digit.empty() && i < n) {
+			if (is_operator(tokens[i])) {
+				int right = digit.top();
+				digit.pop();
+				int left = digit.top();
+				digit.pop();
+
+				digit.emplace( operation(tokens, operator_map, i, left, right) );
+				i++;
+			}
+			else {
+				digit.emplace(stoi(tokens[i]));
+				i++;
+			}
+		}*/
+		/*-------------------------------------------------------------------------------------*/
+
+		return digit.top();
+	}
+
+	int resursive_150(vector<string>& tokens, map<char, int>& operator_map, int& i) {
+		/*if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/") {
+			char Operator = tokens[i][0];
+			int op1 = resursive_150(tokens, operator_map, --i);
+			int op2 = resursive_150(tokens, operator_map, --i);
+			if (Operator == '+') return op2 + op1;
+			if (Operator == '-') return op2 - op1;
+			if (Operator == '/') return op2 / op1;
+			if (Operator == '*') return op2 * op1;
+		}
+		return stoi(tokens[i]);*/
+
+		if (is_operator(tokens[i])) {
+			int j = i;
+			int right = resursive_150(tokens, operator_map, --i);
+			int left = resursive_150(tokens, operator_map, --i);
+			return operation(tokens, operator_map, j, left, right);
+		}
+
+		return stoi(tokens[i]);
+	}
+
+	int operation(vector<string>& tokens, map<char, int>& operator_map, int i, int left, int right) {
+		int result = 0;
+
+		switch(operator_map[tokens[i][0]]){
+		case 0:
+			return result = left + right;
+			break;
+		case 1:
+			return result = left - right;
+			break;
+		case 2:
+			return result = left * right;
+			break;
+		case 3:
+			return result = left / right;
+			break;
+		default:
+			assert(0);
+		}
+	}
+
+	bool is_operator(string& token) {
+		if (token.size() == 1 && !isdigit(token[0])) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/*================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -823,7 +925,7 @@ public:
 
 
 
-/*&&&&&&&&&&&&&&&&&&&&&&&&    class MyLinkedList   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&    Class MyLinkedList   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 class MyLinkedList {
 public:
