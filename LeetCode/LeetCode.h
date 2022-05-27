@@ -917,6 +917,169 @@ public:
 	}
 
 	/*================================================*/
+
+
+	/*====227. Basic Calculator II=======*/
+	int calculate(string s) {
+		stack<int> myStack;
+		char sign = '+';
+		int res = 0, tmp = 0;
+		for (unsigned int i = 0; i < s.size(); i++) {
+			if (isdigit(s[i]))
+				tmp = 10 * tmp + s[i] - '0';
+			if (!isdigit(s[i]) && !isspace(s[i]) || i == s.size() - 1) {
+				if (sign == '-')
+					myStack.push(-tmp);
+				else if (sign == '+')
+					myStack.push(tmp);
+				else {
+					int num;
+					if (sign == '*')
+						num = myStack.top() * tmp;
+					else
+						num = myStack.top() / tmp;
+					myStack.pop();
+					myStack.push(num);
+				}
+				sign = s[i];
+				tmp = 0;
+			}
+		}
+		while (!myStack.empty()) {
+			res += myStack.top();
+			myStack.pop();
+		}
+		return res;
+	}
+
+	int get_int(string s, int& i) {
+		size_t n = s.size();
+		string t_s;
+		while (i < n && isdigit(s[i])) {
+			t_s += s[i];
+			i++;
+		}
+		int right = stoi(t_s);
+		return right;
+	}
+
+	int recursive_227(string& s, int& i) {
+		size_t n = s.size();
+		int reuslt = 0;
+		update_i(s, i);
+		string t_s;
+		while (i >= 0 && isdigit(s[i])) {
+			t_s += s[i];
+			i--;
+		}
+		std::reverse(t_s.begin(), t_s.end());
+		int right = stoi(t_s);
+		update_i(s, i);
+		if (i <= 0) {
+			return reuslt = right;
+		}
+
+		if (s[i] == '*') {
+			i--;
+			update_i(s, i);
+			string t_s;
+			while (i >= 0 && isdigit(s[i])) {
+				t_s += s[i];
+				i--;
+			}
+			std::reverse(t_s.begin(), t_s.end());
+			int left = stoi(t_s);
+			update_i(s, i);
+			if (i <= 0) {
+				return reuslt = left * right;
+			}
+			update_i(s, i);
+			if (s[i] == '*')      return reuslt = recursive_227(s, --i) * left * right;
+			else if (s[i] == '/') return reuslt = floor(recursive_227(s, --i) / left) * right;
+			else if (s[i] == '+') return reuslt =  recursive_227(s, --i) + left * right;
+			else if (s[i] == '-') return reuslt =  recursive_227(s, --i) - left * right;
+		}
+
+		if (s[i] == '/') {
+			i--;
+			update_i(s, i);
+			string t_s;
+			while (i >= 0 && isdigit(s[i])) {
+				t_s += s[i];
+				i--;
+			}
+			std::reverse(t_s.begin(), t_s.end());
+			int left = stoi(t_s);
+			update_i(s, i);
+			if (i <= 0) {
+				return reuslt = floor(left / right);
+			}
+			update_i(s, i);
+			if (s[i] == '*')      return reuslt = floor(recursive_227(s, --i) * left / right);
+			else if (s[i] == '/') return reuslt = floor(floor(recursive_227(s, --i) / left) / right);
+			else if (s[i] == '+') return reuslt = recursive_227(s, --i) + floor(left / right);
+			else if (s[i] == '-') return reuslt = recursive_227(s, --i) - floor(left / right);
+		}
+
+		if (s[i] == '+') {
+			i--;
+			update_i(s, i);
+			string t_s;
+			while (i >= 0 && isdigit(s[i])) {
+				t_s += s[i];
+				i--;
+			}
+			std::reverse(t_s.begin(), t_s.end());
+			int left = stoi(t_s);
+			update_i(s, i);
+			if (i <= 0) {
+				//return reuslt = floor(left + right);
+
+				if (s[i] == '*') return reuslt = recursive_227(s, --i) * left + right;
+				else if (s[i] == '/') { return reuslt = floor(recursive_227(s, --i) / left) + right; }
+				else if (s[i] == '+') { return reuslt = recursive_227(s, --i) + left + right; }
+				else if (s[i] == '-') { return reuslt = recursive_227(s, --i) - left + right; }
+			}
+			update_i(s, i);
+
+			if (s[i] == '*') return reuslt = recursive_227(s, --i) * left + right;
+			else if (s[i] == '/') { return reuslt = floor(recursive_227(s, --i) / left) + right; }
+			else if (s[i] == '+') { return reuslt = recursive_227(s, --i) + left + right; }
+			else if (s[i] == '-') { return reuslt = recursive_227(s, --i) - left + right; }
+		}
+
+		if (s[i] == '-') {
+			i--;
+			update_i(s, i);
+			string t_s;
+			while (i >= 0 && isdigit(s[i])) {
+				t_s += s[i];
+				i--;
+			}
+			std::reverse(t_s.begin(), t_s.end());
+			int left = stoi(t_s);
+			update_i(s, i);
+			if (i <= 0) {
+				return reuslt = floor(left - right);
+			}
+			update_i(s, i);
+
+			if (s[i] == '*')      return reuslt = recursive_227(s, --i) * left - right;
+			else if (s[i] == '/') return reuslt = floor(recursive_227(s, --i) / left) - right;
+			else if (s[i] == '+') return reuslt = recursive_227(s, --i) + left - right;
+			else if (s[i] == '-') return reuslt = recursive_227(s, --i) - left - right;
+		}
+
+		return reuslt;
+	}
+
+	void update_i(string& s, int & i) {
+		size_t n = s.size();
+		while (i < n && s[i] == ' ' ) {
+			i++;
+		}
+	}
+	/*================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

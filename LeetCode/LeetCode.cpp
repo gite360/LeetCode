@@ -21,6 +21,19 @@ int main()
 
 	Solution solution;
 
+	/*====227. Basic Calculator II=======*/
+	string s_227 = "1-1+1";
+
+	//s_227 = " 3 / 2 ";
+	//s_227 = " 3+5 / 2 ";
+	s_227 = " 3+2*2";
+	//s_227 = "0-2147483647";
+	//s_227 = "1*2-3/4+5*6-7*8+9/10";
+	s_227 = "     30";
+	s_227 = "14/3/2";
+	s_227 = "1+2*3+4*5+6*7+8*9+10";
+	solution.calculate(s_227);
+
 	/*===== 150. Evaluate Reverse Polish Notation =====*/
 	vector<string> tokens = { "2", "1", "+", "3", "*" };
 	//tokens = { "4","13","5","/","+" };
