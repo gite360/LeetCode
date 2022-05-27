@@ -21,6 +21,12 @@ int main()
 
 	Solution solution;
 
+	/*===============   54. Spiral Matrix  ============*/
+	vector<vector<int>> matrix_54 = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} };
+	matrix_54 = { {1,2,3} ,{4,5,6},{7,8,9} };
+	matrix_54 = { {2, 3, 4}, {5, 6, 7}, {8, 9, 10}, {11, 12, 13}, {14, 15, 16} };
+	solution.spiralOrder(matrix_54);
+
 	/*====227. Basic Calculator II=======*/
 	string s_227 = "1-1+1";
 

@@ -1080,6 +1080,46 @@ public:
 		}
 	}
 	/*================================================*/
+
+
+	/*===============   54. Spiral Matrix  ============*/
+	vector<int> spiralOrder(vector<vector<int>>& matrix) {
+		int b_n = 0;
+		int b_m = 0;
+		size_t n = matrix.size();
+		size_t m = matrix[0].size();
+		vector<int> r;
+		if (n == 1 || m == 1) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					r.emplace_back(matrix[i][j]);
+				}
+			}
+			return r;
+		}
+		while (b_m < m && b_n < n) {
+			for (int j = b_m; j < m; j++) {
+				r.emplace_back(matrix[b_n][j]);
+			}
+			for (int i = b_n + 1; i < n; i++) {
+				r.emplace_back(matrix[i][m - 1]);
+			}
+			for (int j = m - 2; j >= b_m && b_n + 1 < n; j--) {
+				r.emplace_back(matrix[n - 1][j]);
+			}
+			for (int i = n - 2; i > b_n && b_m + 1 < m; i--) {
+				r.emplace_back(matrix[i][b_m]);
+			}
+			b_m++;
+			b_n++;
+			m--;
+			n--;
+		}
+
+		return r;
+	}
+
+	/*================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
