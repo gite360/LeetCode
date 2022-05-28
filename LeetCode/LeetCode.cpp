@@ -21,6 +21,14 @@ int main()
 
 	Solution solution;
 
+	/*===============  334. Increasing Triplet Subsequence  ============*/
+	vector<int> nums_334 = { 1, 2, 3, 4, 5 };
+	nums_334 = { 5, 4, 3, 2, 1 };
+	nums_334 = {2, 1, 5, 0, 4, 6};
+	nums_334 = { 20,100,10,12,5,13 };
+	//nums_334 = {6,7,1,2};
+	//nums_334 = { 1,0,-1,0,10000 };
+	solution.increasingTriplet(nums_334);
 	/*===============   54. Spiral Matrix  ============*/
 	vector<vector<int>> matrix_54 = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} };
 	matrix_54 = { {1,2,3} ,{4,5,6},{7,8,9} };

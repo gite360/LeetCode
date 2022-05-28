@@ -1120,6 +1120,44 @@ public:
 	}
 
 	/*================================================*/
+
+
+	/*====== 334. Increasing Triplet Subsequence ======*/
+	bool increasingTriplet(vector<int>& nums) {
+		size_t n = nums.size();
+		if (n<3) {
+			return false;
+		}
+
+		int left = nums[0];
+		int middle = nums[0];
+		int right = nums[0];
+		
+		for (int i = 1; i < n; i++) {
+			if (nums[i] > left) {
+				if (nums[i] > middle && left != middle) {
+					return true;
+				}
+				else {
+					left = right;
+					middle = nums[i];
+				}
+				continue;
+			}
+			else if (nums[i] > right && right < left){
+				left = right;
+				middle = nums[i];
+				continue;
+		    }
+			else if( nums[i] < left && left >= right) {
+				right = nums[i];
+				continue;
+			}
+		}
+
+			return false;
+	}
+	/*================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
