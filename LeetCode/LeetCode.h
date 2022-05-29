@@ -1158,6 +1158,26 @@ public:
 			return false;
 	}
 	/*================================================*/
+
+	/*========  172. Factorial Trailing Zeroes ========*/
+	int trailingZeroes(int n) {
+		if (n < 5) return 0;
+		int r = 0;
+		long int number = 1;
+
+		for (int i = 2; i <= n;i++) {
+			number *= i;
+		}
+
+		while (number % 10 == 0) {
+			r++;
+			number /= 10;
+		}
+
+		return r;
+	}
+	/*================================================*/
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

@@ -21,6 +21,10 @@ int main()
 
 	Solution solution;
 
+	/*========  172. Factorial Trailing Zeroes ========*/
+	int n_172 = 10;
+	solution.trailingZeroes(n_172);
+
 	/*===============  334. Increasing Triplet Subsequence  ============*/
 	vector<int> nums_334 = { 1, 2, 3, 4, 5 };
 	nums_334 = { 5, 4, 3, 2, 1 };
