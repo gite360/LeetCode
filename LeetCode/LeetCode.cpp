@@ -21,6 +21,20 @@ int main()
 
 	Solution solution;
 
+	/*============== 322. Coin Change ================*/
+	vector<int> coins_322{ 1 };
+	coins_322 = { 2 };
+	coins_322 = { 1,2,5 };
+	coins_322 = { 186, 419, 83, 408 };
+	
+
+	int amount_322 = 1;
+	amount_322 = 3;
+	amount_322 = 11;
+	amount_322 = 6249;
+
+	solution.coinChange(coins_322, amount_322);
+
 	/*========  172. Factorial Trailing Zeroes ========*/
 	int n_172 = 10;
 	solution.trailingZeroes(n_172);

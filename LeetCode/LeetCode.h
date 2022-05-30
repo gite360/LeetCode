@@ -1178,6 +1178,50 @@ public:
 	}
 	/*================================================*/
 
+
+	/*============== 322. Coin Change ================*/
+
+	int coinChange(vector<int>& coins, int amount) {
+		int r = 0;
+		size_t n = coins.size();
+
+		if (!amount) {
+			return 0;
+		}
+
+		vector<int> dp(amount + 1, amount + 1);
+		dp[0] = 0;
+
+		for (int i = 1; i <= amount; i++) {
+			for (int j = 0; j < n; j++) {
+				if(coins[j] <= i){
+					dp[i] = min(dp[i], dp[i - coins[j]] + 1);
+				}
+			}
+		}
+
+		r = dp[amount];
+
+		if (r == amount + 1) r = -1;
+
+		return r;
+	}
+
+	int dp_322(vector<int>& coins, int i, int j, int amount, int r, vector<vector<int>>& r_vector) {
+		size_t n = coins.size();
+		
+		if (amount < 0) return INT_MAX * -1;
+		if (amount == 0) {
+			r_vector[i][j] = r;
+			return r;
+		}
+
+		for (int i = 0; i < n; i++) {
+			r_vector[i][0] += dp_322(coins, i, 0, amount, r, r_vector);
+			r_vector[i][1] += dp_322(coins, i, 1, amount - coins[i], r + 1, r_vector);
+		}
+	}
+	/*================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
