@@ -21,6 +21,18 @@ int main()
 
 	Solution solution;
 
+	/*============== 34. Find First and Last Position of Element in Sorted Array 220531 ================*/
+	vector<int> nums_34 = { 5,7,7,8,8,10 };
+	int target_34 = 8;
+
+	nums_34 = {5, 7, 7, 8, 8, 10};
+	target_34 = 6;
+
+	nums_34 = { 2,2 };
+	target_34 = 1;
+
+	solution.searchRange(nums_34, target_34);
+
 	/*============== 322. Coin Change ================*/
 	vector<int> coins_322{ 1 };
 	coins_322 = { 2 };

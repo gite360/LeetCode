@@ -1222,6 +1222,57 @@ public:
 		}
 	}
 	/*================================================*/
+
+
+	/*=======  34. Find First and Last Position of Element in Sorted Array  ===========*/
+	//220531
+	vector<int> searchRange(vector<int>& nums, int target) {
+
+		size_t n = nums.size();
+		int b = 0;
+		int e = n - 1;
+		vector<int> r = { -1, -1 };
+
+		if (nums.empty()) {
+			return vector<int>{-1, -1};
+		}
+
+		while (b < e) {
+			int m = (b + e) / 2;
+
+			if (nums[m] < target) {
+				b = m + 1;
+			}
+			else if (nums[m] > target) {
+				e = m - 1;
+			}
+			else {//==target
+				b = e = m;
+				while (e + 1 < n && nums[e + 1] == target) {
+					e++;
+				}
+				while (b - 1 > -1 && nums[b - 1] == target) {
+					b--;
+				}
+				break;
+			}
+
+		}
+
+		if ((b == e && nums[e] != target) || b > e) {
+
+			return vector<int>{-1, -1};
+
+		}
+
+		r = { b, e };
+
+		return r;
+	}
+
+
+	/*================================================*/
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
