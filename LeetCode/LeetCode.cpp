@@ -21,6 +21,23 @@ int main()
 
 	Solution solution;
 
+	/*============== 146. LRU Cache 22061 ================*/
+	int capacity_146 = 2;
+	vector<vector<int>> put_146{ { 1,1 }, { 2,2 }, { 3,3 }, { 4,4 } };
+	vector<int> get_146{ 1,2,1,3,4 };
+
+	LRUCache* obj = new LRUCache(capacity_146);
+	
+	obj->put(put_146[0][0], put_146[0][1]);
+	obj->put(put_146[1][0], put_146[1][1]);
+	int param_1 = obj->get(get_146[0]);
+	obj->put(put_146[2][0], put_146[2][1]);
+	param_1 = obj->get(get_146[1]);
+	obj->put(put_146[3][0], put_146[3][1]);
+	param_1 = obj->get(get_146[2]);
+	param_1 = obj->get(get_146[3]);
+	param_1 = obj->get(get_146[4]);
+
 	/*============== 34. Find First and Last Position of Element in Sorted Array 220531 ================*/
 	vector<int> nums_34 = { 5,7,7,8,8,10 };
 	int target_34 = 8;
