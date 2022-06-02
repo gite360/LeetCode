@@ -1358,63 +1358,39 @@ public:
 class LRUCache {
 public:
 
-	unordered_map<int, int> key_map;
-	unordered_map<int, int> count_key;
-	unordered_map<int, int> key_count;
 	int n = 0;
-	int count = 0;
+
+	list<pair<int, int>> l;
+	unordered_map<int, list<pair<int, int>>::iterator> m;
 
 	LRUCache(int capacity) {
 		n = capacity;
-		count = 0;
 	}
 
 	int get(int key) {
-
-		auto it = key_map.find(key);
-
-		if (it != key_map.end()) {
-			count++;
-			//count_key[key_count[key]] = 0;
-			count_key.erase(key_count[key]);
-			key_count[key] = count;
-			count_key[count] = key;
-			return key_map[key];
-		}
-		else {
+		if (m.find(key) == m.end())
 			return -1;
-		}
+		l.splice(l.begin(), l, m[key]);
+		return m[key]->second;
 	}
 
 	void put(int key, int value) {
 
-		count++;
-
-		auto it = key_map.find(key);
-
-		if (it != key_map.end()) {//&& key_map.size() < n
-			key_map[key] = value;
-			//count_key[key_count[key]] = 0;
-			count_key.erase(key_count[key]);
-			key_count[key] = count;
-			count_key[count] = key;
+		if (m.find(key) != m.end())
+		{
+			l.splice(l.begin(), l, m[key]);
+			m[key]->second = value;
+			return;
 		}
-		else if (it == key_map.end() && key_map.size() < n){
-			key_map[key] = value;
-			key_count[key] = count;
-			count_key[count] = key;
-		}
-		else {//key_map.size() == n
-			int least_count = count_key.begin()->first;
-			int least_key = count_key.begin()->second;
-			count_key.erase(least_count);
-			key_count.erase(least_key);
-			key_map.erase(least_key);
 
-			count_key[count] = key;
-			key_count[key] = count;
-			key_map[key] = value;
+		if (l.size() == n)
+		{
+			auto d_key = l.back().first;
+			l.pop_back();
+			m.erase(d_key);
 		}
+		l.push_front({ key,value });
+		m[key] = l.begin();
 	}
 
 };
