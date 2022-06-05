@@ -1274,6 +1274,122 @@ public:
 
 	/*================================================*/
 
+	/*==============    79. Word Search    ==============*/
+	bool exist(vector<vector<char>>& board, string word) {
+		int n = board.size();
+		int m = board[0].size();
+		int i = 0;
+		int j = 0;
+		int k = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				
+				if (back_track_79(board, word, i, j, k)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	bool back_track_79(vector<vector<char>>& board, string word, int i, int j, int k) {
+
+		int n = board.size();
+		int m = board[0].size();
+		int k_size = word.size();
+
+		if (k == k_size) {
+			return true;
+		}
+
+		if (i < 0 || i >= n|| j < 0 || j >= m || board[i][j] != word[k]) {
+			return false;
+		}
+		
+		bool res = false;
+		char t = board[i][j];
+		board[i][j] = '*';
+
+		res = back_track_79(board, word, i - 1, j, k + 1) || back_track_79(board, word, i + 1, j, k + 1) || 
+			  back_track_79(board, word, i, j - 1, k + 1) || back_track_79(board, word, i, j + 1, k + 1);
+		
+		board[i][j] = t;
+
+		return res;
+	}
+	/*===================================================*/
+
+	/*==============    2. Add Two Numbers 220605  ==============*/
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+		vector<int> num;
+		ListNode* h1 = l1;
+		ListNode* h2 = l2;
+		
+		int next_value = 0;
+
+		recursion_79(h1, h2, next_value, num);
+
+		ListNode* p3 = new ListNode(num[0]);
+		ListNode* h3 = p3;
+		for (auto au:num) {
+			p3->next = new ListNode(au);
+			p3 = p3->next;
+		}
+		h3=h3->next;
+
+		return h3;
+	}
+
+	void recursion_79(ListNode* n1, ListNode* n2, int next_value, vector<int>& num) {
+		if (n1 && n2) {
+			int sum_val = n1->val + n2->val + next_value;
+			if (sum_val > 9) {
+				next_value = 1;
+				int temp_val = sum_val % 10;
+				num.emplace_back(temp_val);
+			}
+			else {
+				next_value = 0;
+				num.emplace_back(sum_val);
+			}
+			recursion_79(n1->next, n2->next, next_value, num);
+		}
+		else if (n1) {
+			int sum_val = n1->val + next_value;
+			if (sum_val > 9) {
+				next_value = 1;
+				int temp_val = sum_val % 10;
+				num.emplace_back(temp_val);
+			}
+			else {
+				next_value = 0;
+				num.emplace_back(sum_val);
+			}
+			recursion_79(n1->next, n2, next_value, num);
+		}
+		else if(n2) {
+			int sum_val = n2->val + next_value;
+			if (sum_val > 9) {
+				next_value = 1;
+				int temp_val = sum_val % 10;
+				num.emplace_back(temp_val);
+			}
+			else {
+				next_value = 0;
+				num.emplace_back(sum_val);
+			}
+			recursion_79(n1, n2->next, next_value, num);
+		}
+		else if(next_value) {
+			num.emplace_back(next_value);
+			return;
+		}
+	}
+	/*===================================================*/
+
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

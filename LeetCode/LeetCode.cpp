@@ -21,6 +21,37 @@ int main()
 
 	Solution solution;
 
+	/*===================  2. Add Two Numbers  ==========================*/
+	
+	vector<Solution::ListNode> l_2_1 = { 2,4,3 };
+	vector<Solution::ListNode> l_2_2 = { 5,6,4 };
+	Solution::ListNode* head_1 = &l_2_1[0];
+	Solution::ListNode* head_2 = &l_2_2[0];
+	Solution::ListNode* p_1 = head_1;
+	Solution::ListNode* p_2 = head_2;
+
+	for (auto&& au : l_2_1) {
+		p_1->next = &au;
+		p_1 = p_1->next;
+	}
+
+	for (auto&& au : l_2_2) {
+		p_2->next = &au;
+		p_2 = p_2->next;
+	}
+
+	solution.addTwoNumbers(head_1, head_2);
+
+	/*===================  79. Word Search  ==========================*/
+
+	vector<vector<char>> board_79 = { {'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'} };
+	string word_79 = "ABCCED";
+
+	board_79 = { {'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'} };
+	word_79 = "ABCB";
+
+	solution.exist(board_79, word_79);
+
 	/*============== 146. LRU Cache 22061 ================*/
 	int capacity_146 = 2;
 	vector<vector<int>> put_146{ { 1,1 }, { 2,2 }, { 3,3 }, { 4,4 }};
