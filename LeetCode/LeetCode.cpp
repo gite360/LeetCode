@@ -21,6 +21,28 @@ int main()
 
 	Solution solution;
 
+	/*======  19. Remove Nth Node From End of List  ======*/
+	int n_19 = 1;
+	n_19 = 1;
+	//n_19 = 2;
+
+	//vector<Solution::ListNode> l_19_vector = { 1,2,3,4,5 };
+	vector<Solution::ListNode> l_19_vector = { 1};
+	//vector<Solution::ListNode> l_19_vector = { 1,2 };
+
+	Solution::ListNode* head_19 = &l_19_vector[0];
+
+	if (l_19_vector.size() > 1) {
+		Solution::ListNode* p_19 = head_19;
+		for (auto&& au : l_19_vector) {
+			p_19->next = &au;
+			p_19 = p_19->next;
+		}
+	}
+	
+
+	solution.removeNthFromEnd(head_19, n_19);
+
 	/*===================  2. Add Two Numbers  ==========================*/
 	
 	vector<Solution::ListNode> l_2_1 = { 2,4,3 };

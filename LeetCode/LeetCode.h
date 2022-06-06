@@ -1389,7 +1389,39 @@ public:
 	}
 	/*===================================================*/
 
+	/*======  19. Remove Nth Node From End of List  ======*/
+	ListNode* removeNthFromEnd(ListNode* head, int n) {
+		ListNode* p1 = head;
+		ListNode* p2 = head;
+		int m = 0;
 
+		while (p1) {
+			m++;
+			p1 = p1->next;
+		}
+
+		p1 = head;
+
+		while (m > n) {
+			m--;
+			p1 = p2;
+			p2 = p2->next;
+		}
+
+		if (p1 == p2) {
+			return head = head->next;
+		}
+
+		if (p2->next) {
+			p1->next = p2->next;
+		}
+		else {
+			p1->next = nullptr;
+		}
+
+		return head;
+	}
+	/*====================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
