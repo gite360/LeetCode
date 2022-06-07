@@ -21,6 +21,24 @@ int main()
 
 	Solution solution;
 
+	/*======  33. Search in Rotated Sorted Array  ======*/
+	vector<int> nums_33 = {4, 5, 6, 7, 0, 1, 2};
+	int target_33 = 0;
+
+	nums_33 = {1};
+	target_33 = 1;
+
+	nums_33 = {3, 1};
+	target_33 = 1;
+
+	/*nums_33 = { 3, 5, 1 };
+	target_33 = 3;
+
+	nums_33 = { 4,5,6,7,8,1,2,3 };
+	target_33 = 8;*/
+
+	solution.search(nums_33, target_33);
+
 	/*======  19. Remove Nth Node From End of List  ======*/
 	int n_19 = 1;
 	n_19 = 1;

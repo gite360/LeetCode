@@ -36,7 +36,7 @@ public:
 		TreeNode() : val(0), left(nullptr), right(nullptr) {}
 		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 		TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
-		
+
 	};
 
 	//181230
@@ -53,7 +53,7 @@ public:
 	bool isValid(string s);
 	//190106
 	struct ListNode;
-	ListNode* mergeTwoLists(ListNode *l1, ListNode *l2);
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);
 	//190107
 	int removeDuplicates(vector<int>& nums);
 	//190108
@@ -103,7 +103,7 @@ public:
 	//220415
 	struct Node138;
 	Node138* copyRandomList(Node138* head);
-    //
+	//
 	//void GetResult(int* p, int& Get_Result);
 
 	//void get_result(vector<vector<int>>& v, int& sum_m, int sum, int& Get_Result);
@@ -124,10 +124,10 @@ public:
 		P[i] = true;
 
 		for (int j : G[i]) {
-			if (P[j]) 
+			if (P[j])
 				cycle = true;
 			if (!V[j])
-				dfs_order(j,G,V,P,S,cycle);
+				dfs_order(j, G, V, P, S, cycle);
 		}
 
 		S.emplace(i);
@@ -153,7 +153,7 @@ public:
 		}
 
 		if (numCourses == 2 && n == 0) {
-			return {1,0};
+			return { 1,0 };
 		}
 
 		vector<int> Ans;
@@ -215,7 +215,7 @@ public:
 	int findPeakElement(vector<int>& nums) {
 		int n = nums.size();
 		int l = 0;
-		int r = n-1;
+		int r = n - 1;
 		int m = 0;
 		/*while (l <= r) {
 			m = (l + r) / 2;
@@ -230,7 +230,7 @@ public:
 
 		m = binary_search(nums, l, r);
 
-		if(m + 1 < n){
+		if (m + 1 < n) {
 			if (nums[m] > nums[m + 1]) {
 				return m;
 			}
@@ -260,9 +260,9 @@ public:
 		for (int i = 0; i < numCourses; i++) {
 			//if(!done[i] && !dfs_topo(i, G, done, todo, T, cycle))
 				//return false;
-			if (is_cycle(i, G, done, todo, T, cycle)) 
+			if (is_cycle(i, G, done, todo, T, cycle))
 				return false;
-				 
+
 		}
 
 		return true;
@@ -279,7 +279,7 @@ public:
 		if (T[i] == 0) {
 			T[i] = 1;
 			for (int j = 0; j < G[i].size(); j++) {
-				if (is_cycle(G[i][j], G, done, todo, T, cycle)) 
+				if (is_cycle(G[i][j], G, done, todo, T, cycle))
 					return true;
 			}
 		}
@@ -406,12 +406,12 @@ public:
 				//cout << s2;
 			//}
 
-			result = max(longestSubstring(s.substr(0, id), k, result), longestSubstring(s.substr(id+1), k, result));
+		result = max(longestSubstring(s.substr(0, id), k, result), longestSubstring(s.substr(id + 1), k, result));
 		//}
 
 		return result;
 		//return max(longestSubstring(s.substr(0, id), k), longestSubstring(s.substr(id+1, n), k));
-		
+
 	}
 
 	bool wordBreak(string s, vector<string>& wordDict) {
@@ -455,7 +455,7 @@ public:
 		int n = ss[0].size();
 		for (int j = 0; j < n; j++) {
 			if (ss[i][j] != "") {
-				if (j==n-1) {
+				if (j == n - 1) {
 					r = true;
 					return;
 				}
@@ -467,8 +467,8 @@ public:
 	vector<int> partitionLabels(string s) {
 		size_t n = s.size();
 		vector<int> r;
-		vector<char> t{s[0]};
-		vector<vector<char>> tt{t};
+		vector<char> t{ s[0] };
+		vector<vector<char>> tt{ t };
 		map<char, int> dic;
 		dic[s[0]]++;
 
@@ -481,7 +481,7 @@ public:
 						tt.back().emplace_back(s[i]);
 						int m = tt.size() - 1;
 						while (m > j) {
-							tt[j].insert(tt[j].end(), tt[m].begin(),tt[m].end());
+							tt[j].insert(tt[j].end(), tt[m].begin(), tt[m].end());
 							tt.erase(tt.begin() + m);
 							m--;
 						}
@@ -495,7 +495,7 @@ public:
 				tt.emplace_back(ttt);
 				dic[s[i]]++;
 			}
-			
+
 		}
 
 		for (int j = 0; j < tt.size(); j++) {
@@ -588,7 +588,7 @@ public:
 	}
 
 	void back_track_64(vector<vector<int>>& grid, int begin_row, int begin_colume, int temp_sum, vector<int>& sum) {
-		
+
 		size_t m = grid.size();
 		size_t n = grid[0].size();
 
@@ -596,10 +596,10 @@ public:
 			sum.emplace_back(temp_sum);
 		}
 
-		if (begin_row > m - 1 || begin_colume > n-1) {
+		if (begin_row > m - 1 || begin_colume > n - 1) {
 			return;
 		}
-		if(begin_row + 1 < m){
+		if (begin_row + 1 < m) {
 			temp_sum += grid[begin_row + 1][begin_colume];
 			back_track_64(grid, begin_row + 1, begin_colume, temp_sum, sum);
 			temp_sum -= grid[begin_row + 1][begin_colume];
@@ -632,7 +632,7 @@ public:
 
 			t = p;
 			n = p->next;
-			if(pr)
+			if (pr)
 				pr->next = n;
 
 			t->next = n->next;
@@ -641,21 +641,21 @@ public:
 			p = t->next;
 			pr = t;
 
-			
+
 		}
-		
+
 
 		return h;
 	}
 	/*================================================*/
 	/*====  96. Unique Binary Search Trees  ====*/
 	int numTrees(int n) {
-		vector<int> t(n+1, 0);
+		vector<int> t(n + 1, 0);
 		t[0] = t[1] = 1;
-		int r = 0; 
+		int r = 0;
 		//r = dp_tree(n,t);
 
-		for (int i = 2; i <= n;  i++) {
+		for (int i = 2; i <= n; i++) {
 			for (int j = 0; j < i; j++) {
 				t[i] += t[j] * t[i - j - 1];
 			}
@@ -666,7 +666,7 @@ public:
 	}
 
 	int dp_tree(int n, vector<int>& t) {
-		
+
 		if (n == 1 || n == 0) {
 			return 1;
 		}
@@ -675,7 +675,7 @@ public:
 		}
 		int rr = 0;
 		for (int i = 0; i < n; i++) {
-			rr += dp_tree(i,t) * dp_tree(n-i-1,t);
+			rr += dp_tree(i, t) * dp_tree(n - i - 1, t);
 		}
 
 		return t[n] = rr;
@@ -710,8 +710,8 @@ public:
 			result.emplace_back(node->left);
 			dfs_114(node->left, result);
 		}
-		
-		if(node->right) {
+
+		if (node->right) {
 			result.emplace_back(node->right);
 			dfs_114(node->right, result);
 		}
@@ -744,7 +744,7 @@ public:
 				}
 
 			}
-			
+
 		}
 
 		return res;
@@ -788,7 +788,7 @@ public:
 				//return i;
 			//}
 		}
-		if (cs<0) {
+		if (cs < 0) {
 			begin = -1;
 		}
 
@@ -803,17 +803,17 @@ public:
 		for (int j = begin; j < begin + n; j++) {
 			int od = (j) % n;
 			int nex = (j + 1) % n;
-			
+
 			if (tank < cost[od]) {
 				return -1;
 			}
 
-			tank +=  gas[nex] - cost[od];
+			tank += gas[nex] - cost[od];
 			if (tank < 0) {
 				return tank;
 			}
 		}
-		
+
 		return tank;
 	}
 	/*================================================*/
@@ -827,7 +827,7 @@ public:
 		}
 
 		int result = 0;
-		map<char, int> operator_map{ {'+', 0}, { '-', 1 }, { '*', 2 }, { '/', 3 }};
+		map<char, int> operator_map{ {'+', 0}, { '-', 1 }, { '*', 2 }, { '/', 3 } };
 		map<string, int> operator_mmap{ {" + ", 0}, { " - ", 1 }, { " * ", 2 }, { " / ", 3 } };
 		stack<int> digit;
 		stack<char> opera;
@@ -891,7 +891,7 @@ public:
 	int operation(vector<string>& tokens, map<char, int>& operator_map, int i, int left, int right) {
 		int result = 0;
 
-		switch(operator_map[tokens[i][0]]){
+		switch (operator_map[tokens[i][0]]) {
 		case 0:
 			return result = left + right;
 			break;
@@ -997,8 +997,8 @@ public:
 			update_i(s, i);
 			if (s[i] == '*')      return reuslt = recursive_227(s, --i) * left * right;
 			else if (s[i] == '/') return reuslt = floor(recursive_227(s, --i) / left) * right;
-			else if (s[i] == '+') return reuslt =  recursive_227(s, --i) + left * right;
-			else if (s[i] == '-') return reuslt =  recursive_227(s, --i) - left * right;
+			else if (s[i] == '+') return reuslt = recursive_227(s, --i) + left * right;
+			else if (s[i] == '-') return reuslt = recursive_227(s, --i) - left * right;
 		}
 
 		if (s[i] == '/') {
@@ -1074,9 +1074,9 @@ public:
 		return reuslt;
 	}
 
-	void update_i(string& s, int & i) {
+	void update_i(string& s, int& i) {
 		size_t n = s.size();
-		while (i < n && s[i] == ' ' ) {
+		while (i < n && s[i] == ' ') {
 			i++;
 		}
 	}
@@ -1126,14 +1126,14 @@ public:
 	/*====== 334. Increasing Triplet Subsequence ======*/
 	bool increasingTriplet(vector<int>& nums) {
 		size_t n = nums.size();
-		if (n<3) {
+		if (n < 3) {
 			return false;
 		}
 
 		int left = nums[0];
 		int middle = nums[0];
 		int right = nums[0];
-		
+
 		for (int i = 1; i < n; i++) {
 			if (nums[i] > left) {
 				if (nums[i] > middle && left != middle) {
@@ -1145,18 +1145,18 @@ public:
 				}
 				continue;
 			}
-			else if (nums[i] > right && right < left){
+			else if (nums[i] > right && right < left) {
 				left = right;
 				middle = nums[i];
 				continue;
-		    }
-			else if( nums[i] < left && left >= right) {
+			}
+			else if (nums[i] < left && left >= right) {
 				right = nums[i];
 				continue;
 			}
 		}
 
-			return false;
+		return false;
 	}
 	/*================================================*/
 
@@ -1166,7 +1166,7 @@ public:
 		int r = 0;
 		long int number = 1;
 
-		for (int i = 2; i <= n;i++) {
+		for (int i = 2; i <= n; i++) {
 			number *= i;
 		}
 
@@ -1195,7 +1195,7 @@ public:
 
 		for (int i = 1; i <= amount; i++) {
 			for (int j = 0; j < n; j++) {
-				if(coins[j] <= i){
+				if (coins[j] <= i) {
 					dp[i] = min(dp[i], dp[i - coins[j]] + 1);
 				}
 			}
@@ -1210,7 +1210,7 @@ public:
 
 	int dp_322(vector<int>& coins, int i, int j, int amount, int r, vector<vector<int>>& r_vector) {
 		size_t n = coins.size();
-		
+
 		if (amount < 0) return INT_MAX * -1;
 		if (amount == 0) {
 			r_vector[i][j] = r;
@@ -1284,7 +1284,7 @@ public:
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				
+
 				if (back_track_79(board, word, i, j, k)) {
 					return true;
 				}
@@ -1304,17 +1304,17 @@ public:
 			return true;
 		}
 
-		if (i < 0 || i >= n|| j < 0 || j >= m || board[i][j] != word[k]) {
+		if (i < 0 || i >= n || j < 0 || j >= m || board[i][j] != word[k]) {
 			return false;
 		}
-		
+
 		bool res = false;
 		char t = board[i][j];
 		board[i][j] = '*';
 
-		res = back_track_79(board, word, i - 1, j, k + 1) || back_track_79(board, word, i + 1, j, k + 1) || 
-			  back_track_79(board, word, i, j - 1, k + 1) || back_track_79(board, word, i, j + 1, k + 1);
-		
+		res = back_track_79(board, word, i - 1, j, k + 1) || back_track_79(board, word, i + 1, j, k + 1) ||
+			back_track_79(board, word, i, j - 1, k + 1) || back_track_79(board, word, i, j + 1, k + 1);
+
 		board[i][j] = t;
 
 		return res;
@@ -1326,18 +1326,18 @@ public:
 		vector<int> num;
 		ListNode* h1 = l1;
 		ListNode* h2 = l2;
-		
+
 		int next_value = 0;
 
 		recursion_79(h1, h2, next_value, num);
 
 		ListNode* p3 = new ListNode(num[0]);
 		ListNode* h3 = p3;
-		for (auto au:num) {
+		for (auto au : num) {
 			p3->next = new ListNode(au);
 			p3 = p3->next;
 		}
-		h3=h3->next;
+		h3 = h3->next;
 
 		return h3;
 	}
@@ -1369,7 +1369,7 @@ public:
 			}
 			recursion_79(n1->next, n2, next_value, num);
 		}
-		else if(n2) {
+		else if (n2) {
 			int sum_val = n2->val + next_value;
 			if (sum_val > 9) {
 				next_value = 1;
@@ -1382,7 +1382,7 @@ public:
 			}
 			recursion_79(n1, n2->next, next_value, num);
 		}
-		else if(next_value) {
+		else if (next_value) {
 			num.emplace_back(next_value);
 			return;
 		}
@@ -1422,8 +1422,67 @@ public:
 		return head;
 	}
 	/*====================================================*/
+
+	/*======  33. Search in Rotated Sorted Array  ======*/
+	int search(vector<int>& nums, int target) {
+
+		int n = nums.size();
+		int l = 0;
+		int r = n - 1;
+
+		if (l == r && nums[0] != target) {
+			return -1;
+		}
+		else if (l == r && nums[0] == target) {
+			return 0;
+		}
+
+		if (nums[l] > nums[r] && nums[l] > target && nums[r] < target) {
+			return -1;
+		}
+
+		while (l <= r) {
+			int m = (l + r) / 2;
+
+			if (nums[l] < nums[r] && nums[m] < target) {
+				l = m + 1;
+			}
+			else if (nums[l] < nums[r] && nums[m] > target) {
+				r = m - 1;
+			}
+			else if (nums[l] > nums[r] && nums[m] < target) {
+				if (nums[r] < target && nums[m] < nums[r]) {
+						r = m - 1;
+				}
+				else {
+					l = m + 1;
+				}
+
+			}
+			else if (nums[l] > nums[r] && nums[m] > target) {
+				if (nums[l] > target && nums[m] >= nums[l]) {
+						l = m + 1;
+				}
+				else {
+					r = m - 1;
+				}
+			}
+			else if (nums[m] == target) {
+				return m;
+			}
+			else {
+				return -1;
+			}
+		}
+
+		return -1;
+	}
+	/*====================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+
+
 
 
 
@@ -1435,7 +1494,7 @@ public:
 class MyLinkedList {
 public:
 	struct Node {
-		int val=NULL;
+		int val = NULL;
 		Node* next = nullptr;
 		Node(int val) :val(val), next(nullptr) {}
 	};
@@ -1445,7 +1504,7 @@ public:
 	/** Initialize your data structure here. */
 	MyLinkedList() {
 		//head = new Node(NULL);
-		
+
 		size = 0;
 	}
 
@@ -1483,7 +1542,7 @@ public:
 			temp = temp->next;
 		}
 		Node* temp_node = temp->next;
-		temp->next  =	new Node(val);
+		temp->next = new Node(val);
 		temp->next->next = temp_node;
 		size++;
 	}
@@ -1491,10 +1550,10 @@ public:
 	/** Delete the index-th node in the linked list, if the index is valid. */
 	void deleteAtIndex(int index) {
 		if (index >= size) return;
-		Node *temp = head;
-		for (int i = 0; i < index; i++) temp = temp -> next;
-		Node *temp_del = temp->next;
-		temp->next = temp_del -> next;
+		Node* temp = head;
+		for (int i = 0; i < index; i++) temp = temp->next;
+		Node* temp_del = temp->next;
+		temp->next = temp_del->next;
 		size--;
 		delete temp_del;
 		temp_del->next = nullptr;
@@ -1618,13 +1677,13 @@ string Solution::longestCommonPrefix(vector<string>& strs) {
 //190105
 bool Solution::isValid(string s) {
 	stack<char> stk;
-	for(auto&& c:s)
+	for (auto&& c : s)
 		switch (c) {
 		case'(': stk.push(')'); break;
 		case'[': stk.push(']'); break;
 		case'{': stk.push('}'); break;
 		default:
-			if(stk.empty()||c!=stk.top()) return false;
+			if (stk.empty() || c != stk.top()) return false;
 			else stk.pop();
 		}
 	return stk.empty();
@@ -1632,12 +1691,12 @@ bool Solution::isValid(string s) {
 
 
 
-Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode *l1, Solution::ListNode *l2) {
+Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode* l1, Solution::ListNode* l2) {
 	Solution::ListNode header(LONG_MIN);
-	Solution::ListNode* tail_ptr=&header;
+	Solution::ListNode* tail_ptr = &header;
 
-	while (l1&&l2) {
-		Solution::ListNode** next_node = (l1->val<l2->val?&l1:&l2);
+	while (l1 && l2) {
+		Solution::ListNode** next_node = (l1->val < l2->val ? &l1 : &l2);
 		tail_ptr->next = *next_node;
 		*next_node = (*next_node)->next;
 		tail_ptr = tail_ptr->next;
@@ -1664,7 +1723,7 @@ int Solution::removeDuplicates(vector<int>& nums) {
 	//}
 
 	//return nums.size()-count;
-	nums.erase(unique(nums.begin(), nums.end()),nums.end());
+	nums.erase(unique(nums.begin(), nums.end()), nums.end());
 	return nums.size();
 }
 
@@ -1705,7 +1764,7 @@ int Solution::largestPalindrome(int n) {
 		std::reverse(s.begin(), s.end());
 		long long u = atoll((s0 + s).c_str());
 		//long long u = stoll(s0 + s);
-		for (long long x = max; x*x >= u; x--)if (u%x == 0)return(int)(u % 1337);
+		for (long long x = max; x * x >= u; x--)if (u % x == 0)return(int)(u % 1337);
 	}
 	return 0;
 }
@@ -1721,7 +1780,7 @@ bool Solution::buddyStrings(string A, string B) {
 	while (j > 0 && A[j] == B[j]) --j;
 	swap(A[i], A[j]);
 	return A == B;
-	
+
 }
 
 //190117
@@ -1747,7 +1806,7 @@ int Solution::countPrimes(int n) {
 void Solution::rotate(vector<int>& nums, int k) {
 	k %= nums.size();
 	std::reverse(nums.begin(), nums.end());
-	std::reverse(nums.begin(), nums.begin()+k);
+	std::reverse(nums.begin(), nums.begin() + k);
 	std::reverse(nums.begin() + k, nums.end());
 	//2
 	std::rotate(nums.begin(), nums.end() - k, nums.end());
@@ -1756,7 +1815,7 @@ void Solution::rotate(vector<int>& nums, int k) {
 
 //190121
 string Solution::convertToTitle(int n) {
-	return n == 0 ? "" : convertToTitle((n-1)/26)+(char)((n-1)%26+'A');
+	return n == 0 ? "" : convertToTitle((n - 1) / 26) + (char)((n - 1) % 26 + 'A');
 }
 
 //190122
@@ -1769,8 +1828,8 @@ int Solution::firstBadVersionRec(int L, int R) {
 	else {
 		int Middle = L + (R - L) / 2;
 		if (isBadVersion(Middle)) return firstBadVersionRec(L, Middle);
-		else return firstBadVersionRec(Middle+1, R);
-		
+		else return firstBadVersionRec(Middle + 1, R);
+
 	}
 }
 
@@ -1778,10 +1837,10 @@ int Solution::firstBadVersionRec(int L, int R) {
 int Solution::findPairs(vector<int>& nums, int k) {
 	if (k < 0) return 0;
 	int count = 0;
-	unordered_multiset<int> ums(nums.begin(),nums.end());
+	unordered_multiset<int> ums(nums.begin(), nums.end());
 	unordered_set<int> us(nums.begin(), nums.end());
-	for (auto i : us) { 
-		if (ums.count(i + k) > !k) count++; 
+	for (auto i : us) {
+		if (ums.count(i + k) > !k) count++;
 	}
 	return count;
 }
@@ -1793,8 +1852,8 @@ int Solution::findUnsortedSubarray(vector<int>& nums) {
 	vector<int> maxlhs(n);  //max number from left to cur
 	vector<int> minrhs(n);  //min number from right to cur
 
-	for (int i = n - 1, minr = INT_MAX; i >= 0; i--) 
-		minrhs[i] = minr = min(minr,nums[i]);
+	for (int i = n - 1, minr = INT_MAX; i >= 0; i--)
+		minrhs[i] = minr = min(minr, nums[i]);
 
 	for (int i = 0, maxl = INT_MIN; i < n; i++)
 		maxlhs[i] = maxl = max(maxl, nums[i]);
@@ -1812,7 +1871,7 @@ int Solution::findNthDigit(int n) {
 	int base = 9;
 	long digits = 1;
 
-	while (n-base*digits >0 ) {
+	while (n - base * digits > 0) {
 		n -= base * digits;
 		base *= 10;
 		digits++;
@@ -1820,14 +1879,14 @@ int Solution::findNthDigit(int n) {
 
 	int index = (n - 1) % digits;
 	int offset = (n - 1) / digits;
-	long start = pow(10,digits-1);
+	long start = pow(10, digits - 1);
 	return to_string(start + offset)[index] - '0';
 }
 
 //190224
 uint32_t Solution::reverseBits(uint32_t n) {
 	string str = bitset<32>(n).to_string();
-	std::reverse(str.begin(),str.end());
+	std::reverse(str.begin(), str.end());
 	return (bitset<32>(str).to_ullong());
 }
 
@@ -1840,7 +1899,7 @@ bool Solution::isPalindrome(string s) {
 	auto right_end = s.end();
 
 	while (left_end < right_end) {
-		while (!isalnum(*left_end)&&left_end<s.end()) left_end++;
+		while (!isalnum(*left_end) && left_end < s.end()) left_end++;
 		while (!isalnum(*right_end) && right_end > s.begin()) right_end--;
 		if (left_end > right_end) return true;
 		if (tolower(*left_end) != tolower(*right_end)) return false;
@@ -1853,8 +1912,8 @@ bool Solution::isPalindrome(string s) {
 //190303
 int Solution::mySqrt(int x) {
 	long val = x;
-	while (val*val>x) {
-		val = (val+x/val) / 2;
+	while (val * val > x) {
+		val = (val + x / val) / 2;
 	}
 
 	return val;
@@ -1862,11 +1921,11 @@ int Solution::mySqrt(int x) {
 
 //190304
 bool Solution::canPlaceFlowers(vector<int>& flowerbed, int n) {
-	flowerbed.insert(flowerbed.begin(),0);
+	flowerbed.insert(flowerbed.begin(), 0);
 	flowerbed.push_back(0);
 
 	for (int i = 1; i < flowerbed.size() - 1; ++i) {
-		if (flowerbed[i-1]+ flowerbed[i] + flowerbed[i+1]==0) {
+		if (flowerbed[i - 1] + flowerbed[i] + flowerbed[i + 1] == 0) {
 			--n;
 			++i;
 		}
@@ -2025,14 +2084,14 @@ int Solution::strStr(string haystack, string needle) {
 			len = needle[len--];
 		}
 	}*/
-//}
+	//}
 
 string Solution::countAndSay(int n) {
 	string temp = "1";
 	if (n == 1) return temp;
 	string result;
 	int i = 1;
-	while(i < n){
+	while (i < n) {
 		int j = 0;
 		while (j < temp.size()) {
 			int count = 1;
@@ -2065,7 +2124,7 @@ string Solution::count_and_say(int i, int& n, string temp) {
 
 	for (int j = 0; j < temp.size(); j++) {
 		int count = 1;
-		while (j + 1< temp.size() && temp[j] == temp[j + 1]) {
+		while (j + 1 < temp.size() && temp[j] == temp[j + 1]) {
 			count++;
 			j++;
 		}
@@ -2151,7 +2210,7 @@ Solution::Node138* Solution::copyRandomList(Node138* head) {
 	Node138* new_head = head->next;
 
 	while (temp && temp->next) {
-		if(temp->random){
+		if (temp->random) {
 			temp->next->random = temp->random->next;
 		}
 		else {
@@ -2175,16 +2234,16 @@ Solution::Node138* Solution::copyRandomList(Node138* head) {
 
 	temp = head;
 	while (temp) {
-		
-		if (!temp->next->next){
-			temp -> next = nullptr;
+
+		if (!temp->next->next) {
+			temp->next = nullptr;
 			break;
 		}
 
 		temp = temp->next;
 	}
 
-	
+
 
 	return new_head;
 }
@@ -2251,11 +2310,11 @@ int Solution::huawei0() {
 			int c = price[i][1], d = priority[i][1];
 			int e = price[i][2], f = priority[i][2];
 
-			if(j >= a){
-				dp[i][j] = max(dp[i-1][j], dp[i-1][j - a] + a * b);
+			if (j >= a) {
+				dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - a] + a * b);
 			}
 			else {
-				dp[i][j] = dp[i-1][j];
+				dp[i][j] = dp[i - 1][j];
 			}
 
 			if (j >= (a + c)) {
@@ -2266,14 +2325,14 @@ int Solution::huawei0() {
 			}
 
 			if (j >= (a + e)) {
-				dp[i][j] = max(dp[i][j], dp[i-1][j - a - e] + a * b + e * f);
+				dp[i][j] = max(dp[i][j], dp[i - 1][j - a - e] + a * b + e * f);
 			}
 			else {
 				dp[i][j] = dp[i][j];
 			}
 
-			if(j >= (a + c + e)){
-				dp[i][j] = max(dp[i][j], dp[i-1][j - a - c - e] + a * b + c * d + e * f);
+			if (j >= (a + c + e)) {
+				dp[i][j] = max(dp[i][j], dp[i - 1][j - a - c - e] + a * b + c * d + e * f);
 			}
 			else {
 				dp[i][j] = dp[i][j];
@@ -2369,7 +2428,7 @@ void Solution::recursive(vector<int>& height, stack<int> s, int r, int& result) 
 	int h = min(height[l], height[r]);
 	int temp = 0;
 	for (int i = l + 1; i < r; i++) {
-		if(h > height[i]){
+		if (h > height[i]) {
 			temp += h - height[i];
 			height[i] = h;
 		}
@@ -2378,13 +2437,13 @@ void Solution::recursive(vector<int>& height, stack<int> s, int r, int& result) 
 }
 
 int Solution::rob(vector<int>& nums) {
-	
+
 	if (nums.size() == 1) return nums.front();
 
 	int n = nums.size();
 	int k = 0;
 	int result = 0;
-	vector<int> dp(n,0);
+	vector<int> dp(n, 0);
 	dp[1] = max(nums[0], nums[1]);
 	//result = job_recursive(nums, 0, dp);
 
@@ -2408,11 +2467,10 @@ int Solution::job_recursive(vector<int>& nums, int k, vector<int>& dp) {
 		return 0;
 	}
 
-	if (dp[k]>-1) {
+	if (dp[k] > -1) {
 		return dp[k];
 	}
 
 	return dp[k] = max(job_recursive(nums, k + 2, dp) + nums[k], job_recursive(nums, k + 1, dp));
 }
 
-	
