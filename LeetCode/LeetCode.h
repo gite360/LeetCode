@@ -1478,6 +1478,37 @@ public:
 		return -1;
 	}
 	/*====================================================*/
+
+	/*=================  55. Jump Game   =================*/
+	bool canJump(vector<int>& nums) {
+		int n = nums.size();
+		bool r = false;
+
+		if (n == 1 || nums[0] >= n - 1) {
+			return true;
+		}
+
+		vector<int> dp(n, 0);
+
+		int last_index = 0;
+		for (int i = 0; i < n; i++) {
+			if (last_index < i) {
+				return false;
+			}
+
+			if (i + nums[i] >= n - 1) {
+				return true;
+			}
+
+			dp[i + nums[i]] = max(dp[i + nums[i]], i + nums[i]);
+
+			last_index = max(dp[i + nums[i]], last_index);
+		}
+
+		return dp[n - 1];
+	}
+
+	/*====================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
