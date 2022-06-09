@@ -1509,6 +1509,85 @@ public:
 	}
 
 	/*====================================================*/
+
+	/*============ 152. Maximum Product Subarray =========*/
+	int maxProduct(vector<int>& nums) {
+		int n = nums.size();
+		if (n == 1) return nums[0];
+
+		vector<int> r(n, -INT_MAX);
+		r[0] = nums[0];
+		int temp_product = nums[0];
+		int min_nagative = nums[0] < 0 ? nums[0] : 0;
+
+		int min_pro = 1;
+		int max_pro = 1;
+		int res = nums[0];
+
+		for (int i = 0; i < n; i++) {
+			if (nums[i] < 0) {
+				swap(min_pro, max_pro);
+			}
+
+			min_pro = min(nums[i], min_pro * nums[i]);
+			max_pro = max(nums[i], max_pro * nums[i]);
+			res = max(res, max_pro);
+
+		}
+
+		cout << res << endl;
+
+		for (int i = 1; i < n; i++) {
+
+			if (temp_product * nums[i] > 0) {
+				if (nums[i] > 0) {
+					temp_product *= nums[i];
+					min_nagative = min(min_nagative * nums[i], 0);
+				}
+				else {
+					temp_product = min_nagative * nums[i];
+					min_nagative = nums[i];
+				}
+			}
+			else if (temp_product * nums[i] < 0) {
+
+				if (temp_product > 0 && nums[i] < 0) {
+
+					if (min_nagative == 0) {
+						min_nagative = temp_product * nums[i];
+						temp_product = nums[i];
+					}
+					else {
+						int temp = temp_product;
+						temp_product = min_nagative * nums[i];
+						min_nagative = temp * nums[i];
+					}
+				}
+				else if(temp_product < 0 && nums[i] > 0) {
+					temp_product = nums[i];
+					min_nagative *= nums[i];
+				}
+			}
+			else {
+				temp_product = nums[i];
+				if (nums[i] > 0) {
+					min_nagative = 0;
+				}
+				else {
+					min_nagative = nums[i];
+				}
+			}
+
+			r[i] = max(r[i - 1], temp_product);
+		}
+
+		int max_product_0 = r[n - 1];
+
+		return max_product_0;
+	}
+	/*====================================================*/
+
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
