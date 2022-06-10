@@ -1587,6 +1587,126 @@ public:
 	}
 	/*====================================================*/
 
+	/*============     130. Surrounded Regions   =========*/
+
+	void solve(vector<vector<char>>& board) {
+		int m = board.size();
+		int n = board[0].size();
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (board[i][j]=='X') {
+					continue;
+				}
+				else {
+					dfs_is_border(board, i, j,-1,-1);
+				}
+			}
+		}
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (board[i][j] == 'B') {
+					board[i][j] = 'X';
+				}
+				else if(board[i][j] == 'A') {
+					board[i][j] = 'O';
+				}
+				continue;
+			}
+		}
+
+		//cout << board[0][0] << endl;
+	}
+
+	bool dfs_is_border(vector<vector<char>>& board, int i, int j, int ii, int jj) {
+		//assert(board[i][j] == 'O');
+
+		int m = board.size();
+		int n = board[0].size();
+		bool is_border = false;
+
+		if (i < 0 || i > m - 1 || j < 0 || j > n - 1) {
+			return false;
+		}
+
+		if (board[i][j] == 'X') return false;
+
+		if (ii >= 0 && ii < m && jj >= 0 && jj< n && board[ii][jj] == 'A') {
+			board[i][j] == 'A';
+			return true;
+		}
+
+		if (board[i][j] == 'B') {
+			if (i - 1 >= 0 && board[i-1][j] == 'A') {
+				board[i][j] = 'A';
+				return true;
+			}
+
+			if (i + 1 < m && board[i + 1][j] == 'A') {
+				board[i][j] = 'A';
+				return true;
+			}
+
+			if (j - 1 >= 0 && board[i][j-1] == 'A') {
+				board[i][j] = 'A';
+				return true;
+			}
+
+			if (j + 1 < n && board[i][j + 1] == 'A') {
+				board[i][j] = 'A';
+				return true;
+			}
+		}
+
+
+		if (board[i][j] == 'O') {
+
+			board[i][j] = 'B';
+
+			if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+				board[i][j] = 'A';
+			}
+
+			bool a = false;
+			bool b= false;
+			bool c = false;
+			bool d = false;
+
+			if (i - 1 != ii) {
+				a = dfs_is_border(board, i - 1, j,i,j);
+			}
+
+			if (i + 1 != ii) {
+				b = dfs_is_border(board, i + 1, j, i, j);
+			}
+
+			if (j - 1 != jj) {
+				c = dfs_is_border(board, i , j - 1, i, j);
+			}
+
+			if (j + 1 != jj) {
+				d = dfs_is_border(board, i , j + 1, i, j);
+			}
+
+			is_border = a || b || c || d;
+			
+			//is_border = dfs_is_border(board, i - 1, j) || dfs_is_border(board, i + 1, j) || dfs_is_border(board, i, j - 1) || dfs_is_border(board, i, j + 1);
+
+			if (is_border || board[i][j] == 'A') {
+				board[i][j] = 'A';
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/*====================================================*/
+
 
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/

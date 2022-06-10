@@ -21,6 +21,39 @@ int main()
 
 	Solution solution;
 
+	/*============     130. Surrounded Regions   =========*/
+	vector<vector<char>> board_130;
+
+	board_130 = { {'X', 'X', 'X', 'X'}, {'X', 'O', 'O', 'X'}, {'X', 'X', 'O', 'X'}, {'X', 'O', 'X', 'X'} };
+
+	//board_130 = { {'O', 'X', 'X', 'O', 'X'}, {'X', 'O', 'O', 'X', 'O'}, {'X', 'O', 'X', 'O', 'X'}, {'O', 'X', 'O', 'O', 'O'}, {'X', 'X', 'O', 'X', 'O'} };
+
+	board_130 = {{'X', 'X', 'X', 'X', 'X'}, {'X', 'O', 'O', 'O', 'X'}, {'X', 'X', 'O', 'O', 'X'}, {'X', 'X', 'X', 'O', 'X'}, {'X', 'O', 'X', 'X', 'X'}};
+
+	board_130 = {{'O', 'O', 'O', 'O', 'X', 'X'}, {'O', 'O', 'O', 'O', 'O', 'O'}, {'O', 'X', 'O', 'X', 'O', 'O'}, {'O', 'X', 'O', 'O', 'X', 'O'}, {'O', 'X', 'O', 'X', 'O', 'O'}, {'O', 'X', 'O', 'O', 'O', 'O'}};
+
+
+
+	int m_130 = board_130.size();
+	int n_130 = board_130[0].size();
+
+	for (int i = 0; i < m_130; i++) {
+		for (int j = 0; j < n_130; j++) {
+			cout << board_130[i][j] << ", ";
+		}
+		cout << endl;
+	}
+
+	//solution.solve(board_130);
+
+	cout << "===================" << endl << endl;
+	for (int i = 0; i < m_130; i++) {
+		for (int j = 0; j < n_130; j++) {
+			cout << board_130[i][j] << ", ";
+		}
+		cout << endl;
+	}
+
 	/*============ 152. Maximum Product Subarray =========*/
 	vector<int> nums_152;
 
