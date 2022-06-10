@@ -32,7 +32,7 @@ int main()
 
 	board_130 = {{'O', 'O', 'O', 'O', 'X', 'X'}, {'O', 'O', 'O', 'O', 'O', 'O'}, {'O', 'X', 'O', 'X', 'O', 'O'}, {'O', 'X', 'O', 'O', 'X', 'O'}, {'O', 'X', 'O', 'X', 'O', 'O'}, {'O', 'X', 'O', 'O', 'O', 'O'}};
 
-
+	board_130 = {{'X', 'X', 'X', 'X', 'O', 'O', 'X', 'X', 'O'}, {'O', 'O', 'O', 'O', 'X', 'X', 'O', 'O', 'X'}, {'X', 'O', 'X', 'O', 'O', 'X', 'X', 'O', 'X'}, {'O', 'O', 'X', 'X', 'X', 'O', 'O', 'O', 'O'}, {'X', 'O', 'O', 'X', 'X', 'X', 'X', 'X', 'O'}, {'O', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'}, {'O', 'O', 'O', 'X', 'X', 'O', 'X', 'O', 'X'}, {'O', 'O', 'O', 'X', 'O', 'O', 'O', 'X', 'O'}, {'O', 'X', 'O', 'O', 'O', 'X', 'O', 'X', 'O'}};
 
 	int m_130 = board_130.size();
 	int n_130 = board_130[0].size();
@@ -44,7 +44,7 @@ int main()
 		cout << endl;
 	}
 
-	//solution.solve(board_130);
+	solution.solve(board_130);
 
 	cout << "===================" << endl << endl;
 	for (int i = 0; i < m_130; i++) {

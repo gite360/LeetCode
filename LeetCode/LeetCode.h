@@ -1604,10 +1604,39 @@ public:
 			}
 		}
 
+		/*cout << "===================" << endl << endl;
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				cout << board[i][j] << ", ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+		cout << "===================" << endl << endl;*/
+
+
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (board[i][j] == 'B') {
-					board[i][j] = 'X';
+					if (i - 1 >= 0 && board[i - 1][j] == 'A') {
+						board[i][j] = 'O';
+						//return true;
+					}
+					else if (i + 1 < m && board[i + 1][j] == 'A') {
+						board[i][j] = 'O';
+						//return true;
+					}
+					else if (j - 1 >= 0 && board[i][j - 1] == 'A') {
+						board[i][j] = 'O';
+						//return true;
+					}
+					else if (j + 1 < n && board[i][j + 1] == 'A') {
+						board[i][j] = 'O';
+						//return true;
+					}
+					else {
+						board[i][j] = 'X';
+					}
 				}
 				else if(board[i][j] == 'A') {
 					board[i][j] = 'O';
@@ -1626,45 +1655,38 @@ public:
 		int n = board[0].size();
 		bool is_border = false;
 
-		if (i < 0 || i > m - 1 || j < 0 || j > n - 1) {
+		if (i < 0 || i > m - 1 || j < 0 || j > n - 1 || board[i][j] == 'X') {
 			return false;
-		}
-
-		if (board[i][j] == 'X') return false;
-
-		if (ii >= 0 && ii < m && jj >= 0 && jj< n && board[ii][jj] == 'A') {
-			board[i][j] == 'A';
-			return true;
 		}
 
 		if (board[i][j] == 'B') {
 			if (i - 1 >= 0 && board[i-1][j] == 'A') {
 				board[i][j] = 'A';
-				return true;
+				//return true;
 			}
-
-			if (i + 1 < m && board[i + 1][j] == 'A') {
+			else if (i + 1 < m && board[i + 1][j] == 'A') {
 				board[i][j] = 'A';
-				return true;
+				//return true;
 			}
-
-			if (j - 1 >= 0 && board[i][j-1] == 'A') {
+			else if (j - 1 >= 0 && board[i][j-1] == 'A') {
 				board[i][j] = 'A';
-				return true;
+				//return true;
 			}
-
-			if (j + 1 < n && board[i][j + 1] == 'A') {
+			else if (j + 1 < n && board[i][j + 1] == 'A') {
 				board[i][j] = 'A';
-				return true;
+				//return true;
+			}
+			else {
+				return false;
 			}
 		}
 
 
 		if (board[i][j] == 'O') {
 
-			board[i][j] = 'B';
+			if(board[i][j] == 'O') board[i][j] = 'B';
 
-			if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+			if (i == 0 || i == m - 1 || j == 0 || j == n - 1 || (ii> -1 && board[ii][jj] == 'A')) {
 				board[i][j] = 'A';
 			}
 
@@ -1690,8 +1712,6 @@ public:
 			}
 
 			is_border = a || b || c || d;
-			
-			//is_border = dfs_is_border(board, i - 1, j) || dfs_is_border(board, i + 1, j) || dfs_is_border(board, i, j - 1) || dfs_is_border(board, i, j + 1);
 
 			if (is_border || board[i][j] == 'A') {
 				board[i][j] = 'A';
