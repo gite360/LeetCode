@@ -1854,6 +1854,40 @@ public:
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&     1476. Class Subrectangle Queries    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+class SubrectangleQueries {
+public:
+
+	vector<vector<int>> _rectangle;
+	int _row = 0;
+	int _col = 0;
+
+	SubrectangleQueries(vector<vector<int>>& rectangle) {
+
+		_row = rectangle.size();
+		_col = rectangle[0].size();
+
+		_rectangle.assign(_row, vector<int>(_col, 0));
+		copy_n(rectangle.begin(), rectangle.size(), _rectangle.begin());
+
+	}
+
+	void updateSubrectangle(int row1, int col1, int row2, int col2, int newValue) {
+		for (int i = row1; i < row2; i++) {
+			for (int j = col1; j < col2; j++) {
+				_rectangle[i][j] = newValue;
+			}
+		}
+	}
+
+	int getValue(int row, int col) {
+		return _rectangle[row][col];
+	}
+};
+
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:

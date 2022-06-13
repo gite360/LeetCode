@@ -21,6 +21,25 @@ int main()
 
 	Solution solution;
 
+	/*============== 1476. Subrectangle Queries ================*/
+	
+	vector<vector<int>> rectangle_1476{{1, 2, 1}, {4, 3, 4}, {3, 2, 1}, {1, 1, 1}};
+	vector<int> update_1476{ 0,0,3,2,5 };
+
+	SubrectangleQueries* obj_1476 = new SubrectangleQueries(rectangle_1476);
+	obj_1476->updateSubrectangle(update_1476[0], update_1476[1], update_1476[2], update_1476[3], update_1476[4]);
+
+	/*obj->put(put_146[0][0], put_146[0][1]);
+	obj->put(put_146[1][0], put_146[1][1]);
+	int param_1 = obj->get(get_146[0]);
+	obj->put(put_146[2][0], put_146[2][1]);
+	param_1 = obj->get(get_146[1]);
+	obj->put(put_146[3][0], put_146[3][1]);
+	param_1 = obj->get(get_146[2]);
+	param_1 = obj->get(get_146[3]);
+	param_1 = obj->get(get_146[4]);
+	obj->put(3, 6);*/
+
 	/*============     130. Surrounded Regions   =========*/
 	vector<vector<char>> board_130;
 
