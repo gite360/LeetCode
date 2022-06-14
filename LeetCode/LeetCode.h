@@ -1728,6 +1728,62 @@ public:
 	/*====================================================*/
 
 
+	/*=====   3. Longest Substring Without Repeating Characters   =========*/
+
+	int lengthOfLongestSubstring(string s) {
+		int r = 0;
+		int n = s.size();
+
+		if (s.empty()) {
+			return r;
+		}
+		else if (s.size() == 1) {
+			return 1;
+		}
+
+		map<char,int> repeat_char;
+		vector<char> char_vector;
+		int max_length = 1;
+
+		char_vector.emplace_back(s[0]);
+		repeat_char[s[0]]++;
+		
+		for (int i = 1; i < n; i++) {
+			
+			if(repeat_char[s[i]] > 0) {
+
+				if (char_vector.back() == s[i]) {
+					char_vector.clear();
+					repeat_char.clear();
+				}
+				else{ 
+					while (!char_vector.empty() && char_vector[0] != s[i]) {
+						repeat_char[char_vector[0]] = 0;
+						char_vector.erase(char_vector.begin());
+					} 
+				}
+
+				if (!char_vector.empty() && char_vector[0] == s[i]) {
+					char_vector.erase(char_vector.begin());
+					repeat_char[s[i]] = 0;
+				}
+
+				char_vector.emplace_back(s[i]);
+				repeat_char[s[i]]++;
+
+				max_length = max(max_length, int(char_vector.size()));
+			}
+			else {
+				char_vector.emplace_back(s[i]);
+				max_length = max(max_length, int(char_vector.size()));
+				repeat_char[s[i]]++;
+			}
+		}
+
+		return max_length;
+	}
+
+	/*=====================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
