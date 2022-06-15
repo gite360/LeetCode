@@ -1784,6 +1784,111 @@ public:
 	}
 
 	/*=====================================================================*/
+
+
+	/*===============     179. Largest Number 220615    ===================*/
+	string largestNumber(vector<int>& nums) {
+		vector<string> s;
+		string r;
+		for (auto&& au: nums) {
+			s.emplace_back(to_string(au));
+		}
+
+		sort(s.begin(), s.end(), [](string& s1, string& s2) { return s1 + s2 > s2 + s1; });
+
+		for (auto&& au : s) {
+			r+=au;
+		}
+
+		while (r[0] == '0' && r.size() > 1) {
+			r.erase(0,1);
+		}
+
+		return r;
+	}
+
+	string largestNumber_0(vector<int>& nums) {
+		string r;
+		vector<vector<int>> nums_v;
+		vector<vector<int>> sort_v;
+
+		if (nums.size() == 1) {
+			r += to_string(nums[0]);
+			return r;
+		}
+
+		for (auto au : nums) {
+			string temp_s = to_string(au);
+			vector<int> temp_v;
+			for (int j = 0; j < temp_s.size(); j++) {
+				temp_v.emplace_back(temp_s[j] - '0');
+			}
+			nums_v.emplace_back(temp_v);
+		}
+
+		sort_v.emplace_back(nums_v[0]);
+
+		for (int i = 1; i < nums_v.size(); i++) {
+			bool is_big = false;
+
+			for (int j = 0; j < sort_v.size(); j++) {
+				
+				int n = nums_v[i].size();
+				int m = sort_v[j].size();
+				int nm = n+m;
+
+				vector<int> nums_sort(nums_v[i].begin(), nums_v[i].end());
+				vector<int> sort_nums(sort_v[j].begin(), sort_v[j].end());
+
+				nums_sort.insert(nums_sort.end(), sort_v[j].begin(), sort_v[j].end());
+				sort_nums.insert(sort_nums.end(), nums_v[i].begin(), nums_v[i].end());
+
+				for (int k = 0; k < nm; k++) {
+					if (nums_sort[k] > sort_nums[k]) {
+						sort_v.insert(sort_v.begin() + j, nums_v[i]);
+						is_big = true;
+						break;
+					}
+					else if (nums_sort[k] < sort_nums[k]) {
+						is_big = false;
+						break;
+					}
+				}
+
+				if (is_big) {
+					break;
+				}
+			}
+
+			if (!is_big) {
+				sort_v.emplace_back(nums_v[i]);
+			}
+		}
+
+		int i = 0;
+		while (!sort_v[i].empty() && sort_v[i][0] == 0) {
+			sort_v[i].erase(sort_v[i].begin());
+
+			if (sort_v[i].empty()) {
+				sort_v.erase(sort_v.begin());
+			}
+
+			if (sort_v.empty()) {
+				r = "0";
+				return r;
+			}
+		}
+
+		for (int i = 0; i < sort_v.size(); i++) {
+			for (int j = 0; j < sort_v[i].size(); j++) {
+				r += to_string(sort_v[i][j]);
+			}
+		}
+
+		return r;
+	}
+
+	/*=====================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
