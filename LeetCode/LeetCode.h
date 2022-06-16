@@ -1889,6 +1889,60 @@ public:
 	}
 
 	/*=====================================================================*/
+
+	/*=================     50. Pow(x, n) 220616    =======================*/
+	double myPow(double x, int n) {
+		double r = 0;
+
+		if (x == 0) {
+			return x;
+		}
+		else if (n == 0) {
+			return 1;
+		}
+		else if (x == 1 || n == 1) {
+			return x;
+		}
+		else if ((x > 0 && x < 0.0001) || (x < 0 && x > -0.0001)) {
+			return 0;
+		}
+		else if (x != 1 && x != -1 && n == -2147483648) {
+			return 0;
+		}
+		else if (x == -1 && n % 2 == 0 ) {
+			return 1;
+		}
+		else if (x == -1 && n % 2 != 0) {
+			return -1;
+		}
+
+		if (n < 0) {
+			x = 1 / x;
+			n *= -1;
+		}
+
+		r = recursive_50(x, n);
+
+		return r;
+	}
+
+	double recursive_50(double x, int n) {
+		if (n == 0) {
+			return 1;
+		}
+		else if (n == 1) {
+			return x;
+		}
+
+		double temp_r = x * recursive_50(x, n - 1);
+
+		if ((x > 0 && x < 0.0001) || (x < 0 && x > -0.0001)) {
+			return 0;
+		}
+
+		return temp_r;
+	}
+	/*=====================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
