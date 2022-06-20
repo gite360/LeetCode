@@ -1943,6 +1943,76 @@ public:
 		return temp_r;
 	}
 	/*=====================================================================*/
+
+	/*==============     324. Wiggle Sort II 220620    ====================*/
+
+	void wiggleSort(vector<int>& nums) {
+
+		int n = nums.size();
+
+		if (n == 1) {
+			return;
+		}
+		else if (n == 2) {
+			sort(nums.begin(),nums.end());
+			return;
+		}
+
+		//nth_element(nums.begin(), nums.begin()+4, nums.end());
+
+		int half = n / 2;
+
+		sort(nums.begin(),nums.end(), greater());
+		
+		
+
+		for (int i = 0; i < n; i+=2) {
+			nums.insert(nums.begin() + i, nums.back());
+			nums.pop_back();
+		}
+
+		int j = 0;
+		if (n % 2 == 0) {//even
+			for (int i = n - 1; i > 0; i -= 2) {
+				if (nums[i - 1] == nums[i]) {
+					if (i - 2 >= 0 && nums[i - 2] < nums[i - 1]) {
+						swap(nums[j], nums[i]);
+						j += 2;
+						continue;
+					}
+					else {
+						swap(nums[j], nums[i - 1]);
+						j += 2;
+					}
+				}
+				else if (nums[i - 1] > nums[i]) {
+					swap(nums[i - 1], nums[i]);
+				}
+			}
+		}
+		else {// odd
+			j = 1;
+			for (int i = n - 1; i > 0; i -= 2) {
+				if (nums[i - 1] == nums[i]) {
+					if (i - 2 >= 0 && nums[i - 2] > nums[i - 1]) {
+						swap(nums[j], nums[i]);
+						j += 2;
+						continue;
+					}
+					else {
+						swap(nums[j], nums[i - 1]);
+						j += 2;
+					}
+				}
+				else if (nums[i - 1] < nums[i]) {
+					swap(nums[i - 1], nums[i]);
+				}
+			}
+		}
+
+	}
+
+	/*=====================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
