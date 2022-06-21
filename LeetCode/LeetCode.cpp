@@ -21,7 +21,20 @@ int main()
 
 	Solution solution;
 
+	/*===============    5. Longest Palindromic Substring   ===============*/
+	string s_5;
+
+	s_5 = "ccc";
+	s_5 = "cbbd";
+	//s_5 = "babad";
+	//s_5 = "aaaaa";
+	//s_5 = "aba";
+
+	solution.longestPalindrome_0(s_5);
+
 	/*=================     324. Wiggle Sort II 220620    =======================*/
+	assert(0);
+
 	vector<int> nums_324;
 
 	nums_324 = { 1,5,1,1,6,4 };

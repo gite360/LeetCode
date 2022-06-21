@@ -1963,8 +1963,6 @@ public:
 		int half = n / 2;
 
 		sort(nums.begin(),nums.end(), greater());
-		
-		
 
 		for (int i = 0; i < n; i+=2) {
 			nums.insert(nums.begin() + i, nums.back());
@@ -2010,6 +2008,105 @@ public:
 			}
 		}
 
+	}
+
+	/*=====================================================================*/
+
+	/*===============    5. Longest Palindromic Substring   ===============*/
+
+	string longestPalindrome(string s) {
+		int n = s.size();
+
+		if (n == 1) {
+			return s;
+		}
+
+		vector<vector<bool>> dp(n, vector<bool>(n, false));
+
+		string res;
+		int l = 0;
+		int r = 0;
+
+		for (int i = 0; i < n-1; i++) {
+			int j = i;
+
+			while (j + 1 < n && s[i] == s[j+1]) {
+				j++;
+			}
+			
+			if (s[i] == s[j] && j - i > r - l) {
+				l = i;
+				r = j;
+			}
+
+			int ii = i;
+			int jj = j;
+
+			while (ii-1 >= 0 && jj + 1 < n && s[ii-1] == s[jj+1]) {
+				ii--;
+				jj++;
+			}
+
+			if (jj - ii > r - l) {
+				l = ii;
+				r = jj;
+			}
+		}
+
+		res = s.substr(l,r-l+1);
+		return res;
+	}
+
+	string longestPalindrome_0(string s) {
+		int n = s.size();
+
+		if (n == 1) {
+			return s;
+		}
+
+		vector<vector<bool>> dp(n, vector<bool>(n, false));
+
+		string res;
+		int l = 0;
+		int r = 0;
+
+		for (int i = 0; i < n; i++) {
+			dp[i][i] = true;
+			if (i + 1 < n) {
+				dp[i][i+1] = (s[i] == s[i + 1]);
+
+				if (dp[i][i + 1]) {
+					l = i;
+					r = i + 1;
+				}
+				
+			}
+		}
+
+		for (int j = 2; j <n ; j++) {
+			for (int i = j - 2; i >=0 ; i--) {
+				dp[i][j] = (dp[i+1][j-1] && s[i] == s[j]);
+
+				if (dp[i][j] && j - i > r - l) {
+					r = j;
+					l = i;
+				}
+			}
+		}
+
+		/*for (int i = n-3; i >=0 ; i--) {
+			for (int j = i + 2; j < n; j++) {
+				dp[i][j] = (dp[i+1][j-1] && s[i] == s[j]);
+
+				if (dp[i][j] && j - i > r - l) {
+					r = j;
+					l = i;
+				}
+			}
+		}*/
+
+		res = s.substr(l, r - l + 1);
+		return res;
 	}
 
 	/*=====================================================================*/
