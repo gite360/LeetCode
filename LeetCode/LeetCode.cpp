@@ -21,6 +21,15 @@ int main()
 
 	Solution solution;
 
+	/*=========================       15. 3Sum      =======================*/
+	vector<int> nums_15;
+
+	nums_15 = { -1,0,1,2,-1,-4 };
+
+	//nums_15 = { 0,0,0,0 };
+
+	solution.threeSum_0(nums_15);
+
 	/*===============    5. Longest Palindromic Substring   ===============*/
 	string s_5;
 

@@ -2110,6 +2110,123 @@ public:
 	}
 
 	/*=====================================================================*/
+
+	/*=========================       15. 3Sum      =======================*/
+
+	vector<vector<int>> threeSum(vector<int>& nums) {
+
+		int n = nums.size();
+		vector<vector<int>> res;
+
+		if (n < 3) {
+			return {};
+		}
+		else if (nums[0] > 0) {
+			return {};
+		}
+		else if (n == 3) {
+			if (nums[0] + nums[1] + nums[2]==0) {
+				res.emplace_back(nums);
+			}
+			return res;
+		}
+
+		sort(nums.begin(), nums.end());
+
+		for (int i = 0; i < n - 2; i++) {
+
+			if (nums[i] > 0) {     //If number fixed is +ve, stop there because we can't make it zero by searching after it.
+				break;
+			}
+
+			if (i > 0 && nums[i] == nums[i - 1]) {
+				continue;
+			}
+
+			int l = i + 1;
+			int r = n - 1;
+
+			while (l < r) {
+				if (nums[i] + nums[l] + nums[r] < 0) {
+					l++;
+				}
+				else if (nums[i] + nums[l] + nums[r] > 0) {
+					r--;
+				}
+				else {
+
+					res.emplace_back(vector<int>{ nums[i], nums[l], nums[r] });
+
+					while (l + 1 < r && nums[l] == nums[l + 1]) {
+						l++;
+					}
+
+					while (r - 1 > l && nums[r] == nums[r -1]) {
+						r--;
+					}
+
+					l++;
+					r--;
+				}
+			}
+
+		}
+
+		return res;
+	}
+
+
+	vector<vector<int>> threeSum_0(vector<int>& nums) {
+
+		int n = nums.size();
+		vector<vector<int>> res;
+		map<int, int> mp;
+
+		sort(nums.begin(), nums.end());
+
+		if (n < 3) {
+			return {};
+		}
+		else if (nums[0] > 0) {
+			return {};
+		}
+		else if (n == 3) {
+			if (nums[0] + nums[1] + nums[2] == 0) {
+				res.emplace_back(nums);
+			}
+			return res;
+		}
+
+		
+
+		for (int i = 0; i < n; i++) {
+			mp[nums[i]] = i;
+		}
+
+		for (int i = 0; i < n - 2; i++) {
+
+			if (nums[i] > 0) {     //If number fixed is +ve, stop there because we can't make it zero by searching after it.
+				break;
+			}
+
+			for (int j = i + 1; j < n - 1; j++) {
+				
+				int target = -(nums[i] + nums[j]);
+
+				if (mp[target] > 0 && mp[target] > j) {
+					res.emplace_back(vector<int>{ nums[i], nums[j], nums[mp[target]] });
+				}
+				
+				j = mp[nums[j]];
+			}
+
+			i = mp[nums[i]];
+		}
+
+		return res;
+	}
+
+	/*=====================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
