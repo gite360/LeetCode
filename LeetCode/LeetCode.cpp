@@ -21,6 +21,43 @@ int main()
 
 	Solution solution;
 
+	string s_91;
+
+	s_91 = "12";
+
+	s_91 = "226";
+
+	//s_91 = "06";
+
+	//s_91 = "1111111111111";
+
+	s_91 = "2101";
+
+	solution.numDecodings(s_91);
+
+	/*=======     98. Validate Binary Search Tree   =========*/
+	assert(0);
+	vector<Solution::TreeNode> node_vector_98;
+
+	node_vector_98 = { 5,1,4,INT_MIN,INT_MIN,3,6 };
+
+	node_vector_98 = {2,1,3};
+
+	node_vector_98 = { 5,4,6,INT_MIN,INT_MIN,3,7 };
+
+	node_vector_98 = { 1,1 };
+
+	node_vector_98 = { 1,0 };
+
+	Solution::TreeNode* root_98 = &node_vector_98[0];
+
+	solution.build_b_tree_level_order(node_vector_98, root_98);
+
+	solution.isValidBST(root_98);
+
+	//node_vector_98.clear();
+	//node_vector_98.shrink_to_fit();
+
 	/*=========================       15. 3Sum      =======================*/
 	vector<int> nums_15;
 
@@ -363,7 +400,6 @@ int main()
 			temp_node_114->right = &node_vector_114[i];
 			q_114.emplace(temp_node_114->right);
 		}
-
 	}
 		
 	solution.flatten(root_114);

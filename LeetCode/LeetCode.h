@@ -39,6 +39,10 @@ public:
 
 	};
 
+	//220623 build a binary search tree (BST) from level-first order.
+	template <typename T>
+	T* build_b_tree_level_order(vector<T>& node_vector, T* root);
+
 	//181230
 	vector<int> twoSum(vector<int>& nums, int target);
 	//181231
@@ -2197,8 +2201,6 @@ public:
 			return res;
 		}
 
-		
-
 		for (int i = 0; i < n; i++) {
 			mp[nums[i]] = i;
 		}
@@ -2227,6 +2229,135 @@ public:
 	}
 
 	/*=====================================================================*/
+
+
+	/*=============   98. Validate Binary Search Tree   ===================*/
+
+	bool isValidBST(TreeNode* root) {
+		bool r = true;
+
+		postorder_98(root, r);
+
+		return r;
+	}
+
+	vector<int> postorder_98(TreeNode* node, bool& isb) {
+		if (!isb) return {};
+
+		if (node->left && node->right) {
+			vector<int> ll = postorder_98(node->left, isb);
+			vector<int> rr = postorder_98(node->right, isb);
+
+			for (auto au : ll) {
+				if (node->val <= au) {
+					isb = false;
+				}
+			}
+
+			for (auto au : rr) {
+				if (node->val >= au) {
+					isb = false;
+				}
+			}
+
+			ll.emplace_back(node->val);
+			ll.insert(ll.end(), rr.begin(), rr.end());
+
+			return ll;
+		}
+		else if (node->left) {
+			vector<int> ll = postorder_98(node->left, isb);
+
+			for (auto au : ll) {
+				if (node->val <= au) {
+					isb = false;
+				}
+			}
+
+			ll.emplace_back(node->val);
+
+			return ll;
+		}
+		else if (node->right) {
+			vector<int> rr = postorder_98(node->right, isb);
+
+			for (auto au : rr) {
+				if (node->val >= au) {
+					isb = false;
+				}
+			}
+			rr.emplace_back(node->val);
+			
+			return rr;
+		}
+		else {
+			return vector<int>{node->val};
+		}
+	}
+
+	/*=====================================================================*/
+
+	/*======================   91. Decode Ways 220624 15:14 ==========================*/
+
+	int numDecodings(string s) {
+
+		if (s[0] == '0') return 0;
+
+		int n = s.size();
+		
+		int res = 1;
+		int prev = 0;
+
+		for (int i = n - 1; i >= 0; i--) {
+			int temp_nums = 0;
+
+			if (s[i] != '0') {
+				temp_nums = res;
+			}
+			
+			if (i < n - 1 && (s[i] == '1' ||(s[i] == '2' && s[i+1] < '7'))) {
+				temp_nums += prev;
+			}
+			prev = res;
+			res = temp_nums;
+
+		}
+
+		return res;
+	}
+
+	int recursive_91(string s, int od, vector<int>& nums) {
+		if (od == -1) {
+			od = 0;
+		}
+
+		if (nums[od] >= 0) {
+			return nums[od];
+		}
+
+		int num = s[od] - '0';
+		int prev = s[od - 1] - '0';
+		string sum_str = s.substr(od - 1, 2);
+		int sum = stoi(sum_str);
+		int res = 0;
+
+		if (num != 0) {
+			res = recursive_91(s, od - 1, nums);
+
+			if (prev != 0 && sum < 27) {
+				res += recursive_91(s, od - 2, nums);
+			}
+		}
+		else if(sum < 27) {
+			if (prev == 0) return nums[od] = 0;
+
+			res = recursive_91(s, od - 2, nums);
+		}
+
+		return nums[od] = res;
+	}
+
+	/*===========================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -2397,6 +2528,39 @@ public:
  * obj.addAtIndex(index,val);
  * obj.deleteAtIndex(index);
  */
+
+ //220623 build a binary search tree (BST) from level-first order.
+template <typename T>
+T* Solution::build_b_tree_level_order(vector<T>& node_vector, T* root) {
+
+	root = &node_vector[0];
+
+	const int n = node_vector.size();
+	queue<TreeNode*> q;
+
+	q.emplace(&node_vector[0]);
+	int i = 0;
+
+	while (!q.empty() && i < n) {
+
+		Solution::TreeNode* temp_node = q.front();
+		q.pop();
+
+		i++;
+		if (i < n && node_vector[i].val != INT_MIN) {
+			temp_node->left = &node_vector[i];
+			q.emplace(temp_node->left);
+		}
+
+		i++;
+		if (i < n && node_vector[i].val != INT_MIN) {
+			temp_node->right = &node_vector[i];
+			q.emplace(temp_node->right);
+		}
+	}
+
+	return root;
+}
 
 vector<int> Solution::twoSum(vector<int>& nums, int target) {
 	map <int, pair<int, int>> mp;
