@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "pch.h"
 #include <assert.h>
 #include <iostream>
@@ -924,7 +924,7 @@ public:
 	/*================================================*/
 
 
-	/*====227.�Basic Calculator II=======*/
+	/*====227. Basic Calculator II=======*/
 	int calculate(string s) {
 		stack<int> myStack;
 		char sign = '+';
@@ -2358,6 +2358,30 @@ public:
 	}
 
 	/*===========================================================================*/
+
+
+
+	/*======================   338. Counting Bits 220626 20：13 ==========================*/
+	vector<int> countBits(int n) {
+
+		/*if (n == 0) {
+			return vector<int>{0, 1};
+		}*/
+
+		vector<int> dp(n + 1, 0);
+		//dp[1] = 1;
+
+		for (int i = 0; i <= n; i++) {
+			if (i % 2) {
+				dp[i] = dp[i / 2] + 1;
+			}
+			else {
+				dp[i] = dp[i / 2];
+			}
+		}
+
+		return dp;
+	}
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

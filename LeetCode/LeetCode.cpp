@@ -21,6 +21,15 @@ int main()
 
 	Solution solution;
 
+
+
+	/*=======  338. Counting Bits  =========*/
+	int n_338=0;
+
+	solution.countBits(n_338);
+
+	/*======   91. Decode Ways 220624 15:14 ===========*/
+	assert(0);
 	string s_91;
 
 	s_91 = "12";
