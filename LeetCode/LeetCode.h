@@ -2359,8 +2359,6 @@ public:
 
 	/*===========================================================================*/
 
-
-
 	/*======================   338. Counting Bits 220626 20：13 ==========================*/
 	vector<int> countBits(int n) {
 
@@ -2382,6 +2380,103 @@ public:
 
 		return dp;
 	}
+	/*===========================================================================*/
+
+	/*=====================   647. Palindromic Substrings 10:18  ==========================*/
+	int countSubstrings(string s) {
+
+	}
+	/*=====================================================================================*/
+
+	/*=====================     226. Invert Binary Tree 10:29    ==========================*/
+	TreeNode* invertTree(TreeNode* root) {
+
+		vector<int> node_val;
+
+		TreeNode* root_temp = root;
+		//preorder_traverse_226(root_temp, node_val);
+
+		//if (!(node_val.size() & 1)) {//even
+		//	node_val.emplace_back(INT_MIN);
+		//}
+
+		//root_temp = root;
+
+		//vector<Solution::TreeNode> node_vector_226(node_val.rbegin(), node_val.rend());
+		//std::reverse(node_val.begin(), node_val.end());
+		//TreeNode* root_new_temp = new TreeNode(INT_MIN);
+		//root = root_new_temp;
+
+		//preorder_traverse_build_226(root_new_temp, node_val);
+		preorder_traverse_swap_226(root_temp);
+
+		return root;
+	}
+
+	void preorder_traverse_swap_226(TreeNode* root) {
+		if (!root) return;
+
+		TreeNode* temp = root->left;
+
+		root->left = root->right;
+		root->right = temp;
+
+		preorder_traverse_swap_226(root->left);
+		preorder_traverse_swap_226(root->right);
+
+		return;
+	}
+
+	void preorder_traverse_226(TreeNode* root, vector<int>& node_val) {
+		if (!root) return;
+
+		if (root->left)
+			preorder_traverse_226(root->left, node_val);
+		else if(root->right) {
+			node_val.emplace_back(INT_MIN);
+		}
+
+		node_val.emplace_back(root->val);
+
+		if (root->right)
+			preorder_traverse_226(root->right, node_val);
+		else if (root->left) {
+			node_val.emplace_back(INT_MIN);
+		}
+	}
+
+	
+
+	TreeNode* preorder_traverse_build_226(TreeNode* root, vector<int>& node_val) {
+		/*if (node_val.back() == INT_MIN) {
+			node_val.pop_back();
+			return root;
+		}*/
+
+		if (node_val.empty()) {
+			return root;
+		}
+
+		//if (node_val.back() != INT_MIN){
+			root -> left = new TreeNode(node_val.back());
+			//node_val.pop_back();
+			//preorder_traverse_build_226(root->left, node_val);
+		//}
+		node_val.pop_back();
+
+		//root = new TreeNode(node_val.back(), root->left, nullptr);
+		root->val = node_val.back();
+		node_val.pop_back();
+
+		//if (node_val.back() != INT_MIN) {
+			root->right = new TreeNode(node_val.back());
+			//node_val.pop_back();
+			//preorder_traverse_build_226(root->right, node_val);
+		//}
+
+		return root;
+	}
+	/*=====================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
