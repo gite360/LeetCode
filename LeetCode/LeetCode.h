@@ -2477,6 +2477,38 @@ public:
 		return root;
 	}
 	/*=====================================================================================*/
+
+	/*================     543. Diameter of Binary Tree 220628 10：25    ==================*/
+
+	int diameterOfBinaryTree(TreeNode* root) {
+		int n = 0;
+		vector<int> single_path;
+		vector<vector<int>> path;
+
+		TreeNode* temp_root = root;
+		n = dfs_543(temp_root, n);
+
+		return n;
+	}
+
+	int dfs_543(TreeNode* root, int& n) {
+		
+		if (!root) {
+			return 0;
+		}
+
+		int ln = dfs_543(root->left, n);
+
+		int rn = dfs_543(root->right, n);
+
+		n = max(n, ln + rn);
+
+		return max(ln, rn) + 1;
+	}
+
+	/*=====================================================================================*/
+
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

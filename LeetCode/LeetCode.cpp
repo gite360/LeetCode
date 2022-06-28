@@ -21,18 +21,24 @@ int main()
 
 	Solution solution;
 
+	/*===========     543. Diameter of Binary Tree 220628 10：25    =======================*/
+	vector<Solution::TreeNode> node_vector_543;
+
+	node_vector_543 = { 1,2,3,4,5 };
+
+	//node_vector_543 = { 1,2,3 };
+
+	Solution::TreeNode* root_543 = &node_vector_543[0];
+
+	solution.build_b_tree_level_order(node_vector_543, root_543);
+
+	solution.diameterOfBinaryTree(root_543);
+
 	/*=====================     226. Invert Binary Tree 10:29    ==========================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_226;
 
 	node_vector_226 = { 4,2,7,1,3,6,9 };
-
-	//node_vector_226 = { 2,1,3 };
-
-	//node_vector_226 = { 1,2 };
-
-	/*node_vector_226 = { 1,1 };
-
-	node_vector_226 = { 1,0 };*/
 
 	Solution::TreeNode* root_226 = &node_vector_226[0];
 
@@ -41,6 +47,7 @@ int main()
 	solution.invertTree(root_226);
 
 	/*=======  338. Counting Bits  =========*/
+	assert(0);
 	int n_338=0;
 
 	solution.countBits(n_338);
