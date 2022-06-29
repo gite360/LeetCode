@@ -21,6 +21,27 @@ int main()
 
 	Solution solution;
 
+	/*=============     35. Search Insert Position 220629 09：30    =======================*/
+	vector<int> nums_35;
+	int target_35;
+
+	nums_35 = { 1,3,5,6 };
+	target_35 = 5;
+
+	/*nums_35 = { 1,3,5,6 };
+	target_35 = 2;*/
+
+	/*nums_35 = { 1,3};
+	target_35 = 3;*/
+
+	nums_35 = { 1,3,5};
+	target_35 = 4;
+
+	nums_35 = { 3,5,7,9,10 };
+	target_35 = 8;
+
+	solution.searchInsert(nums_35, target_35);
+
 	/*===========     543. Diameter of Binary Tree 220628 10：25    =======================*/
 	vector<Solution::TreeNode> node_vector_543;
 

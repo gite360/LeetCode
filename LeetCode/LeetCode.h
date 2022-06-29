@@ -2508,7 +2508,50 @@ public:
 
 	/*=====================================================================================*/
 
+	/*================     35. Search Insert Position 220629 09：30    ==================*/
 
+	int searchInsert(vector<int>& nums, int target) {
+
+		int n = nums.size();
+
+		if (target < nums.front()) {
+			return 0;
+		}
+		else if (target > nums.back()) {
+			return n;
+		}
+
+		int l = 0;
+		int r = n - 1;
+		int m = 0;
+
+		while (l <= r) {
+			m = (l + r) / 2;
+
+			if (l + 1 == r && target > nums[l] && target < nums[r]) {
+				return r;
+			}
+			else if (target < nums[m]) {
+				r = m - 1;
+				continue;
+			}
+			else if (target > nums[m]) {
+				l = m + 1;
+				continue;
+			}
+			else {
+				return m;
+			}
+		}
+
+		/*if (target > nums[m]) {
+			return m + 1;
+		}*/
+
+		return l;
+	}
+
+	/*=====================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
