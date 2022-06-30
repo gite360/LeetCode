@@ -2552,6 +2552,56 @@ public:
 	}
 
 	/*=====================================================================================*/
+
+	/*================     Binary Tree Preorder Traversal 220630 11：13    ==================*/
+	vector<int> preorderTraversal(TreeNode* root) {
+		vector<int> res;
+		preorder_travel(root, res);
+		return res;
+	}
+
+	void preorder_travel(TreeNode* root, vector<int>& res) {
+		if (!root) return;
+		res.emplace_back(root->val);
+		preorder_travel(root->left, res);
+		preorder_travel(root->right, res);
+		return;
+	}
+	/*=====================================================================================*/
+
+	/*================     Binary Tree inorderTraversal Traversal 220630 11：13    ==================*/
+	vector<int> inorderTraversal(TreeNode* root) {
+		vector<int> res;
+		inorder_travel(root, res);
+		return res;
+	}
+
+	void inorder_travel(TreeNode* root, vector<int>& res) {
+		if (!root) return;
+		
+		inorder_travel(root->left, res);
+		res.emplace_back(root->val);
+		inorder_travel(root->right, res);
+		return;
+	}
+	/*=====================================================================================*/
+
+	/*================     Binary Tree postorderTraversal  220630 11：13    ==================*/
+	vector<int> postorderTraversal(TreeNode* root) {
+		vector<int> res;
+		postorder_travel(root, res);
+		return res;
+	}
+
+	void postorder_travel(TreeNode* root, vector<int>& res) {
+		if (!root) return;
+
+		postorder_travel(root->left, res);
+		postorder_travel(root->right, res);
+		res.emplace_back(root->val);
+		return;
+	}
+	/*=====================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

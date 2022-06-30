@@ -21,7 +21,23 @@ int main()
 
 	Solution solution;
 
+
+	/*================     Binary Tree Preorder Traversal 220630 11：13    ==================*/
+
+	vector<Solution::TreeNode> node_vector_preorder;
+
+	node_vector_preorder = { 1,2,3,4,5 };
+
+	//node_vector_543 = { 1,2,3 };
+
+	Solution::TreeNode* root_preorder = &node_vector_preorder[0];
+
+	solution.build_b_tree_level_order(node_vector_preorder, root_preorder);
+
+	solution.preorderTraversal(root_preorder);
+
 	/*=============     35. Search Insert Position 220629 09：30    =======================*/
+	assert(0);
 	vector<int> nums_35;
 	int target_35;
 
