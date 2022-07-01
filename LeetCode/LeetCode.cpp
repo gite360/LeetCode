@@ -21,6 +21,15 @@ int main()
 
 	Solution solution;
 
+	/*================     Binary Tree Level Order Traversal  220701 16:16    ==================*/
+	vector<Solution::TreeNode> node_vector_level;
+	node_vector_level = { 1,2,3,4,5 };
+	//node_vector_level = { 1,2,3 };
+
+	Solution::TreeNode* root_level = &node_vector_level[0];
+	solution.build_b_tree_level_order(node_vector_level, root_level);
+
+	solution.levelOrder(root_level);
 
 	/*================     Binary Tree Preorder Traversal 220630 11：13    ==================*/
 

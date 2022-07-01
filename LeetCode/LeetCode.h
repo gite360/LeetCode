@@ -1789,7 +1789,6 @@ public:
 
 	/*=====================================================================*/
 
-
 	/*===============     179. Largest Number 220615    ===================*/
 	string largestNumber(vector<int>& nums) {
 		vector<string> s;
@@ -1891,7 +1890,6 @@ public:
 
 		return r;
 	}
-
 	/*=====================================================================*/
 
 	/*=================     50. Pow(x, n) 220616    =======================*/
@@ -1949,7 +1947,6 @@ public:
 	/*=====================================================================*/
 
 	/*==============     324. Wiggle Sort II 220620    ====================*/
-
 	void wiggleSort(vector<int>& nums) {
 
 		int n = nums.size();
@@ -2602,6 +2599,55 @@ public:
 		return;
 	}
 	/*=====================================================================================*/
+
+	/*=============     Binary Tree Level Order Traversal  220701 16:16    ==================*/
+	vector<vector<int>> levelOrder(TreeNode* root) {
+		if (!root) return vector<vector<int>>{};
+		vector<vector<int>> result;
+		
+		TreeNode* node = root;
+		queue<TreeNode*> q;
+		q.emplace(node);
+
+		while (!q.empty()) {
+
+			vector<TreeNode*> level_vec;
+			vector<int> level_val;
+
+			while (!q.empty()) {
+				TreeNode* node_temp = q.front();
+				q.pop();
+				level_val.emplace_back(node_temp->val);
+				level_vec.emplace_back(node_temp);
+			}
+
+			result.emplace_back(level_val);
+
+			for(auto au: level_vec) {
+				if(au->left)
+					q.emplace(au->left);
+				if (au->right)
+					q.emplace(au->right);
+			}
+		}
+		
+
+		return result;
+	}
+
+	void level_travel(TreeNode* node, int level, vector<vector<int>>& result) {
+		if (!node) return;
+
+		if (result.size() < level + 1) {
+			result.resize(level + 1);
+		}
+
+		result[level].emplace_back(node->val);
+
+		level_travel(node->left, level + 1, result);
+		level_travel(node->right, level + 1, result);
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
