@@ -2648,6 +2648,60 @@ public:
 		level_travel(node->right, level + 1, result);
 	}
 	/*========================================================================================*/
+
+	/*===========================  Symmetric Tree  220704 08:58 ==============================*/
+	bool isSymmetric(TreeNode* root) {
+		if (!root->left && !root->right) return true;
+		if (!root->left || !root->right) return false;
+
+		bool rest = isSymmetric_sub(root->left, root->right);
+
+		return rest;
+	}
+
+	bool isSymmetric_sub(TreeNode* node_left, TreeNode* node_right) {
+		if (!node_left && !node_right) {
+			return true;
+		}
+
+		if (!node_left && node_right) {
+			return false;
+		}
+
+		if (node_left && !node_right) {
+			return false;
+		}
+
+		if (node_left->val != node_right->val) return false;
+
+		return isSymmetric_sub(node_left->left, node_right->right) && isSymmetric_sub(node_left->right, node_right->left);
+
+	}
+	/*========================================================================================*/
+
+
+	/*=========================     Path Sum  220704 10:06     ===============================*/
+	bool hasPathSum(TreeNode* root, int targetSum) {
+		if (!root) return false;
+
+		bool rest = hasPathSum_sub(root, targetSum, 0);
+
+		return rest;
+	}
+
+	bool hasPathSum_sub(TreeNode* node, int& targetSum, int sum) {
+		if (!node) {
+			return false;
+		}
+
+		if (!node->left && !node->right && sum + node->val == targetSum) {
+			return true;
+		}
+
+		return hasPathSum_sub(node->left, targetSum, sum + node->val) || hasPathSum_sub(node->right, targetSum, sum + node->val);
+	}
+
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

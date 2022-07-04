@@ -21,18 +21,45 @@ int main()
 
 	Solution solution;
 
+	/*=========================    Path Sum  220704 10:06    ===================================*/
+	vector<Solution::TreeNode> node_vector_PathSum;
+	int targetSum_PathSum = 22;
+	node_vector_PathSum = { 1,2,3,4,5 };
+	//node_vector_level = { 1,2,3 };
+
+	node_vector_PathSum = { 5,4,8,11,INT_MIN,13,4,7,2,INT_MIN,INT_MIN,INT_MIN,1 };
+	targetSum_PathSum = 22;
+
+	node_vector_PathSum = {1, 2, INT_MIN, 3, INT_MIN, 4, INT_MIN, 5};
+	targetSum_PathSum = 6;
+
+	Solution::TreeNode* root_PathSum = &node_vector_PathSum[0];
+	solution.build_b_tree_level_order(node_vector_PathSum, root_PathSum);
+
+	solution.hasPathSum(root_PathSum, targetSum_PathSum);
+
+	/*=========================    Symmetric Tree 220704 09:41    ==============================*/
+	assert(0);
+	vector<Solution::TreeNode> node_vector_symmetric;
+	node_vector_symmetric = { 1,2,3,4,5 };
+	//node_vector_level = { 1,2,3 };
+	Solution::TreeNode* root_symmetric = &node_vector_symmetric[0];
+	solution.build_b_tree_level_order(node_vector_symmetric, root_symmetric);
+
+	solution.isSymmetric(root_symmetric);
+
 	/*================     Binary Tree Level Order Traversal  220701 16:16    ==================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_level;
 	node_vector_level = { 1,2,3,4,5 };
 	//node_vector_level = { 1,2,3 };
-
 	Solution::TreeNode* root_level = &node_vector_level[0];
 	solution.build_b_tree_level_order(node_vector_level, root_level);
 
 	solution.levelOrder(root_level);
 
 	/*================     Binary Tree Preorder Traversal 220630 11：13    ==================*/
-
+	assert(0);
 	vector<Solution::TreeNode> node_vector_preorder;
 
 	node_vector_preorder = { 1,2,3,4,5 };
