@@ -2702,6 +2702,81 @@ public:
 	}
 
 	/*========================================================================================*/
+
+
+	/*==== Construct Binary Tree from Inorder and Postorder Traversal 220705 10:56 ===========*/
+
+	TreeNode* buildTree_inorder_postorder(vector<int>& inorder, vector<int>& postorder) {
+
+		TreeNode* root = build_btree_inorder_postorder(inorder, postorder);
+
+		return root;
+	}
+
+	TreeNode* build_btree_inorder_postorder(vector<int> inorder, vector<int> postorder) {
+
+		TreeNode* node = nullptr;
+
+		if (inorder.empty()) {
+			return node;
+		}
+
+		int n = inorder.size();
+
+		node = new TreeNode(postorder.back());
+
+		if (n == 1) {
+			return node;
+		}
+
+		int od_left = find(inorder.begin(), inorder.end(), postorder.back()) - inorder.begin();
+
+		//if (postorder.back() == inorder.back()) {
+		//	vector<int> inorder_left(inorder.begin(), inorder.begin() + od_left);
+		//	vector<int> postorder_left(postorder.begin(), postorder.begin() + od_left);
+		//	node->left = build_btree_inorder_postorder(inorder_left, postorder_left);
+		//	return node;
+		//}
+		//else if (postorder.back() == inorder.front()) {
+		//	vector<int> inorder_right(inorder.begin() + od_left + 1, inorder.end());
+		//	vector<int> postorder_right(postorder.begin() + od_left, postorder.end() - 1);
+		//	node->right = build_btree_inorder_postorder(inorder_right, postorder_right);
+		//	return node;
+		//}
+		//else {
+		//	//vector<int>::iterator od_postorder = find(postorder.begin(), postorder.end(), inorder[od_inorder - inorder.begin() + 1]);
+		//	
+		//	vector<int> inorder_left(inorder.begin(), inorder.begin() + od_left);
+		//	vector<int> inorder_right(inorder.begin() + od_left + 1, inorder.end());
+
+		//	vector<int> postorder_left(postorder.begin(), postorder.begin() + od_left);
+		//	vector<int> postorder_right(postorder.begin() + od_left, postorder.end() - 1);
+
+		//	node->left = build_btree_inorder_postorder(inorder_left, postorder_left);
+		//	node->right = build_btree_inorder_postorder(inorder_right, postorder_right);
+
+		//	return node;
+		//}
+
+
+		if (postorder.back() != inorder.front()) {
+			vector<int> inorder_left(inorder.begin(), inorder.begin() + od_left);
+			vector<int> postorder_left(postorder.begin(), postorder.begin() + od_left);
+			node->left = build_btree_inorder_postorder(inorder_left, postorder_left);
+		}
+
+		if (postorder.back() != inorder.back()) {
+			vector<int> inorder_right(inorder.begin() + od_left + 1, inorder.end());
+			vector<int> postorder_right(postorder.begin() + od_left, postorder.end() - 1);
+			node->right = build_btree_inorder_postorder(inorder_right, postorder_right);
+		}
+
+		return node;
+	}
+
+	/*========================================================================================*/
+
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

@@ -21,6 +21,21 @@ int main()
 
 	Solution solution;
 
+	/*=========================    Path Sum  220705 10:28    ===================================*/
+	vector<int> inorder;
+	vector<int> postorder;
+
+	inorder = { 9,3,15,20,7 };
+	postorder = { 9,15,7,20,3 };
+
+	//inorder = { 2,1 };
+	//postorder = { 2,1 };
+
+	//inorder = { 1,2,3,4 };
+	//postorder = { 1,4,3,2 };
+
+	solution.buildTree_inorder_postorder(inorder, postorder);
+
 	/*=========================    Path Sum  220704 10:06    ===================================*/
 	vector<Solution::TreeNode> node_vector_PathSum;
 	int targetSum_PathSum = 22;
