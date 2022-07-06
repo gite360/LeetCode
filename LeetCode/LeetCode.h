@@ -2705,7 +2705,6 @@ public:
 
 
 	/*==== Construct Binary Tree from Inorder and Postorder Traversal 220705 10:56 ===========*/
-
 	TreeNode* buildTree_inorder_postorder(vector<int>& inorder, vector<int>& postorder) {
 
 		TreeNode* root = build_btree_inorder_postorder(inorder, postorder);
@@ -2773,10 +2772,41 @@ public:
 
 		return node;
 	}
-
 	/*========================================================================================*/
 
+	/*==== Construct Binary Tree from Preorder and Inorder Traversal 220706 10:39 ===========*/
+	TreeNode* buildTree_preorder_inorder(vector<int>& preorder, vector<int>& inorder) {
 
+		TreeNode* root = build_btree_preorder_inorder(preorder, inorder);
+
+		return root;
+	}
+
+	TreeNode* build_btree_preorder_inorder(vector<int> preorder, vector<int> inorder) {
+
+		if (inorder.empty()) return nullptr;
+
+		TreeNode* node_root = new TreeNode(preorder.front());//root
+
+		int od_left = find(inorder.begin(), inorder.end(), preorder.front()) - inorder.begin();
+
+		if (preorder.front() != inorder.front()) {
+			vector<int> preorder_left(preorder.begin() + 1, preorder.begin() + od_left + 1);
+			vector<int> inorder_left(inorder.begin(), inorder.begin() + od_left);
+			
+			node_root->left = build_btree_preorder_inorder(preorder_left, inorder_left);
+		}
+
+		if (preorder.front() != inorder.back()) {
+			vector<int> preorder_right(preorder.begin() + 1 + od_left, preorder.end());
+			vector<int> inorder_right(inorder.begin() + od_left + 1, inorder.end());
+			
+			node_root->right = build_btree_preorder_inorder(preorder_right, inorder_right);
+		}
+
+		return node_root;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

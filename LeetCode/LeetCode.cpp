@@ -20,11 +20,18 @@ int main()
 
 
 	Solution solution;
-
-	/*=========================    Path Sum  220705 10:28    ===================================*/
 	vector<int> inorder;
+	vector<int> preorder;
 	vector<int> postorder;
 
+	/*==== Construct Binary Tree from Preorder and Inorder Traversal 220706 10:39 ===========*/
+	preorder = { 3,9,20,15,7 };;
+	inorder = { 9,3,15,20,7 };
+
+	solution.buildTree_preorder_inorder(preorder, inorder);
+
+	/*=========================    Path Sum  220705 10:28    ===================================*/
+	assert(0);
 	inorder = { 9,3,15,20,7 };
 	postorder = { 9,15,7,20,3 };
 
@@ -37,6 +44,7 @@ int main()
 	solution.buildTree_inorder_postorder(inorder, postorder);
 
 	/*=========================    Path Sum  220704 10:06    ===================================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_PathSum;
 	int targetSum_PathSum = 22;
 	node_vector_PathSum = { 1,2,3,4,5 };
