@@ -33,8 +33,9 @@ public:
 		int val;
 		TreeNode* left;
 		TreeNode* right;
-		TreeNode() : val(0), left(nullptr), right(nullptr) {}
-		TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+		TreeNode* next;
+		TreeNode() : val(0), left(nullptr), right(nullptr), next(nullptr) {}
+		TreeNode(int x) : val(x), left(nullptr), right(nullptr), next(nullptr) {}
 		TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 
 	};
@@ -2805,6 +2806,41 @@ public:
 		}
 
 		return node_root;
+	}
+	/*========================================================================================*/
+
+	/*=========     Populating Next Right Pointers in Each Node 220707 13:23     =============*/
+	TreeNode* connect_next_right(TreeNode* root) {
+		if (!root) return nullptr;
+		queue<TreeNode*> q;
+		q.emplace(root);
+
+		while (!q.empty()) {
+			queue<TreeNode*> q_temp;
+			TreeNode* node_temp = q.front();
+			q.pop();
+			int n = q.size();
+
+			node_temp->next = nullptr;
+			if (node_temp->left) {
+				q.emplace(node_temp->left);
+				q.emplace(node_temp->right);
+			}
+
+			while (n>0) {
+				n--;
+				q.front()->next = nullptr;
+				node_temp->next = q.front();
+				q.pop();
+				node_temp = node_temp->next;
+				if (node_temp->left) {
+					q.emplace(node_temp->left);
+					q.emplace(node_temp->right);
+				}
+			}
+		}
+
+		return root;
 	}
 	/*========================================================================================*/
 };

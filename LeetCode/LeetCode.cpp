@@ -24,7 +24,17 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=========     Populating Next Right Pointers in Each Node 220707 13:23     =============*/
+
+	vector<Solution::TreeNode> node_vector_populate;
+	node_vector_populate = { 1,2,3,4,5,6,7 };
+	//node_vector_level = { 1,2,3 };
+	Solution::TreeNode* root_populate = &node_vector_populate[0];
+	solution.build_b_tree_level_order(node_vector_populate, root_populate);
+	solution.connect_next_right(root_populate);
+
 	/*==== Construct Binary Tree from Preorder and Inorder Traversal 220706 10:39 ===========*/
+	assert(0);
 	preorder = { 3,9,20,15,7 };;
 	inorder = { 9,3,15,20,7 };
 
