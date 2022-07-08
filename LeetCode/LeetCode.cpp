@@ -28,7 +28,7 @@ int main()
 
 	vector<Solution::TreeNode> node_vector_populate;
 	node_vector_populate = { 1,2,3,4,5,6,7 };
-	//node_vector_level = { 1,2,3 };
+	node_vector_populate = { 1,2,3,4,5,INT_MIN,7 };
 	Solution::TreeNode* root_populate = &node_vector_populate[0];
 	solution.build_b_tree_level_order(node_vector_populate, root_populate);
 	solution.connect_next_right(root_populate);

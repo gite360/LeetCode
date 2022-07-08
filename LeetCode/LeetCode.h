@@ -2816,7 +2816,6 @@ public:
 		q.emplace(root);
 
 		while (!q.empty()) {
-			queue<TreeNode*> q_temp;
 			TreeNode* node_temp = q.front();
 			q.pop();
 			int n = q.size();
@@ -2824,10 +2823,12 @@ public:
 			node_temp->next = nullptr;
 			if (node_temp->left) {
 				q.emplace(node_temp->left);
+			}
+			if (node_temp->right) {
 				q.emplace(node_temp->right);
 			}
 
-			while (n>0) {
+			while (n > 0) {
 				n--;
 				q.front()->next = nullptr;
 				node_temp->next = q.front();
@@ -2835,6 +2836,8 @@ public:
 				node_temp = node_temp->next;
 				if (node_temp->left) {
 					q.emplace(node_temp->left);
+				}
+				if (node_temp->right) {
 					q.emplace(node_temp->right);
 				}
 			}
