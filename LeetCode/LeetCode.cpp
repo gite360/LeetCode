@@ -24,6 +24,13 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*===========      Lowest Common Ancestor of a Binary Tree 220711 10:36     ==============*/
+	vector<Solution::TreeNode> node_vector_LCA;
+	node_vector_LCA = { 3,5,1,6,2,0,8,INT_MIN,INT_MIN,7,4 };
+	Solution::TreeNode* root_LCA = &node_vector_LCA[0];
+	solution.build_b_tree_level_order(node_vector_LCA, root_LCA);
+	solution.lowestCommonAncestor(root_LCA,, );
+
 	/*=========     Populating Next Right Pointers in Each Node 220707 13:23     =============*/
 
 	vector<Solution::TreeNode> node_vector_populate;

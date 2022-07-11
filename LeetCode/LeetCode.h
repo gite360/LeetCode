@@ -2846,6 +2846,30 @@ public:
 		return root;
 	}
 	/*========================================================================================*/
+
+	/*===========     Lowest Common Ancestor of a Binary Tree 220711 10:36     ===============*/
+	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+		if (!root || root == p || root == q) {
+			return root;
+		}
+
+		TreeNode* left_sub = lowestCommonAncestor(root->left, p, q);
+		TreeNode* right_sub = lowestCommonAncestor(root->right, p, q);
+
+		if (left_sub && right_sub) {
+			return root;
+		}
+		else if (left_sub && !right_sub) {
+			return left_sub;
+		}
+		else if (!left_sub && right_sub) {
+			return right_sub;
+		}
+
+		return nullptr;
+	}
+	/*========================================================================================*/
+
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
