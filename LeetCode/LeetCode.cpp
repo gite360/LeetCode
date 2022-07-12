@@ -24,6 +24,15 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*============     Serialize and Deserialize Binary Tree 220712 10:51     ================*/
+	vector<Solution::TreeNode> node_vector_serialize;
+	node_vector_serialize = { 1,2,3,INT_MIN,INT_MIN,4,5};
+	//node_vector_serialize = { 1,2,3,4,5,INT_MIN,7 };
+	Solution::TreeNode* root_serialize = &node_vector_serialize[0];
+	solution.build_b_tree_level_order(node_vector_serialize, root_serialize);
+
+	solution.deserialize(solution.serialize(root_serialize));
+
 	/*===========      Lowest Common Ancestor of a Binary Tree 220711 10:36     ==============*/
 	/*=========     Populating Next Right Pointers in Each Node 220707 13:23     =============*/
 	assert(0);

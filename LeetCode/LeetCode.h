@@ -2870,6 +2870,109 @@ public:
 	}
 	/*========================================================================================*/
 
+
+	/*============     Serialize and Deserialize Binary Tree 220712 10:51     ================*/
+	// Encodes a tree to a single string.
+	string serialize(TreeNode* root) {
+		string data;
+		/*if (!root) {
+			data += "null";
+			return data;
+		}
+
+		queue<TreeNode*> q;
+		
+		q.emplace(root);
+
+		while (!q.empty()) {
+			int n = q.size();
+
+			while (n > 0) {
+				n--;
+				TreeNode* node_temp = q.front();
+				q.pop();
+
+				if (node_temp) {
+					data += to_string(node_temp->val) + ",";
+				}
+				else {
+					data += "null,";
+					continue;
+				}
+
+				if (node_temp->left) 
+					q.emplace(node_temp->left);
+				else 
+					q.emplace(nullptr);
+
+				if (node_temp->right) 
+					q.emplace(node_temp->right);
+				else 
+					q.emplace(nullptr);
+			}
+		}
+
+		for (int i = data.size() - 1; i >= 0; i--) {
+			if (data[i] == ',' || data[i] == 'n' || data[i] == 'u' || data[i] == 'l') data.pop_back();
+			else break;
+		}
+
+		return data;*/
+
+		data = serialize_0(root);
+
+		return data;
+	}
+
+	string serialize_0(TreeNode* root) {
+		if (!root) return "#";
+
+		return to_string(root->val)+","+ serialize_0(root->left) +"," + serialize_0(root->right);
+	}
+
+	// Decodes your encoded data to tree.
+	TreeNode* deserialize(string data) {
+		//TreeNode* root = nullptr;
+
+		if (data == "null") return nullptr;
+		
+
+		vector<string> data_vec;
+		queue<TreeNode*> q;
+		int pos = 0;
+		while (( pos = data.find(",")) != std::string::npos) {
+			data_vec.emplace_back(data.substr(0,pos));
+			data.erase(0, 1 + data_vec.back().size());
+		}
+		data_vec.emplace_back(data);
+
+		TreeNode* root = new TreeNode(stoi(data_vec.front()));
+		q.emplace(root);
+
+		int n = data_vec.size();
+		int i = 0;
+
+		while(i < n && !q.empty()) {
+
+			Solution::TreeNode* temp_node = q.front();
+			q.pop();
+
+			i++;
+			if (i < n && data_vec[i] != "null") {
+				temp_node->left = new TreeNode(stoi(data_vec[i]));
+				q.emplace(temp_node->left);
+			}
+
+			i++;
+			if (i < n && data_vec[i] != "null") {
+				temp_node->right = new TreeNode(stoi(data_vec[i]));
+				q.emplace(temp_node->right);
+			}
+		}
+
+		return root;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
