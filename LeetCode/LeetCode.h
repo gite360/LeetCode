@@ -3100,7 +3100,6 @@ public:
 
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&     1476. Class Subrectangle Queries    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-
 class SubrectangleQueries {
 public:
 
@@ -3130,7 +3129,82 @@ public:
 		return _rectangle[row][col];
 	}
 };
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&     Design Circular Queue 220713 11：28    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class MyCircularQueue {
+public:
+	vector<int> q_vec;
+	int pos_begin;
+	int pos_end;
+	int n;
+
+	MyCircularQueue(int k) {
+		q_vec.resize(k,INT_MIN);
+		n = k;
+		pos_begin = -1;
+		pos_end = -1;
+	}
+
+	bool enQueue(int value) {
+	
+		if (isFull()) {
+			return false;
+		}
+		else if (isEmpty()) {
+			pos_begin = 0;
+		}
+
+		pos_end = (pos_end + 1) % n;
+		q_vec[pos_end] = value;
+		return true;
+	}
+
+	bool deQueue() {
+		if (isEmpty()) {
+			return false;
+		}
+
+		if (pos_begin == pos_end) {
+			pos_begin = -1;
+			pos_end = -1;
+			return true;
+		}
+
+		pos_begin = (pos_begin + 1) % n;
+
+		return true;
+	}
+
+	int Front() {
+		if (isEmpty()) {
+			return -1;
+		}
+		return q_vec[pos_begin];
+	}
+
+	int Rear() {
+		if (isEmpty()) {
+			return -1;
+		}
+		return q_vec[pos_end];
+	}
+
+	bool isEmpty() {
+		return pos_begin == -1;
+	}
+
+	bool isFull() {
+		if (n == 1) {
+			if (q_vec[pos_begin] != INT_MIN)
+				return true;
+			else
+				return false;
+		}
+
+		return (pos_end + 1) % n == pos_begin;
+	}
+};
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
