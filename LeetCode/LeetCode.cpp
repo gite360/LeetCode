@@ -24,6 +24,25 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=======================     Number of Islands 220714 11:57     =========================*/
+	vector<vector<char>> grid_numIsland;
+
+	grid_numIsland = {
+			{'1', '1', '1', '1', '0'},
+			{'1', '1', '0', '1', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '0', '0', '0'}
+	};
+
+	grid_numIsland = {
+		{'1', '1', '0', '0', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '1', '0', '0'},
+			{'0', '0', '0', '1', '1'}
+	};
+
+	solution.numIslands(grid_numIsland);
+
 	/*============     Serialize and Deserialize Binary Tree 220712 10:51     ================*/
 	vector<Solution::TreeNode> node_vector_serialize;
 	node_vector_serialize = { 1,2,3,INT_MIN,INT_MIN,4,5};
