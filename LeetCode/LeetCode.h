@@ -3017,6 +3017,52 @@ public:
 		return num;
 	}
 	/*========================================================================================*/
+
+    /*=======================         Open the Lock 220716 19:07       =======================*/
+	int openLock(vector<string>& deadends, string target) {
+
+		if (target == "0000") return 0;
+		
+		queue<string> q;
+		map<string, int> map_dead;
+		for (auto au : deadends)
+			map_dead[au]++;
+
+		if (map_dead["0000"]) return -1;
+
+		int step_min = 0;
+		q.emplace("0000");
+		
+		while (!q.empty()) {
+			step_min++;
+			int n = q.size();
+			for (int i = 0; i < n; i++) {
+				string str_temp = q.front();
+				q.pop();
+			
+				for (int j = 0; j < 4; j++) {
+					string str = str_temp;
+					str[j] = (str_temp[j] - '0' - 1 + 10) % 10 + '0';
+					if (!map_dead[str]) {
+						map_dead[str]++;
+						if (str == target) 
+							return step_min;
+						q.emplace(str);
+					}
+
+					str[j] = (str_temp[j] - '0' + 1) % 10 + '0';
+					if (!map_dead[str]) {
+						map_dead[str]++;
+						if (str == target) 
+							return step_min;
+						q.emplace(str);
+					}
+				}
+			}
+		}
+		return -1;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

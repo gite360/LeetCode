@@ -24,7 +24,23 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=======================         Open the Lock 220716 19:07       =======================*/
+	vector<string> deadends_lock ;
+	string target_lock = "0202";
+
+	deadends_lock = { "0201", "0101", "0102", "1212", "2002" };
+	target_lock = "0202";
+
+	deadends_lock = { "8888" };
+	target_lock = "0009";
+
+	deadends_lock = { "8887","8889","8878","8898","8788","8988","7888","9888" };
+	target_lock = "8888";
+
+	solution.openLock(deadends_lock, target_lock);
+
 	/*=======================     Number of Islands 220714 11:57     =========================*/
+	assert(0);
 	vector<vector<char>> grid_numIsland;
 
 	grid_numIsland = {
@@ -44,6 +60,7 @@ int main()
 	solution.numIslands(grid_numIsland);
 
 	/*============     Serialize and Deserialize Binary Tree 220712 10:51     ================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_serialize;
 	node_vector_serialize = { 1,2,3,INT_MIN,INT_MIN,4,5};
 	//node_vector_serialize = { 1,2,3,4,5,INT_MIN,7 };
