@@ -3063,6 +3063,70 @@ public:
 		return -1;
 	}
 	/*========================================================================================*/
+
+	/*=======================         Perfect Squares 220717 19:15       =======================*/
+	int numSquares(int n) {
+		//if(is_square(n)) return 1;
+	  //while ((n % 4) == 0){ // n%4 == 0  
+		  //n /= 4;
+	  //}
+	  //if ((n % 8) == 7){ // n%8 == 7
+		  //return 4;
+	  //}
+	  //int sq = sqrt(n);
+	  //for(int i = 1; i <= sq; i++){
+		  //int l = n - i * i;
+		  //if(is_square(l)){
+			  //return 2;
+		  //}
+	  //}
+
+	  //return 3;
+	 // ///////////////////////////////////////////////////////////////////
+		//if (n <= 0) {
+		//	return 0;
+		//}
+
+		//vector<int> result(n + 1, INT_MAX);
+		//result[0] = 0;
+
+		//for (int i = 1; i <= n; i++) {
+		//	for (int j = 1; j * j <= i; j++) {
+		//		int dow = j * j;
+		//		result[i] = min(result[i], result[i - dow] + 1);
+		//	}
+		//}
+
+		//return result.back();
+		///////////////////////////////////////////////////////////////
+		int count = 0;
+		vector<int> square_vector;
+		queue<int> square_queue;
+		for (int i = 1; i*i <= n;i++) 
+			square_vector.emplace_back(i * i);
+		std::reverse(square_vector.begin(), square_vector.end());
+
+		square_queue.emplace(n);
+		while (!square_queue.empty()) {
+			count++;
+			int m = square_queue.size();
+			while (m>0) {
+				m--;
+				int num = square_queue.front();
+				square_queue.pop();
+				for (auto au : square_vector) {
+					if (num < au) 
+						continue;
+					if (num - au == 0) 
+						return count;
+					square_queue.emplace(num - au);
+				}
+			}
+		}
+
+		return n;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

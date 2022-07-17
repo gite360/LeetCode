@@ -24,6 +24,13 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=======================         Perfect Squares 220717 19:15       =======================*/
+	int n_perfect_squares;
+	n_perfect_squares = 12;
+	n_perfect_squares = 13;
+
+	solution.numSquares(n_perfect_squares);
+
 	/*=======================         Open the Lock 220716 19:07       =======================*/
 	vector<string> deadends_lock ;
 	string target_lock = "0202";
