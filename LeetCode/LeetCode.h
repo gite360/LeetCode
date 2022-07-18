@@ -3359,7 +3359,35 @@ public:
 		return (pos_end + 1) % n == pos_begin;
 	}
 };
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       Min Stack 220718 10：33       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class MinStack {
+public:
+
+	stack<pair<int, int>> min_stack;
+
+	MinStack() {
+
+	}
+
+	void push(int val) {
+		if (min_stack.empty()) min_stack.emplace(val, val);
+		else min_stack.emplace(val, min(val, min_stack.top().second));
+	}
+
+	void pop() {
+		min_stack.pop();
+	}
+
+	int top() {
+		return min_stack.top().first;
+	}
+
+	int getMin() {
+		return min_stack.top().second;
+	}
+};
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 /**
@@ -3466,17 +3494,28 @@ string Solution::longestCommonPrefix(vector<string>& strs) {
 
 //190105
 bool Solution::isValid(string s) {
-	stack<char> stk;
-	for (auto&& c : s)
-		switch (c) {
-		case'(': stk.push(')'); break;
-		case'[': stk.push(']'); break;
-		case'{': stk.push('}'); break;
-		default:
-			if (stk.empty() || c != stk.top()) return false;
-			else stk.pop();
+	stack<char> valid_stack;
+	for (auto au : s) {
+		if(au == '(' || au == '[' || au == '{') {
+			valid_stack.emplace(au);
 		}
-	return stk.empty();
+		else if (!valid_stack.empty() && valid_stack.top() == '(' && au == ')') {
+			valid_stack.pop();
+		}
+		else if (!valid_stack.empty() && valid_stack.top() == '[' && au == ']') {
+			valid_stack.pop();
+		}
+		else if (!valid_stack.empty() && valid_stack.top() == '{' && au == '}') {
+			valid_stack.pop();
+		}
+		else {
+			return false;
+		}
+	}
+
+	if (valid_stack.empty()) return true;
+
+	return false;
 }
 
 

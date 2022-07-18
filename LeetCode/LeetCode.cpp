@@ -24,7 +24,19 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	//MinStack minStack;
+
+	MinStack* minStack = new MinStack();
+	minStack->push(-2);
+	minStack->push(0);
+	minStack->push(-3);
+	minStack->getMin(); // return -3
+	minStack->pop();
+	minStack->top();    // return 0
+	minStack->getMin(); // return -2
+
 	/*=======================         Perfect Squares 220717 19:15       =======================*/
+	assert(0);
 	int n_perfect_squares;
 	n_perfect_squares = 12;
 	n_perfect_squares = 13;
@@ -32,6 +44,7 @@ int main()
 	solution.numSquares(n_perfect_squares);
 
 	/*=======================         Open the Lock 220716 19:07       =======================*/
+	assert(0);
 	vector<string> deadends_lock ;
 	string target_lock = "0202";
 
