@@ -511,9 +511,36 @@ public:
 
 	}
 
+	/*==================     220719 39. Daily Temperatures     ================*/
 	//220518 739. Daily Temperatures
 	vector<int> dailyTemperatures(vector<int>& temperatures) {
-		size_t n = temperatures.size();
+		int n = temperatures.size();
+		if (n==1) {
+			return vector<int>{0};
+		}
+
+		vector<int> day_vector(n, 0);
+		stack<pair<int,int>> cool_stack;
+
+		for (int i = 0; i < n-1; i++) {
+			if (temperatures[i] < temperatures[i + 1]) {
+				day_vector[i] = 1;
+
+				while (!cool_stack.empty() && cool_stack.top().first < temperatures[i + 1]) {
+						day_vector[cool_stack.top().second] = i + 1 - cool_stack.top().second;
+						cool_stack.pop();
+				}
+			}
+			else {
+				cool_stack.emplace(temperatures[i],i);
+			}
+		}
+
+		return day_vector;
+
+
+
+		/*size_t n = temperatures.size();
 		vector<int> r(n, 0);
 		stack<int> s;
 
@@ -524,7 +551,7 @@ public:
 				s.pop();
 			}
 			s.emplace(i);
-		}
+		}*/
 
 		/*for (int i = 0; i < n-1; i++) {
 			int count = 0;
@@ -536,10 +563,10 @@ public:
 				}
 			}
 		}*/
-		return r;
+		//return r;
 	}
 
-	/*===== 220519 39. Combination Sum ======*/
+	/*==================     220519 39. Combination Sum     ================*/
 	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 		vector<int> tr;
 		vector<vector<int>> r;

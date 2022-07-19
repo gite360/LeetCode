@@ -24,7 +24,11 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
-	//MinStack minStack;
+	/*==================     220719 39. Daily Temperatures     ================*/
+	vector<int> temperatures_daily;
+	temperatures_daily = { 73,74,75,71,69,72,76,73 };
+	solution.dailyTemperatures(temperatures_daily);
+	/*===================        MinStack minStack     ========================*/
 
 	MinStack* minStack = new MinStack();
 	minStack->push(-2);
