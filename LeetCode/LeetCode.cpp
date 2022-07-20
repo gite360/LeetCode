@@ -23,13 +23,36 @@ int main()
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
+	/*========   150. Evaluate Reverse Polish Notation  220720  08:29   =======*/
+	vector<vector<char>> grid_numIsland;
+
+	grid_numIsland = {
+			{'1', '1', '1', '1', '0'},
+			{'1', '1', '0', '1', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '0', '0', '0'}
+	};
+
+	grid_numIsland = {
+		{'1', '1', '0', '0', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '1', '0', '0'},
+			{'0', '0', '0', '1', '1'}
+	};
+	solution.numIslands(grid_numIsland);
+	/*========   150. Evaluate Reverse Polish Notation  220720  08:29   =======*/
+	assert(0);
+	vector<string> tokens_polish_notation;
+	tokens_polish_notation = { "10","6","9","3","+","-11","*","/","*","17","+","5","+" };
+	solution.evalRPN(tokens_polish_notation);
 
 	/*==================     220719 39. Daily Temperatures     ================*/
+	assert(0);
 	vector<int> temperatures_daily;
 	temperatures_daily = { 73,74,75,71,69,72,76,73 };
 	solution.dailyTemperatures(temperatures_daily);
 	/*===================        MinStack minStack     ========================*/
-
+	assert(0);
 	MinStack* minStack = new MinStack();
 	minStack->push(-2);
 	minStack->push(0);
@@ -65,21 +88,7 @@ int main()
 
 	/*=======================     Number of Islands 220714 11:57     =========================*/
 	assert(0);
-	vector<vector<char>> grid_numIsland;
-
-	grid_numIsland = {
-			{'1', '1', '1', '1', '0'},
-			{'1', '1', '0', '1', '0'},
-			{'1', '1', '0', '0', '0'},
-			{'0', '0', '0', '0', '0'}
-	};
-
-	grid_numIsland = {
-		{'1', '1', '0', '0', '0'},
-			{'1', '1', '0', '0', '0'},
-			{'0', '0', '1', '0', '0'},
-			{'0', '0', '0', '1', '1'}
-	};
+	
 
 	solution.numIslands(grid_numIsland);
 

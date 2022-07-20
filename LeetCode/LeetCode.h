@@ -538,8 +538,6 @@ public:
 
 		return day_vector;
 
-
-
 		/*size_t n = temperatures.size();
 		vector<int> r(n, 0);
 		stack<int> s;
@@ -850,7 +848,7 @@ public:
 	}
 	/*================================================*/
 
-	/*===== 150. Evaluate Reverse Polish Notation =====*/
+	/*======= 150. Evaluate Reverse Polish Notation  220720  08:29 =======*/
 	int evalRPN(vector<string>& tokens) {
 		int n = tokens.size();
 
@@ -858,21 +856,51 @@ public:
 			return stoi(tokens.front());
 		}
 
-		int result = 0;
-		map<char, int> operator_map{ {'+', 0}, { '-', 1 }, { '*', 2 }, { '/', 3 } };
-		map<string, int> operator_mmap{ {" + ", 0}, { " - ", 1 }, { " * ", 2 }, { " / ", 3 } };
-		stack<int> digit;
-		stack<char> opera;
-		digit.emplace(stoi(tokens[0]));
-		digit.emplace(stoi(tokens[1]));
+		stack<int> token_stack;
 
-		//recursive_150(tokens, operator_map, 0);
+		for (auto au : tokens) {
+			if (au != "+" && au != "-" && au != "*" && au != "/") {
+				token_stack.emplace(stoi(au));
+			}
+			else {
+				int right = token_stack.top();
+				token_stack.pop();
+				int left = token_stack.top();
+				token_stack.pop();
 
-		/*---------------------------   Recursive   -------------------------------------------*/
-		int m = n - 1;
-		result = resursive_150(tokens, operator_map, m);
-		return result;
-		/*-------------------------------------------------------------------------------------*/
+				if (au == "+") {
+					token_stack.emplace(left + right);
+				}
+				else if (au == "-") {
+					token_stack.emplace(left - right);
+				}
+				else if (au == "*") {
+					token_stack.emplace(left * right);
+				}
+				else if (au == "/") {
+					token_stack.emplace(left / right);
+				}
+			}
+		}
+
+		return token_stack.top();
+
+
+		//int result = 0;
+		//map<char, int> operator_map{ {'+', 0}, { '-', 1 }, { '*', 2 }, { '/', 3 } };
+		//map<string, int> operator_mmap{ {" + ", 0}, { " - ", 1 }, { " * ", 2 }, { " / ", 3 } };
+		//stack<int> digit;
+		//stack<char> opera;
+		//digit.emplace(stoi(tokens[0]));
+		//digit.emplace(stoi(tokens[1]));
+
+		////recursive_150(tokens, operator_map, 0);
+
+		///*---------------------------   Recursive   -------------------------------------------*/
+		//int m = n - 1;
+		//result = resursive_150(tokens, operator_map, m);
+		//return result;
+		///*-------------------------------------------------------------------------------------*/
 
 		/*---------------------------   Stack   ------------------------------------------------*/
 		/*
@@ -895,7 +923,7 @@ public:
 		}*/
 		/*-------------------------------------------------------------------------------------*/
 
-		return digit.top();
+		//return digit.top();
 	}
 
 	int resursive_150(vector<string>& tokens, map<char, int>& operator_map, int& i) {
@@ -3001,18 +3029,39 @@ public:
 	}
 	/*========================================================================================*/
 
-	/*============     Number of Islands 220714 11:57     ================*/
+	/*============     Number of Islands 220714 11:57   220720 11:05   ================*/
+	void DFS_islands(int i, int j, vector<vector<char>>& grid) {
+		int m = grid.size();
+		int n = grid[0].size();
+
+		if (i<0 || i>=m || j<0 || j>=n || grid[i][j] == '0') return;
+		
+		grid[i][j] = '0';
+		DFS_islands(i-1, j, grid);
+		DFS_islands(i+1, j, grid);
+		DFS_islands(i, j-1, grid);
+		DFS_islands(i, j+1, grid);
+	}
+
 	int numIslands(vector<vector<char>>& grid) {
 		int m = grid.size();
 		int n = grid[0].size();
-		queue<pair<int, int>> q;
 		int num = 0;
-		
+
+		/*===============  DFS  =====================*/
+		for (int i = 0; i < m; i++) 
+			for (int j = 0; j < n; j++) 
+				if (grid[i][j] == '1') {
+					num++;
+					DFS_islands(i, j, grid);
+				}
+		return num;
+
+		/*===============  BFS  =====================*/
+		/*queue<pair<int, int>> q;
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				if (grid[i][j] == '0') {
-					continue;
-				}
+				if (grid[i][j] == '0') continue;
 				grid[i][j] = '0';
 				q.emplace(i, j);
 				num++;
@@ -3040,8 +3089,7 @@ public:
 				}
 			}
 		}
-
-		return num;
+		return num;*/
 	}
 	/*========================================================================================*/
 
