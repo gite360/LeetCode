@@ -3207,11 +3207,64 @@ public:
 
 
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&   Graph Node 220721 10:05       &&&&&&&&&&&&&&&&&&&&&&&&*/
+// Definition for a Node.
+class Node_Graph {
+public:
+	int val;
+	vector<Node_Graph*> neighbors;
+	Node_Graph() {
+		val = 0;
+		neighbors = vector<Node_Graph*>();
+	}
+	Node_Graph(int _val) {
+		val = _val;
+		neighbors = vector<Node_Graph*>();
+	}
+	Node_Graph(int _val, vector<Node_Graph*> _neighbors) {
+		val = _val;
+		neighbors = _neighbors;
+	}
 
+	void build_graph(vector<Node_Graph>& graph_vector, const vector<vector<int>>& od_vector) {
+		int n = graph_vector.size();
 
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < od_vector[i].size();j++) {
+				graph_vector[i].neighbors.emplace_back(&graph_vector[od_vector[i][j] - 1]);
+			}
+		}
+	}
 
+	Node_Graph* cloneGraph(Node_Graph* node) {
+		if (!node) 
+			return nullptr;
+		else if (node->neighbors.empty()) 
+			return new Node_Graph(node->val);
 
+		map<Node_Graph*, Node_Graph*> node_map;
+		Node_Graph* node_clone = new Node_Graph(node->val);
+		node_map[node] = node_clone;
+		clone_graph(node, node_clone, node_map);
 
+		return node_clone;
+	}
+
+	void clone_graph(Node_Graph* node, Node_Graph* node_clone, map<Node_Graph*, Node_Graph*>& node_map) {
+
+		
+		for (auto au : node->neighbors) {
+			if (!node_map[au]) {
+				Node_Graph* node_clone_neighbor = new Node_Graph(au->val);
+				node_map[au] = node_clone_neighbor;
+				node_clone->neighbors.emplace_back(node_clone_neighbor);
+			    clone_graph(au, node_clone_neighbor, node_map);
+			}
+			else node_clone->neighbors.emplace_back(node_map[au]);
+		}
+	}
+};
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&         Class MyLinkedList        &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

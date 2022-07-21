@@ -20,10 +20,25 @@ int main()
 
 
 	Solution solution;
+	Node_Graph node_graph;
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
+
+	/*======== Graph Node 220721 10:05 =======*/
+	vector<Node_Graph> node_graph_vecor;
+	vector<vector<int>> od_node_graph_vector;
+
+	node_graph_vecor = {1,2,3,4};
+	od_node_graph_vector = {{2, 4}, {1, 3}, {2, 4}, {1, 3}};
+	Node_Graph* node_graph_pointer = &node_graph_vecor[0];
+
+	node_graph.build_graph(node_graph_vecor, od_node_graph_vector);
+
+	node_graph.cloneGraph(node_graph_pointer);
+	
 	/*========   150. Evaluate Reverse Polish Notation  220720  08:29   =======*/
+	assert(0);
 	vector<vector<char>> grid_numIsland;
 
 	grid_numIsland = {
@@ -88,7 +103,6 @@ int main()
 
 	/*=======================     Number of Islands 220714 11:57     =========================*/
 	assert(0);
-	
 
 	solution.numIslands(grid_numIsland);
 
