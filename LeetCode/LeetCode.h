@@ -3202,8 +3202,27 @@ public:
 		return n;
 	}
 	/*========================================================================================*/
+
+	/*=======================         Target Sum 220722 08:41       =======================*/
+	int findTargetSumWays(vector<int>& nums, int target) {
+		int current = 0;
+		int i = 0;
+		int result = find_target_sum(nums, target, i, current);
+		return result;
+	}
+
+	int find_target_sum(vector<int>& nums, int& target, int i, int current) {
+
+		if (i == nums.size()) {
+			if (current != target) return 0;
+			return 1;
+		}
+		return find_target_sum(nums, target, i + 1, current + nums[i]) + find_target_sum(nums, target, i + 1, current - nums[i]);
+		
+	}
+	/*========================================================================================*/
 };
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 
 

@@ -25,7 +25,17 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=======================         Target Sum 220722 08:41       =======================*/
+	vector<int> nums_target_sum_vector;
+	int	target_target_sum;
+
+	nums_target_sum_vector = { 1,1,1,1,1 };
+	target_target_sum = 3;
+
+	solution.findTargetSumWays(nums_target_sum_vector, target_target_sum);
+
 	/*======== Graph Node 220721 10:05 =======*/
+		assert(0);
 	vector<Node_Graph> node_graph_vecor;
 	vector<vector<int>> od_node_graph_vector;
 
