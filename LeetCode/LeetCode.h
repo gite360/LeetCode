@@ -3537,6 +3537,143 @@ public:
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&        My Queue 220725 13：20       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+class MyQueue {
+public:
+
+	stack<int> s1;
+	stack<int> s2;
+
+	MyQueue() {
+		
+	}
+
+	void push(int x) {
+		s1.emplace(x);
+	}
+
+	int pop() {
+		if (!s2.empty()) {
+			int t = s2.top();
+			s2.pop();
+			return t;
+		}
+
+		while (!s1.empty()) {
+			s2.emplace(s1.top());
+			s1.pop();
+		}
+
+		int t = s2.top();
+		s2.pop();
+		return t;
+	}
+
+	int peek() {
+		if (!s2.empty()) {
+			return s2.top();
+		}
+
+		while (!s1.empty()) {
+			s2.emplace(s1.top());
+			s1.pop();
+		}
+
+		return s2.top();
+	}
+
+	bool empty() {
+		return s1.empty() && s2.empty();
+	}
+};
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&        My Stack 220726 09：47       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class MyStack {
+public:
+
+	queue<int> q1;
+	queue<int> q2;
+
+	MyStack() {
+
+	}
+
+	void push(int x) {
+		if (q1.empty()) {
+			q2.emplace(x);
+		}
+		else {
+			q1.emplace(x);
+		}
+	}
+
+	int pop() {
+		if (q1.empty()) {
+			int n = q2.size();
+			while (n-- > 1) {
+				q1.emplace(q2.front());
+				q2.pop();
+			}
+			int res = q2.front();
+			q2.pop();
+			return res;
+		}
+		else {
+			int n = q1.size();
+			while (n-- > 1) {
+				q2.emplace(q1.front());
+				q1.pop();
+			}
+			int res = q1.front();
+			q1.pop();
+			return res;
+		}
+	}
+
+	int top() {
+		if (q1.empty()) {
+			int n = q2.size();
+			while (n-- > 1) {
+				q1.emplace(q2.front());
+				q2.pop();
+			}
+			int res = q2.front();
+			q1.emplace(q2.front());
+			q2.pop();
+			return res;
+		}
+		else {
+			int n = q1.size();
+			while (n-- > 1) {
+				q2.emplace(q1.front());
+				q1.pop();
+			}
+			int res = q1.front();
+			q2.emplace(q1.front());
+			q1.pop();
+			return res;
+		}
+	}
+
+	bool empty() {
+		return q1.empty() && q2.empty();
+	}
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
+ /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+
 /**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList obj = new MyLinkedList();
