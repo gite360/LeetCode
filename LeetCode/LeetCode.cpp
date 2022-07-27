@@ -18,12 +18,19 @@ int main()
 	cout << "1 current id: " << 55555555555 << ", vector size: " << 555555555555 << endl;
 #endif
 
-
 	Solution solution;
 	Node_Graph node_graph;
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
+
+	/*==============    394. Decode String 22/07/27 08:48     ==========*/
+	string s_decodeString;
+
+	s_decodeString = "2[abc]3[cd]ef";
+	//s_decodeString = "3[a2[c]]";
+
+	solution.decodeString_0(s_decodeString);
 
 	/*=======================         Target Sum 220722 08:41       =======================*/
 	vector<int> nums_target_sum_vector;

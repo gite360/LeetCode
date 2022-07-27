@@ -749,7 +749,53 @@ public:
 		return;
 	}
 	/*================================================*/
-	/*==== 394. Decode String ====*/
+	/*==============    394. Decode String 22/07/27 08:48     ==========*/
+
+	string decodeString_0(const string& s) {
+		int i = 0;
+		string res = decodeString_0(s, i);
+		return res;
+	}
+
+	string decodeString_0(const string& s, int& i) {
+		string res;
+		int n = s.size();
+		stack<string> st;
+		string num;
+		
+		while (i < n && s[i] != ']') {
+			if (!isdigit(s[i])) {
+				res += s[i++];
+			}
+			else if (isdigit(s[i])) {
+				num.clear();
+				while (i < n && isdigit(s[i])) {
+					num += s[i++];
+				}
+
+				string ss = decodeString_0(s, ++i);
+				i++;
+				
+				int numm = stoi(num);
+				while (numm -- > 0) {
+					res += ss;
+				}
+			}
+		}
+
+		return res;
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 	string decodeString(const string& s, int& i) {
 		string res;
@@ -772,9 +818,7 @@ public:
 				while (n-- > 0) {
 					res += t;
 				}
-
 			}
-
 		}
 
 		return res;
