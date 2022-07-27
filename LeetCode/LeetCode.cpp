@@ -30,7 +30,7 @@ int main()
 	s_decodeString = "2[abc]3[cd]ef";
 	//s_decodeString = "3[a2[c]]";
 
-	solution.decodeString_0(s_decodeString);
+	solution.decodeString_1(s_decodeString);
 
 	/*=======================         Target Sum 220722 08:41       =======================*/
 	vector<int> nums_target_sum_vector;

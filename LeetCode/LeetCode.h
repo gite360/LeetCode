@@ -751,6 +751,41 @@ public:
 	/*================================================*/
 	/*==============    394. Decode String 22/07/27 08:48     ==========*/
 
+	string decodeString_1(const string& s) {
+		int i = 0;
+		stack<int> nums;
+		stack<string> st;
+		string num_str;
+		string str;
+
+		for (auto au:s) {
+			if (isdigit(au)) {
+				num_str += au;
+			}
+			else if (isalpha(au)) {
+				str += au;
+			}
+			else if (au == '[') {
+				nums.emplace(stoi(num_str));
+				num_str.clear();
+				st.emplace(str);
+				str.clear();
+			}
+			else if (au == ']') {
+				int n = nums.top();
+				string temp = str;
+				while (--n) {
+					str += temp;
+				}
+				str = st.top() + str;
+				st.pop();
+				nums.pop();
+			}
+		}
+
+		return str;
+	}
+
 	string decodeString_0(const string& s) {
 		int i = 0;
 		string res = decodeString_0(s, i);
