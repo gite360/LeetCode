@@ -749,6 +749,7 @@ public:
 		return;
 	}
 	/*================================================*/
+
 	/*==============    394. Decode String 22/07/27 08:48     ==========*/
 
 	string decodeString_1(const string& s) {
@@ -821,17 +822,6 @@ public:
 		return res;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 	string decodeString(const string& s, int& i) {
 		string res;
 		while (i < s.size() && s[i] != ']') {
@@ -864,7 +854,8 @@ public:
 		return decodeString(s, i);
 	}
 	/*================================================*/
-	/*===== 134. Gas Station =====*/
+
+	/*===========  134. Gas Station  =================*/
 
 	int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
 		size_t n = gas.size();
@@ -3298,6 +3289,35 @@ public:
 		}
 		return find_target_sum(nums, target, i + 1, current + nums[i]) + find_target_sum(nums, target, i + 1, current - nums[i]);
 		
+	}
+	/*========================================================================================*/
+
+	/*=======================         Flood Fill 220728 09:04         =======================*/
+	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+		int original_color = image[sr][sc];
+		recursive_floodFill(image, original_color, sr, sc, color);
+
+		return image;
+	}
+	
+	void recursive_floodFill(vector<vector<int>>& image, int& original_color, int sr, int sc, int& color) {
+		int m = image.size();
+		int n = image[0].size();
+
+		if (sr < 0 || sc < 0 || sr >= m || sc >= n || image[sr][sc] != original_color || image[sr][sc] == color) {
+			return;
+		}
+
+		if (image[sr][sc] == original_color) {
+
+			image[sr][sc] = color;
+			recursive_floodFill(image, original_color, sr - 1, sc, color);
+			recursive_floodFill(image, original_color, sr + 1, sc, color);
+			recursive_floodFill(image, original_color, sr, sc-1, color);
+			recursive_floodFill(image, original_color, sr, sc+1, color);
+		}
+
+		return;
 	}
 	/*========================================================================================*/
 };
