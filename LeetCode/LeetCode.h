@@ -3320,6 +3320,89 @@ public:
 		return;
 	}
 	/*========================================================================================*/
+
+	/*=======================         01 Matrix 220729 10:31         =======================*/
+	vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+		int m = mat.size();
+		int n = mat[0].size();
+
+		vector<vector<int>> res(m,vector<int>(n, INT_MAX));
+		queue<pair<int, int>> q;
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (mat[i][j] == 0) {
+					q.emplace(i,j);
+					res[i][j] = 0;
+				}
+			}
+		}
+
+		while (!q.empty()) {
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+
+			if (x - 1 >= 0 && res[x - 1][y] > res[x][y] + 1) {
+				res[x - 1][y] = res[x][y] + 1;
+				q.emplace(x - 1, y);
+			}
+			if (x + 1 < m && res[x + 1][y] > res[x][y] + 1) {
+				res[x + 1][y] = res[x][y] + 1;
+				q.emplace(x + 1, y);
+			}
+			if (y - 1 >= 0 && res[x][y - 1] > res[x][y] + 1) {
+				res[x][y-1] = res[x][y] + 1;
+				q.emplace(x, y - 1);
+			}
+			if (y + 1 < n && res[x][y + 1] > res[x][y] + 1) {
+				res[x][y + 1] = res[x][y] + 1;
+				q.emplace(x, y + 1);
+
+			}
+		}
+
+		return res;
+	}
+
+	int recursive_updateMatrix(vector<vector<int>>& mat, int i, int j, map<pair<int, int>, int>& visit, vector<vector<int>>& res) {
+
+		if (mat[i][j] == 0) {
+			return 0;
+		}
+		
+		int m = mat.size();
+		int n = mat[0].size();
+		int a1 = INT_MAX;
+		int a2 = INT_MAX;
+		int a3 = INT_MAX;
+		int a4 = INT_MAX;
+
+		if (i - 1 >= 0 && !visit[pair(i - 1, j)]) {
+			visit[pair(i - 1, j)]++;
+			a1 = recursive_updateMatrix(mat, i - 1, j, visit, res);
+		}
+		if (i + 1 < m && !visit[pair(i + 1, j)]) {
+			visit[pair(i + 1, j)]++;
+			a2 = recursive_updateMatrix(mat, i + 1, j, visit, res);
+		}
+		if (j - 1 >= 0 && !visit[pair(i, j - 1)]) {
+			visit[pair(i, j - 1)]++;
+			a3 = recursive_updateMatrix(mat, i, j - 1, visit, res);
+		}
+		if (j + 1 < n && !visit[pair(i, j + 1)]) {
+			visit[pair(i, j + 1)]++;
+			a4 = recursive_updateMatrix(mat, i, j + 1, visit, res);
+		}
+		int temp = min(min(a1, a2), min(a3, a4));
+
+		if (res[i][j]) {
+			return res[i][j] = min(temp + 1, res[i][j]);
+		}
+
+		return res[i][j] = temp + 1;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

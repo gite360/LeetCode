@@ -24,6 +24,33 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=======================         01 Matrix 220729 10:31         =======================*/
+	vector<vector<int>> mat_updateMatrix;
+
+	mat_updateMatrix = 
+	{{0, 0, 0}, 
+	{0, 1, 0}, 
+	{1, 1, 1}};
+
+	/*mat_updateMatrix = {{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, 
+		{0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, 
+		{0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, 
+		{1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, 
+		{0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, 
+		{0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, 
+		{0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, 
+		{1, 0, 0, 0, 1, 1, 1, 1, 0, 1}, 
+		{1, 1, 1, 1, 1, 1, 1, 0, 1, 0}, 
+		{1, 1, 1, 1, 0, 1, 0, 0, 1, 1}};
+
+	mat_updateMatrix = { {0, 0}, {0, 1}};
+
+	mat_updateMatrix = { {0, 0, 0}, 
+		{0, 0, 1}, 
+		{0, 1, 1} };*/
+
+	solution.updateMatrix(mat_updateMatrix);
+
 	/*==============    394. Decode String 22/07/27 08:48     ==========*/
 	string s_decodeString;
 
