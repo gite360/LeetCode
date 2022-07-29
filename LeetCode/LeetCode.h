@@ -3322,6 +3322,47 @@ public:
 	/*========================================================================================*/
 
 	/*=======================         01 Matrix 220729 10:31         =======================*/
+
+	vector<vector<int>> updateMatrix_0(vector<vector<int>>& mat) {
+		int m = mat.size();
+		int n = mat[0].size();
+		vector<vector<int>> res(m, vector<int>(n, INT_MAX-100));
+
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (!mat[i][j]) {
+					res[i][j] = 0;
+					continue;
+				}
+				if (i-1>=0) {
+					res[i][j] = min(res[i][j], res[i - 1][j]+1);
+				}
+				if (j - 1 >= 0) {
+					res[i][j] = min(res[i][j], res[i][j - 1]+1);
+				}
+				
+			}
+		}
+
+		for (int i = m - 1; i >= 0; i--) {
+			for (int j = n - 1; j >= 0; j--) {
+				if (!mat[i][j]) {
+					res[i][j] = 0;
+					continue;
+				}
+				if (i + 1 < m) {
+					res[i][j] = min(res[i][j], res[i + 1][j]+1);
+				}
+				if (j + 1 < n) {
+					res[i][j] = min(res[i][j], res[i][j + 1]+1);
+				}
+
+			}
+		}
+
+		return res;
+	}
+
 	vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
 		int m = mat.size();
 		int n = mat[0].size();
@@ -3365,43 +3406,6 @@ public:
 		return res;
 	}
 
-	int recursive_updateMatrix(vector<vector<int>>& mat, int i, int j, map<pair<int, int>, int>& visit, vector<vector<int>>& res) {
-
-		if (mat[i][j] == 0) {
-			return 0;
-		}
-		
-		int m = mat.size();
-		int n = mat[0].size();
-		int a1 = INT_MAX;
-		int a2 = INT_MAX;
-		int a3 = INT_MAX;
-		int a4 = INT_MAX;
-
-		if (i - 1 >= 0 && !visit[pair(i - 1, j)]) {
-			visit[pair(i - 1, j)]++;
-			a1 = recursive_updateMatrix(mat, i - 1, j, visit, res);
-		}
-		if (i + 1 < m && !visit[pair(i + 1, j)]) {
-			visit[pair(i + 1, j)]++;
-			a2 = recursive_updateMatrix(mat, i + 1, j, visit, res);
-		}
-		if (j - 1 >= 0 && !visit[pair(i, j - 1)]) {
-			visit[pair(i, j - 1)]++;
-			a3 = recursive_updateMatrix(mat, i, j - 1, visit, res);
-		}
-		if (j + 1 < n && !visit[pair(i, j + 1)]) {
-			visit[pair(i, j + 1)]++;
-			a4 = recursive_updateMatrix(mat, i, j + 1, visit, res);
-		}
-		int temp = min(min(a1, a2), min(a3, a4));
-
-		if (res[i][j]) {
-			return res[i][j] = min(temp + 1, res[i][j]);
-		}
-
-		return res[i][j] = temp + 1;
-	}
 	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
