@@ -3405,7 +3405,69 @@ public:
 
 		return res;
 	}
+	/*========================================================================================*/
 
+	/*=======================         Keys and Rooms 220730 18:45         =======================*/
+	bool canVisitAllRooms_0(vector<vector<int>>& rooms) {
+		int n = rooms.size();
+		int m = rooms[0].size();
+		bool res = false;
+		map<int, int> visit;
+		stack<int> st;
+
+		visit[0]++;
+		st.emplace(0);
+		
+		while (!st.empty()) {
+			int next = st.top();
+			st.pop();
+			for (auto au : rooms[next]) {
+				if (!visit[au]) {
+					visit[au]++;
+					st.emplace(au);
+				}
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			if (!visit[i])
+				return false;
+		}
+
+		return true;
+	}
+
+
+	bool canVisitAllRooms(vector<vector<int>>& rooms) {
+		int n = rooms.size();
+		int m = rooms[0].size();
+		map<int, int> visit;
+		
+		
+		visit[0]++;
+		for (int i = 0; i < m; i++) {
+			if (recursive_canVisitAllRooms(rooms, visit, rooms[0][i])) 
+				return true;
+		}
+
+		for (int i = 0; i < n; i++)
+			if (!visit[i]) 
+				return false;
+		
+		return true;
+	}
+
+	bool recursive_canVisitAllRooms(vector<vector<int>>& rooms, map<int, int>& visit, int i) {
+		visit[i]++;
+
+		if (visit.size() == rooms.size()) return true;
+
+		for (int j = 0; j < rooms[i].size(); j++) {
+			if (!visit[rooms[i][j]] && recursive_canVisitAllRooms(rooms, visit, rooms[i][j])) return true;
+		}
+
+		return false;
+	}
 	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
