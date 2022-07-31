@@ -24,7 +24,16 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	int test_0 = 2;
+	if (test_0 & 1) {
+		cout << "odd";
+	}
+	else {
+		cout << "even";
+	}
+
 	/*=======================         Keys and Rooms 220730 18:45         =======================*/
+	assert(0);
 	vector<vector<int>> rooms_canVisitAllRooms;
 
 	rooms_canVisitAllRooms = { {1}, {2}, {3}, {} };
