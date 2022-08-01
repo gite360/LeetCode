@@ -24,13 +24,19 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
-	int test_0 = 2;
-	if (test_0 & 1) {
-		cout << "odd";
-	}
-	else {
-		cout << "even";
-	}
+	/*=======================         Keys and Rooms 220801 09:55         =======================*/
+	vector<Solution::TreeNode> node_vector_searchBST;
+	node_vector_searchBST = { 4, 2, 7, 1, 3 };
+	int val_searchBST = 2;
+	val_searchBST = 5;
+
+	node_vector_searchBST = { 18,2,22, INT_MIN , INT_MIN , INT_MIN ,63, INT_MIN ,84, INT_MIN , INT_MIN};
+	val_searchBST = 63;
+
+	Solution::TreeNode* root_searchBST = &node_vector_searchBST[0];
+
+	solution.build_b_tree_level_order(node_vector_searchBST, root_searchBST);
+	solution.searchBST(root_searchBST, val_searchBST);
 
 	/*=======================         Keys and Rooms 220730 18:45         =======================*/
 	assert(0);

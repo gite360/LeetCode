@@ -3469,6 +3469,30 @@ public:
 		return false;
 	}
 	/*========================================================================================*/
+
+	/*=======================         Keys and Rooms 220801 09:55         =======================*/
+	TreeNode* searchBST(TreeNode* root, int val) {
+		return recursive_searchBST(root, val);
+	}
+
+	TreeNode* recursive_searchBST(TreeNode* root, int& val) {
+
+		if (!root)
+			return nullptr;
+		else if (root->val == val)
+			return root;
+
+		TreeNode* res = nullptr;
+
+		if (root->left)
+			res = recursive_searchBST(root->left, val);
+		
+		if (!res && root->right) 
+			return recursive_searchBST(root->right, val);
+		
+		return res;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
