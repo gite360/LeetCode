@@ -24,7 +24,12 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*=================         Pascal's Triangle II 220802 12:13         =======================*/
+	int rowIndex_pascal_triangle = 3;
+	solution.getRow(rowIndex_pascal_triangle);
+
 	/*=======================         Keys and Rooms 220801 09:55         =======================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_searchBST;
 	node_vector_searchBST = { 4, 2, 7, 1, 3 };
 	int val_searchBST = 2;

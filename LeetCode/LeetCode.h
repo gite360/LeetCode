@@ -3493,6 +3493,33 @@ public:
 		return res;
 	}
 	/*========================================================================================*/
+
+	/*=======================         Pascal's Triangle II 220802 12:13         =======================*/
+	vector<int> getRow(int rowIndex) {
+		vector<int> row_vector = {1};
+
+		row_vector = get_pascal_triangle(rowIndex, row_vector);
+
+		return row_vector;
+	}
+
+	vector<int> get_pascal_triangle(int& rowIndex, vector<int> row_vector) {
+
+		int n = row_vector.size();
+
+		if (rowIndex + 1 == n) 
+			return row_vector;
+		
+
+		vector<int> temp_vector(1, 1);
+		for (int i = 0; i < n - 1; i++)
+			temp_vector.emplace_back(row_vector[i] + row_vector[i + 1]);
+		
+		temp_vector.emplace_back(1);
+
+		return get_pascal_triangle(rowIndex, temp_vector);
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
