@@ -24,7 +24,20 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*===================        K-th Symbol in Grammar 220804 13:50       ===================*/
+	int n_kthGrammar = 2;
+	int k_kthGrammar = 2;
+
+	n_kthGrammar = 30;
+	k_kthGrammar = 434991989;
+
+	/*n_kthGrammar = 3;
+	k_kthGrammar = 3;*/
+
+	solution.kthGrammar(n_kthGrammar, k_kthGrammar);
+
 	/*=================         Pascal's Triangle II 220802 12:13         =======================*/
+	assert(0);
 	int rowIndex_pascal_triangle = 3;
 	solution.getRow(rowIndex_pascal_triangle);
 
