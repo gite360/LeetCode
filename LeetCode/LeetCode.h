@@ -3565,9 +3565,6 @@ public:
 
 	/*===============     Unique Binary Search Trees II 220805 12:35       ===================*/
 	vector<TreeNode*> generateTrees(int n) {
-		vector <TreeNode*> ans;
-		
-
 		return recursive_generateTrees_0(1, n);
 	}
 
@@ -3608,6 +3605,54 @@ public:
 		}
 
 		return;
+	}
+	/*========================================================================================*/
+
+	/*======================     Sort an Array 220805 18:48       ============================*/
+	vector<int> sortArray(vector<int>& nums) {
+		int n = nums.size() / 2;
+		if (!n) return nums;
+
+		vector<int> res = recursive_sortArray(vector<int>(nums.begin(), nums.begin() + n), vector<int>(nums.begin() + n, nums.end()));
+		return res;
+	}
+
+	vector<int> recursive_sortArray(vector<int> left, vector<int> right) {
+		
+		if (left.size() > 1) {
+			int n_l = left.size() / 2;
+			left = recursive_sortArray(vector<int>(left.begin(), left.begin() + n_l), vector<int>(left.begin() + n_l, left.end()));
+		}
+
+		if (right.size() > 1) {
+			int n_r = right.size() / 2;
+			right = recursive_sortArray(vector<int>(right.begin(), right.begin() + n_r), vector<int>(right.begin() + n_r, right.end()));
+		}
+
+		return merge_sortArray(left, right);
+	}
+
+	vector<int> merge_sortArray(vector<int> left, vector<int> right) {
+		int i = 0;
+		int j = 0;
+		int n = left.size();
+		int m = right.size();
+		vector<int> res;
+
+		while (i < n && j < m) {
+			if (i < n && left[i] < right[j]) 
+				res.emplace_back(left[i++]);
+			else if(j < m) 
+				res.emplace_back(right[j++]);
+		}
+
+		while (i<n) 
+			res.emplace_back(left[i++]);
+		
+		while (j < m) 
+			res.emplace_back(right[j++]);
+		
+		return res;
 	}
 	/*========================================================================================*/
 };
