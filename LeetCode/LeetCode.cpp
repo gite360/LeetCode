@@ -24,7 +24,13 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*===============     Unique Binary Search Trees II 220805 12:35       ===================*/
+	int n_generateTrees = 3;
+
+	solution.generateTrees(n_generateTrees);
+
 	/*===================        K-th Symbol in Grammar 220804 13:50       ===================*/
+	assert(0);
 	int n_kthGrammar = 2;
 	int k_kthGrammar = 2;
 

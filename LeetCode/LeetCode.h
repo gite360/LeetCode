@@ -3562,6 +3562,54 @@ public:
 		return recursive_kthGrammar(n, k, v);
 	}
 	/*========================================================================================*/
+
+	/*===============     Unique Binary Search Trees II 220805 12:35       ===================*/
+	vector<TreeNode*> generateTrees(int n) {
+		vector <TreeNode*> ans;
+		
+
+		return recursive_generateTrees_0(1, n);
+	}
+
+	vector<TreeNode*> recursive_generateTrees_0(int start, int end) {
+		vector<TreeNode*> ans;
+
+		if (start > end) {
+			ans.push_back(nullptr);
+			return ans;
+		}
+
+		for (int i = start; i <= end; i++) {
+			vector <TreeNode*> left = recursive_generateTrees_0(start, i - 1);
+			vector <TreeNode*> right = recursive_generateTrees_0(i + 1, end);
+
+			for (auto l : left)
+				for (auto r : right) {
+					TreeNode* newnode = new TreeNode(i, l, r);
+					ans.push_back(newnode);
+				}
+		}
+
+		return ans;
+	}
+
+	void recursive_generateTrees(int i, int n, int limit, vector<int> l_vector, vector<int> r_vector, vector<int> res_vector, vector<vector<int>>& res_all) {
+		
+		if (i < 1 || i > limit) {
+			res_all.emplace_back(res_vector);
+			return;
+		}
+
+		for (int j = 0; j < l_vector.size(); j++) {
+			res_vector.emplace_back(l_vector[j]);
+			for (int k = 0; k < r_vector.size(); k++) {
+				
+			}
+		}
+
+		return;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
