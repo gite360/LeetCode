@@ -2359,9 +2359,40 @@ public:
 	bool isValidBST(TreeNode* root) {
 		bool r = true;
 
-		postorder_98(root, r);
+		//postorder_98(root, r);
+
+		//TreeNode* root_parent = nullptr;
+		//r = inorder_98(root_parent, root);
+
+		r = validate_98(nullptr, root, nullptr);
 
 		return r;
+	}
+
+	bool validate_98(TreeNode* left, TreeNode* root, TreeNode* right) {
+		if (!root) 
+			return true;
+
+		if ((left && root->val <= left->val) || (right && root->val >= right->val)) {
+			return false;
+		}
+
+		return validate_98(root->left, left,  root) && validate_98(root, root->right, right);
+	}
+
+	bool inorder_98(TreeNode*& root_parent, TreeNode* root) {
+		if (!root) 
+			return true;
+
+		if (!inorder_98(root_parent, root->left)) 
+			return false;
+		
+
+		if (root_parent && root->val <= root_parent->val) 
+			return false;
+		
+		root_parent = root;
+		return inorder_98(root_parent, root->right);
 	}
 
 	vector<int> postorder_98(TreeNode* node, bool& isb) {

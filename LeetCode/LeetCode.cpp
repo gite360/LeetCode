@@ -25,6 +25,26 @@ int main()
 	vector<int> postorder;
 
 	/*======================     Sort an Array 220805 18:48       ============================*/
+	vector<Solution::TreeNode> node_vector_98;
+
+	node_vector_98 = { 5,1,4,INT_MIN,INT_MIN,3,6 };
+
+	node_vector_98 = { 2,1,3 };
+
+	node_vector_98 = { 5,4,6,INT_MIN,INT_MIN,3,7 };
+
+	node_vector_98 = { 1,1 };
+
+	//node_vector_98 = { 1,0 };
+
+	Solution::TreeNode* root_98 = &node_vector_98[0];
+
+	solution.build_b_tree_level_order(node_vector_98, root_98);
+
+	solution.isValidBST(root_98);
+
+	/*======================     Sort an Array 220805 18:48       ============================*/
+	assert(0);
 	vector<int> nums_sortArray = { 5, 2, 3, 1 };
 	//nums_sortArray = {5, 1, 1, 2, 0, 0, -6};
 	solution.sortArray(nums_sortArray);
@@ -386,7 +406,7 @@ int main()
 
 	/*=======     98. Validate Binary Search Tree   =========*/
 	assert(0);
-	vector<Solution::TreeNode> node_vector_98;
+	/*vector<Solution::TreeNode> node_vector_98;
 
 	node_vector_98 = { 5,1,4,INT_MIN,INT_MIN,3,6 };
 
@@ -402,7 +422,7 @@ int main()
 
 	solution.build_b_tree_level_order(node_vector_98, root_98);
 
-	solution.isValidBST(root_98);
+	solution.isValidBST(root_98);*/
 
 	//node_vector_98.clear();
 	//node_vector_98.shrink_to_fit();
