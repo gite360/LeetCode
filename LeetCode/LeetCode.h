@@ -2836,7 +2836,6 @@ public:
 	}
 	/*========================================================================================*/
 
-
 	/*=========================     Path Sum  220704 10:06     ===============================*/
 	bool hasPathSum(TreeNode* root, int targetSum) {
 		if (!root) return false;
@@ -2859,7 +2858,6 @@ public:
 	}
 
 	/*========================================================================================*/
-
 
 	/*==== Construct Binary Tree from Inorder and Postorder Traversal 220705 10:56 ===========*/
 	TreeNode* buildTree_inorder_postorder(vector<int>& inorder, vector<int>& postorder) {
@@ -2913,7 +2911,6 @@ public:
 
 		//	return node;
 		//}
-
 
 		if (postorder.back() != inorder.front()) {
 			vector<int> inorder_left(inorder.begin(), inorder.begin() + od_left);
@@ -3025,7 +3022,6 @@ public:
 		return nullptr;
 	}
 	/*========================================================================================*/
-
 
 	/*============     Serialize and Deserialize Binary Tree 220712 10:51     ================*/
 	// Encodes a tree to a single string.
@@ -3684,6 +3680,126 @@ public:
 			res.emplace_back(right[j++]);
 		
 		return res;
+	}
+	/*========================================================================================*/
+
+	/*======================      N-Queens II 220807 15:14        ============================*/
+	int totalNQueens(int n) {
+
+		int count = 0;
+
+		vector<vector<int>> board(n, vector<int>(n, 0));
+
+		 totalNQueens(0, board, count);
+
+		 return count;
+	}
+
+	void totalNQueens(int i, vector<vector<int>>& board, int& count) {
+		int n = board.size();
+
+		for (int j = 0; j < n; j++) {
+			if (is_not_attack(i, j, board)) {
+				put_chess(i, j, board);
+
+				if (i == n - 1) {
+					count++;
+				}
+				else {
+					totalNQueens(i + 1, board, count);
+				}
+
+				remove_chess(i, j, board);
+			}
+		}
+	}
+
+	bool is_not_attack(int& i,int& j, vector<vector<int>>&  board) {
+		return !board[i][j];
+	}
+
+	void put_chess(int i, int j, vector<vector<int>>& board) {
+		int n = board.size();
+
+		board[i][j] = i*n+j+1;
+
+		for (int k = 0; k < n; k++)
+			if(!board[k][j])
+				board[k][j] = i * n + j + 1;
+
+		for (int k = 0; k < n; k++)
+			if (!board[i][k])
+				board[i][k] = i * n + j + 1;
+
+		int k = i;
+		int l = j;
+
+		while (++k < n && ++l < n)
+			if (!board[k][l])
+				board[k][l] = i * n + j + 1;
+
+		k = i;
+		l = j;
+
+		while (--k >= 0 && --l >= 0)
+			if (!board[k][l])
+				board[k][l] = i * n + j + 1;
+
+		k = i;
+		l = j;
+
+		while (--k >= 0 && ++l < n)
+			if (!board[k][l])
+				board[k][l] = i * n + j + 1;
+
+		k = i;
+		l = j;
+
+		while (++k < n  && --l >= 0)
+			if (!board[k][l])
+				board[k][l] = i * n + j + 1;
+	}
+
+	void remove_chess(int i, int j, vector<vector<int>>& board) {
+		int n = board.size();
+
+		board[i][j] = 0;
+
+		for (int k = 0; k < n; k++)
+			if (board[k][j] == i * n + j + 1)
+				board[k][j] = 0;
+
+		for (int k = 0; k < n; k++)
+			if (board[i][k] == i * n + j + 1)
+				board[i][k] = 0;
+
+		int k = i;
+		int l = j;
+
+		while (++k < n && ++l < n)
+			if (board[k][l] == i * n + j + 1)
+				board[k][l] = 0;
+
+		k = i;
+		l = j;
+
+		while (--k >= 0 && --l >= 0)
+			if (board[k][l] == i * n + j + 1)
+				board[k][l] = 0;
+
+		k = i;
+		l = j;
+
+		while (--k >= 0 && ++l < n)
+			if (board[k][l] == i * n + j + 1)
+				board[k][l] = 0;
+
+		k = i;
+		l = j;
+
+		while (++k < n  && --l >= 0)
+			if (board[k][l] == i * n + j + 1)
+				board[k][l] = 0;
 	}
 	/*========================================================================================*/
 };

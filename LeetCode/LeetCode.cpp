@@ -24,7 +24,13 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*======================      N-Queens II 220807 15:14        ============================*/
+	int n_totalNQueens = 4;
+
+	solution.totalNQueens(n_totalNQueens);
+
 	/*======================     Sort an Array 220805 18:48       ============================*/
+	assert(0);
 	vector<Solution::TreeNode> node_vector_98;
 
 	node_vector_98 = { 5,1,4,INT_MIN,INT_MIN,3,6 };
