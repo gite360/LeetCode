@@ -3685,14 +3685,10 @@ public:
 
 	/*======================      N-Queens II 220807 15:14        ============================*/
 	int totalNQueens(int n) {
-
 		int count = 0;
-
 		vector<vector<int>> board(n, vector<int>(n, 0));
-
-		 totalNQueens(0, board, count);
-
-		 return count;
+		totalNQueens(0, board, count);
+		return count;
 	}
 
 	void totalNQueens(int i, vector<vector<int>>& board, int& count) {
@@ -3702,12 +3698,10 @@ public:
 			if (is_not_attack(i, j, board)) {
 				put_chess(i, j, board);
 
-				if (i == n - 1) {
+				if (i == n - 1) 
 					count++;
-				}
-				else {
+				else 
 					totalNQueens(i + 1, board, count);
-				}
 
 				remove_chess(i, j, board);
 			}
@@ -3721,43 +3715,37 @@ public:
 	void put_chess(int i, int j, vector<vector<int>>& board) {
 		int n = board.size();
 
-		board[i][j] = i*n+j+1;
+		board[i][j] = i * n + j + 1;
 
 		for (int k = 0; k < n; k++)
-			if(!board[k][j])
-				board[k][j] = i * n + j + 1;
+			if (!board[k][j]) board[k][j] = board[i][j];
 
 		for (int k = 0; k < n; k++)
-			if (!board[i][k])
-				board[i][k] = i * n + j + 1;
+			if (!board[i][k]) board[i][k] = board[i][j];
 
 		int k = i;
 		int l = j;
 
 		while (++k < n && ++l < n)
-			if (!board[k][l])
-				board[k][l] = i * n + j + 1;
+			if (!board[k][l]) board[k][l] = board[i][j];
 
 		k = i;
 		l = j;
 
 		while (--k >= 0 && --l >= 0)
-			if (!board[k][l])
-				board[k][l] = i * n + j + 1;
+			if (!board[k][l]) board[k][l] = board[i][j];
 
 		k = i;
 		l = j;
 
 		while (--k >= 0 && ++l < n)
-			if (!board[k][l])
-				board[k][l] = i * n + j + 1;
+			if (!board[k][l]) board[k][l] = board[i][j];
 
 		k = i;
 		l = j;
 
 		while (++k < n  && --l >= 0)
-			if (!board[k][l])
-				board[k][l] = i * n + j + 1;
+			if (!board[k][l]) board[k][l] = board[i][j];
 	}
 
 	void remove_chess(int i, int j, vector<vector<int>>& board) {
@@ -3766,41 +3754,119 @@ public:
 		board[i][j] = 0;
 
 		for (int k = 0; k < n; k++)
-			if (board[k][j] == i * n + j + 1)
-				board[k][j] = 0;
+			if (board[k][j] == i * n + j + 1) board[k][j] = 0;
 
 		for (int k = 0; k < n; k++)
-			if (board[i][k] == i * n + j + 1)
-				board[i][k] = 0;
+			if (board[i][k] == i * n + j + 1) board[i][k] = 0;
 
 		int k = i;
 		int l = j;
 
 		while (++k < n && ++l < n)
-			if (board[k][l] == i * n + j + 1)
-				board[k][l] = 0;
+			if (board[k][l] == i * n + j + 1) board[k][l] = 0;
 
 		k = i;
 		l = j;
 
 		while (--k >= 0 && --l >= 0)
-			if (board[k][l] == i * n + j + 1)
-				board[k][l] = 0;
+			if (board[k][l] == i * n + j + 1) board[k][l] = 0;
 
 		k = i;
 		l = j;
 
 		while (--k >= 0 && ++l < n)
-			if (board[k][l] == i * n + j + 1)
-				board[k][l] = 0;
+			if (board[k][l] == i * n + j + 1) board[k][l] = 0;
 
 		k = i;
 		l = j;
 
 		while (++k < n  && --l >= 0)
-			if (board[k][l] == i * n + j + 1)
-				board[k][l] = 0;
+			if (board[k][l] == i * n + j + 1) board[k][l] = 0;
 	}
+	/*========================================================================================*/
+
+	/*======================      Sudoku Solver 220808 12:22      ============================*/
+	void solveSudoku(vector<vector<char>>& board) {
+		vector<int> row_begin;
+		vector<int> col_begin;
+		bool is_final = false;
+
+		for (int i = 0; i <= 9; i += 3) {
+			row_begin.emplace_back(i);
+			col_begin.emplace_back(i);
+		}
+		
+		recursive_solveSudoku(board, row_begin, col_begin, 0, 0, is_final);
+	}
+
+	void recursive_solveSudoku(vector<vector<char>>& board, vector<int>& row_begin, vector<int>& col_begin, int row, int col, bool& is_final) {
+		vector<char> candidate{ '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+		if (row == 9) {
+			is_final = true;
+			return;
+		}
+		else if (col == 9 && !is_final) 
+			recursive_solveSudoku(board, row_begin, col_begin, row + 1, 0, is_final);
+		else if (row < 9 && col < 9 && board[row][col] != '.' && !is_final) 
+			recursive_solveSudoku(board, row_begin, col_begin, row, col + 1, is_final);
+		else if (!is_final) {
+			for (auto au: candidate) {
+				if (is_valid(board, row_begin, col_begin, au, row, col)) {
+
+					board[row][col] = au;
+
+					recursive_solveSudoku(board, row_begin, col_begin, row, col + 1, is_final);
+
+					if (is_final) return;
+
+					board[row][col] = '.';
+				}
+			}
+		}
+	}
+
+	bool is_valid(vector<vector<char>>& board, vector<int>& row_begin, vector<int>& col_begin, char candidate_char, int row, int col) {
+
+		for (int i = 0; i < 9; i++) {
+			if (i != row && board[i][col] == candidate_char) {
+				return false;
+			}
+		}
+
+		for (int j = 0; j < 9; j++) {
+			if (j != col && board[row][j] == candidate_char) {
+				return false;
+			}
+		}
+
+		int begin_i;
+		int begin_j;
+
+		for (int i = 0; i < 3; i++) {
+			if (row >= row_begin[i] && row < row_begin[i + 1]) {
+				begin_i = row_begin[i];
+			}
+		}
+
+		for (int j = 0; j < 3; j++) {
+			if (col >= col_begin[j] && col < col_begin[j + 1]) {
+				begin_j = col_begin[j];
+			}
+		}
+
+		for (int i = begin_i; i < begin_i + 3; i++) {
+			for (int j = begin_j; j < begin_j + 3; j++) {
+				if (row != i && col != j && board[i][j] == candidate_char) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	
 	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
