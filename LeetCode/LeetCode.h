@@ -3810,63 +3810,87 @@ public:
 			recursive_solveSudoku(board, row_begin, col_begin, row + 1, 0, is_final);
 		else if (row < 9 && col < 9 && board[row][col] != '.' && !is_final) 
 			recursive_solveSudoku(board, row_begin, col_begin, row, col + 1, is_final);
-		else if (!is_final) {
-			for (auto au: candidate) {
+		else if (!is_final) 
+			for (auto au: candidate) 
 				if (is_valid(board, row_begin, col_begin, au, row, col)) {
-
 					board[row][col] = au;
-
 					recursive_solveSudoku(board, row_begin, col_begin, row, col + 1, is_final);
-
 					if (is_final) return;
-
 					board[row][col] = '.';
 				}
-			}
-		}
 	}
 
 	bool is_valid(vector<vector<char>>& board, vector<int>& row_begin, vector<int>& col_begin, char candidate_char, int row, int col) {
 
-		for (int i = 0; i < 9; i++) {
-			if (i != row && board[i][col] == candidate_char) {
+		for (int i = 0; i < 9; i++)
+			if (i != row && board[i][col] == candidate_char)
 				return false;
-			}
-		}
-
-		for (int j = 0; j < 9; j++) {
-			if (j != col && board[row][j] == candidate_char) {
+			
+		for (int j = 0; j < 9; j++)
+			if (j != col && board[row][j] == candidate_char)
 				return false;
-			}
-		}
 
 		int begin_i;
 		int begin_j;
 
-		for (int i = 0; i < 3; i++) {
-			if (row >= row_begin[i] && row < row_begin[i + 1]) {
+		for (int i = 0; i < 3; i++)
+			if (row >= row_begin[i] && row < row_begin[i + 1]) 
 				begin_i = row_begin[i];
-			}
-		}
-
-		for (int j = 0; j < 3; j++) {
-			if (col >= col_begin[j] && col < col_begin[j + 1]) {
+			
+		for (int j = 0; j < 3; j++)
+			if (col >= col_begin[j] && col < col_begin[j + 1]) 
 				begin_j = col_begin[j];
-			}
-		}
-
-		for (int i = begin_i; i < begin_i + 3; i++) {
-			for (int j = begin_j; j < begin_j + 3; j++) {
-				if (row != i && col != j && board[i][j] == candidate_char) {
+		
+		for (int i = begin_i; i < begin_i + 3; i++)
+			for (int j = begin_j; j < begin_j + 3; j++) 
+				if (row != i && col != j && board[i][j] == candidate_char) 
 					return false;
-				}
-			}
-		}
-
+				
 		return true;
 	}
+	/*========================================================================================*/
 
-	
+	/*======================      Combinations 220809 10:35      ============================*/
+	vector<vector<int>> combine(int n, int k) {
+
+		vector<int> vec; 
+		vector<vector<int>> res;
+		bool is_finish = false;
+
+		backtrack_combine(n, k, 1, 1, vec, res, is_finish);
+
+		return res;
+	}
+
+	void backtrack_combine(int& n, int& k, int i, int j, vector<int> vec, vector<vector<int>>& res, bool& is_finish) {
+
+		if (i + k - 1 > n) {
+			is_finish = true;
+			return;
+		}
+
+		if (vec.size() == k) {
+			res.emplace_back(vec);
+			return;
+		}
+
+		for (int l = j; l <= n && !is_finish; l++) {
+			vec.emplace_back(l);
+
+			backtrack_combine(n, k, i, l + 1, vec, res, is_finish);
+
+			if (is_finish) return;
+
+			vec.pop_back();
+		}
+
+		if (vec.size() == 1 && !is_finish) {
+			vec.clear();
+			backtrack_combine(n, k, i + 1, i + 1, vec, res, is_finish);
+		}
+			
+	}
+
 	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/

@@ -24,7 +24,14 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*======================      Combinations 220809 10:35      ============================*/
+	int n_Combinations = 4;
+	int k__Combinations = 3;
+
+	solution.combine(n_Combinations, k__Combinations);
+
 	/*======================      Sudoku Solver 220808 12:22      ============================*/
+	assert(0);
 	vector<vector<char>> board_solveSudoku;
 	board_solveSudoku = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'}, 
 		{'6', '.', '.', '1', '9', '5', '.', '.', '.'}, 
