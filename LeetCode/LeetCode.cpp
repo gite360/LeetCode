@@ -24,7 +24,32 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*==============      Largest Rectangle in Histogram 220811 10:31      ===================*/
+	vector<int> heights_largestRectangleArea;
+
+	//heights_largestRectangleArea = {2, 1, 5, 6, 2, 3};
+	//heights_largestRectangleArea = { 0 };
+	//heights_largestRectangleArea = { 4,2 };
+	//heights_largestRectangleArea = { 2, 4 };
+	//heights_largestRectangleArea = { 0,0 };
+	//heights_largestRectangleArea = { 0,9 };
+	//heights_largestRectangleArea = { 0,2,0 };
+	heights_largestRectangleArea = { 2, 2, 6, 7, 5, 5, 5, 0, 9, 3, 6, 3, 8, 6, 6 };
+	//heights_largestRectangleArea = { 9,0 };
+	//heights_largestRectangleArea = { 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9 };
+	//heights_largestRectangleArea = { 2, 2, 6, 6, 5, 5, 5 };
+	heights_largestRectangleArea = { 9, 8, 7, 6, 5, 6, 7, 8, 9, 10, 11};
+	solution.largestRectangleArea(heights_largestRectangleArea);
+
+	/*======================      generateParenthesis 220810 11:35      ============================*/
+	assert(0);
+	int n_generateParenthesis;
+	n_generateParenthesis = 3;
+
+	solution.generateParenthesis(n_generateParenthesis);
+
 	/*======================      Combinations 220809 10:35      ============================*/
+	assert(0);
 	int n_Combinations = 4;
 	int k__Combinations = 3;
 

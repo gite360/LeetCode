@@ -3892,6 +3892,171 @@ public:
 	}
 
 	/*========================================================================================*/
+
+	/*======================      generateParenthesis 220810 11:35      ============================*/
+	vector<string> generateParenthesis(int& n) {
+		int left = 0;
+		int right = 0;
+		string res;
+		vector<string> res_v;
+
+		backtrack_generateParenthesis(n, 0, 0, res, res_v);
+
+		return res_v;
+	}
+
+	void backtrack_generateParenthesis(int& n, int left, int right, string& res, vector<string>& res_v) {
+		if (res.size() == n << 1) {
+			res_v.emplace_back(res);
+			return;
+		}
+
+		if (left < n) {
+			res += '(';
+			backtrack_generateParenthesis(n, left + 1, right, res, res_v);
+			res.pop_back();
+		}
+
+		if (left > right) {
+			res += ')';
+			backtrack_generateParenthesis(n, left, right+1, res, res_v);
+			res.pop_back();
+		}
+	}
+	/*========================================================================================*/
+
+	/*==============      Largest Rectangle in Histogram 220811 10:31      ===================*/
+	int myAtoi(string s) {
+		int area_max = INT_MIN;
+		int left = 0;
+		int right = 0;
+		int height_min = INT_MAX;
+		recursive_myAtoi(s, 0, 0, height_min, area_max);
+		
+		return area_max;
+	}
+
+	void recursive_myAtoi(string& s, int left, int right, int height_min, int &area_max) {
+		int n = s.size();
+
+		if (left == n) {
+			area_max = max(area_max, s[left] - '0');
+			return;
+		}
+		else if (right == n) {
+			height_min = INT_MAX;
+			recursive_myAtoi(s, left + 1, left + 1, height_min, area_max);
+		}
+		else {
+			height_min = min(height_min, s[right] - '0');
+			area_max = max(area_max, (right - left + 1) * height_min);
+			recursive_myAtoi(s, left, right + 1, height_min, area_max);
+		}
+	}
+
+	int largestRectangleArea(vector<int>& heights) {
+		//int area_max = INT_MIN;
+		//int left = 0;
+		//int right = 0;
+		//int height_min = INT_MAX;
+		////recursive_largestRectangleArea(heights, 0, 0, height_min, area_max);
+		//int n = heights.size();
+		//if (n == 1) return heights.front();
+		//int res;
+		//res = fast_largestRectangleArea(heights, 0, n-1, height_min, area_max);
+		//res = max(res, area_max);
+
+		int n = heights.size();
+		int area_max = 0;
+		stack<int> st;
+
+		for (int i = 0; i <= n; i++) {
+
+			int height_current = 0;
+
+			if (i < n) {
+				height_current = heights[i];
+			}
+
+			while (!st.empty() && height_current < heights[st.top()]) {
+
+				int od_top = st.top();
+
+				st.pop();
+
+				int width = i;
+				if (!st.empty()) {
+					width = i - st.top() - 1;
+				}
+
+				int area = heights[od_top] * width;
+				area_max = max(area_max, area);
+			}
+
+			st.emplace(i);
+		}
+
+
+		return area_max;
+	}
+
+	int fast_largestRectangleArea(vector<int>& heights, int left, int right, int height_min, int& area_max) {
+		int n = heights.size();
+
+		if (left >= right) {
+			if(left >= n || left< 0)
+				return max(heights[right], area_max);
+			else if(right >= n || right < 0)
+				return max(heights[left], area_max);
+			return max(heights[right], area_max);
+		}
+
+		height_min = heights[left];
+		int od_min = left;
+		int count = 0;
+		for (int i = left; i <= right; i++) {
+			if (height_min > heights[i]) {
+				od_min = i;
+				height_min = heights[i];
+			}
+
+			if (height_min == heights[i]) {
+				count++;
+			}
+		}
+
+		if (heights[left] == heights[right] && left == od_min && count == right - left + 1) {
+			return area_max = max(area_max, (right - left + 1) * heights[od_min]);
+		}
+
+		area_max = max(area_max, (right - left + 1) * heights[od_min]);
+		
+		count = od_min;
+
+		while (++count < n && heights[od_min] == heights[count]) {
+		}
+
+		return max(fast_largestRectangleArea(heights, left, od_min - 1, height_min, area_max), fast_largestRectangleArea(heights, count, right, height_min, area_max));
+	}
+
+	void recursive_largestRectangleArea(vector<int>& heights, int left, int right, int height_min, int& area_max) {
+		int n = heights.size();
+
+		if (left == n) {
+			//area_max = max(area_max, heights[left]);
+			return;
+		}
+		else if (right == n) {
+			height_min = INT_MAX;
+			recursive_largestRectangleArea(heights, left + 1, left + 1, height_min, area_max);
+		}
+		else {
+			height_min = min(height_min, heights[right]);
+			area_max = max(area_max, (right - left + 1) * height_min);
+			recursive_largestRectangleArea(heights, left, right + 1, height_min, area_max);
+		}
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
