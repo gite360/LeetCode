@@ -24,7 +24,14 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*========================      Permutations 220812 15:23      ===========================*/
+	vector<int> nums_permute;
+	nums_permute = { 1,2,3 };
+
+	solution.permute(nums_permute);
+
 	/*==============      Largest Rectangle in Histogram 220811 10:31      ===================*/
+	assert(0);
 	vector<int> heights_largestRectangleArea;
 
 	//heights_largestRectangleArea = {2, 1, 5, 6, 2, 3};
@@ -39,6 +46,8 @@ int main()
 	//heights_largestRectangleArea = { 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9 };
 	//heights_largestRectangleArea = { 2, 2, 6, 6, 5, 5, 5 };
 	heights_largestRectangleArea = { 9, 8, 7, 6, 5, 6, 7, 8, 9, 10, 11};
+
+	heights_largestRectangleArea = { 1,2,3 };
 	solution.largestRectangleArea(heights_largestRectangleArea);
 
 	/*======================      generateParenthesis 220810 11:35      ============================*/

@@ -3972,13 +3972,10 @@ public:
 
 		for (int i = 0; i <= n; i++) {
 
-			int height_current = 0;
+			int height_i = 0;//i==n, height is 0
+			if (i < n) height_i = heights[i];
 
-			if (i < n) {
-				height_current = heights[i];
-			}
-
-			while (!st.empty() && height_current < heights[st.top()]) {
+			while (!st.empty() && height_i < heights[st.top()]) {
 
 				int od_top = st.top();
 
@@ -4055,6 +4052,33 @@ public:
 			area_max = max(area_max, (right - left + 1) * height_min);
 			recursive_largestRectangleArea(heights, left, right + 1, height_min, area_max);
 		}
+	}
+	/*========================================================================================*/
+
+	/*========================     Permutations 220812 15:23      ============================*/
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<int> res;
+		vector<vector<int>> res_v;
+		backtrack_permute(nums, 0, res, res_v);
+
+		return res_v;
+	}
+
+	void backtrack_permute(vector<int>& nums, int begin, vector<int> res, vector<vector<int>>& res_v) {
+		int n = nums.size();
+
+		if (begin == n) {
+			res_v.emplace_back(nums);
+			return;
+		}
+
+		for (int i = begin; i < n; i++) {
+			swap(nums[begin], nums[i]);
+			backtrack_permute(nums, begin+1, res, res_v);
+			swap(nums[i], nums[begin]);
+		}
+
+		return;
 	}
 	/*========================================================================================*/
 };
