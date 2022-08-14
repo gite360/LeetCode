@@ -4081,6 +4081,38 @@ public:
 		return;
 	}
 	/*========================================================================================*/
+
+	/*===========     Letter Combinations of a Phone Number 220814 19:25      ================*/
+	vector<string> letterCombinations(string digits) {
+		if (digits.empty()) return vector<string>{};
+		vector<string> res_v;
+		vector<string> letter = {"#","#", "abc","def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+		vector<int> od;
+		string res;
+
+		for (auto au : digits) {
+			od.emplace_back(au - '0');
+		}
+
+		backtrack_letterCombinations(od, letter, 0, res, res_v);
+
+		return res_v;
+	}
+
+	void backtrack_letterCombinations(vector<int>& od, vector<string>& letter, int id, string res, vector<string>& res_v) {
+		int n = od.size();
+		if (res.size() == n) {
+			res_v.emplace_back(res);
+			return;
+		}
+
+		for (auto au : letter[od[id]]) {
+			res.push_back(au);
+			backtrack_letterCombinations(od, letter, id + 1, res, res_v);
+			res.pop_back();
+		}
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
