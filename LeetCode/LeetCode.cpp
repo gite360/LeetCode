@@ -23,7 +23,15 @@ int main()
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
+
+	/*======================     The Skyline Problem 220815 10:28      =======================*/
+	vector<vector<int>> buildings_skyline;
+	buildings_skyline = {{2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}};
+
+	solution.getSkyline(buildings_skyline);
+
 	/*===========     Letter Combinations of a Phone Number 220814 19:25      ================*/
+	assert(0);
 	string digits_letterCombinations;
 	digits_letterCombinations = "23";
 

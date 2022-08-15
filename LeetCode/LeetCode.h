@@ -4113,6 +4113,78 @@ public:
 		}
 	}
 	/*========================================================================================*/
+
+	/*======================     The Skyline Problem 220815 10:28      =======================*/
+	vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+		vector<vector<int>> res_v;
+
+		res_v = dc_rectangle(buildings, 0, buildings.size() - 1);
+
+		return res_v;
+	}
+
+	vector<vector<int>> dc_rectangle(vector<vector<int>>& trans_v, int begin, int end) {
+
+		if (begin == end) 
+			return { {trans_v[begin][0], trans_v[begin][2]}, {trans_v[begin][1], 0}};
+
+		int middle_od = (begin + end) >> 1;
+
+		vector<vector<int>> trans_v_left = dc_rectangle(trans_v, begin, middle_od);
+		vector<vector<int>> trans_v_right = dc_rectangle(trans_v, middle_od + 1, end);
+
+		return merge_rectangle(trans_v_left, trans_v_right);
+	}
+
+	vector<vector<int>> merge_rectangle(vector<vector<int>> trans_v_left, vector<vector<int>> trans_v_right) {
+		vector<vector<int>> merge_v;
+		int n = trans_v_left.size();
+		int m = trans_v_right.size();
+
+		int leftPos = 0;
+		int rightPos = 0;
+
+		int leftPrevHeight = 0;
+		int rightPrevHeight = 0;
+
+		int curX = 0;
+		int curY = 0;
+
+		while (leftPos < n && rightPos < m) {
+			int nextLeftX = trans_v_left[leftPos][0];
+			int nextRightX = trans_v_right[rightPos][0];
+			if (nextLeftX < nextRightX) {
+				curX = nextLeftX;
+				curY = max(trans_v_left[leftPos][1], rightPrevHeight);
+				leftPrevHeight = trans_v_left[leftPos++][1];
+			}
+			else if (nextLeftX > nextRightX) {
+				curX = nextRightX;
+				curY = max(trans_v_right[rightPos][1], leftPrevHeight);
+				rightPrevHeight = trans_v_right[rightPos++][1];
+			}
+			else {
+				curX = nextLeftX;
+				curY = max(trans_v_left[leftPos][1], trans_v_right[rightPos][1]);
+				leftPrevHeight = trans_v_left[leftPos++][1];
+				rightPrevHeight = trans_v_right[rightPos++][1];
+			}
+
+			if (merge_v.empty() || curY != merge_v.back()[1]) {
+				merge_v.emplace_back(vector<int>{ curX, curY });
+			}
+		}
+
+		while (leftPos < trans_v_left.size()) {
+			merge_v.emplace_back(trans_v_left[leftPos++]);
+		}
+		while (rightPos < trans_v_right.size()) {
+			merge_v.emplace_back(trans_v_right[rightPos++]);
+		}
+
+		return merge_v;
+	}
+	/*========================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
