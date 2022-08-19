@@ -4750,6 +4750,7 @@ T* Solution::build_b_tree_level_order(vector<T>& node_vector, T* root) {
 	return root;
 }
 
+/*====================     Two Sum      =======================*/
 vector<int> Solution::twoSum(vector<int>& nums, int target) {
 	map <int, pair<int, int>> mp;
 	int i;
@@ -4757,15 +4758,15 @@ vector<int> Solution::twoSum(vector<int>& nums, int target) {
 	for (i = 0; i < nums.size(); i++)
 		mp[nums[i]] = make_pair(1, i);
 
-	for (i = 0; i < nums.size(); i++)
-	{
-		if (mp[target - nums[i]].first > 0 && mp[target - nums[i]].second != i)
-		{
-			v.push_back(i), v.push_back(mp[target - nums[i]].second);
+	for (i = 0; i < nums.size(); i++){
+		if (mp[target - nums[i]].first > 0 && mp[target - nums[i]].second != i){
+			v.push_back(i);
+			v.push_back(mp[target - nums[i]].second);
 			return v;
 		}
 	}
 }
+/*============================================================*/
 
 int Solution::reverse(int x) {
 	long long res = 0;
