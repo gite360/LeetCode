@@ -24,6 +24,11 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*======================     Isomorphic Strings 220820 19:15      =======================*/
+	string s_Isomorphic = "egg";
+	string t_Isomorphic = "add";
+	solution.isIsomorphic(s_Isomorphic, t_Isomorphic);
+
 	/*======================     The Skyline Problem 220815 10:28      =======================*/
 	vector<vector<int>> buildings_skyline;
 	buildings_skyline = {{2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}};
