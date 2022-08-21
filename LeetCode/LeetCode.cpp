@@ -24,6 +24,14 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*===================     Minimum Index Sum of Two Lists 220821 19:53      =======================*/
+	vector<string> list1_findRestaurant;
+	vector<string> list2_findRestaurant;
+	list1_findRestaurant = { "Shogun","Tapioca Express","Burger King","KFC" };
+	list2_findRestaurant = { "KFC","Shogun","Burger King" };
+
+	solution.findRestaurant(list1_findRestaurant, list2_findRestaurant);
+
 	/*======================     Isomorphic Strings 220820 19:15      =======================*/
 	string s_Isomorphic = "egg";
 	string t_Isomorphic = "add";

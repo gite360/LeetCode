@@ -4232,9 +4232,40 @@ public:
 		return true;
 	}
 	/*========================================================================================*/
+
+	/*===================     Minimum Index Sum of Two Lists 220821 19:53      =======================*/
+	vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+		map<string, int> m1;
+		map<string, int> m2;
+		vector<string> res;
+		vector<string> r;
+
+		for (int i = 0; i < list1.size(); i++) {
+			m1[list1[i]] = i+1;
+		}
+
+		for (int i = 0; i < list2.size(); i++) {
+			if (m1[list2[i]]) {
+				m1[list2[i]] += i+1;
+				res.emplace_back(list2[i]);
+			}
+		}
+
+		sort(res.begin(), res.end(), [&m1](auto& a, auto& b) {return m1[a] < m1[b]; });
+
+		r.emplace_back(res.front());
+
+		for (int i = 1; i < res.size(); i++) {
+			if (m1[r.back()] == m1[res[i]]) {
+				r.emplace_back(res[i]);
+			}
+		}
+
+		return r;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-
 
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&   Graph Node 220721 10:05       &&&&&&&&&&&&&&&&&&&&&&&&*/
