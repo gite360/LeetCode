@@ -24,6 +24,15 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*===================          Contains Duplicate II 220822 11:34          =======================*/
+	vector<int> nums_containsNearbyDuplicate;
+	int k_containsNearbyDuplicate;
+
+	nums_containsNearbyDuplicate = {99, 99};
+	k_containsNearbyDuplicate = 2;
+
+	solution.containsNearbyDuplicate(nums_containsNearbyDuplicate, k_containsNearbyDuplicate);
+
 	/*===================     Minimum Index Sum of Two Lists 220821 19:53      =======================*/
 	vector<string> list1_findRestaurant;
 	vector<string> list2_findRestaurant;
