@@ -4278,6 +4278,31 @@ public:
 		return false;
 	}
 	/*================================================================================================*/
+
+	/*===================         Find Duplicate Subtrees 220823 12:03         =======================*/
+	vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+		vector<TreeNode*> res_v;
+		unordered_map<string, int> m;
+
+		DFS_findDuplicateSubtrees(root, m, res_v);
+
+		return res_v;
+	}
+
+	string DFS_findDuplicateSubtrees(TreeNode* root, unordered_map<string, int>& m, vector<TreeNode*>& res_v) {
+		if (!root) {
+			return "";
+		}
+
+		string s = to_string(root->val) + "(" + DFS_findDuplicateSubtrees(root->left, m, res_v) + ")(" + DFS_findDuplicateSubtrees(root->right, m, res_v) + ")";
+
+		if (m[s]++ == 1) {
+			res_v.emplace_back(root);
+		}
+
+		return s;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
