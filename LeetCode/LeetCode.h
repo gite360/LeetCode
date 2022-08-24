@@ -1860,7 +1860,33 @@ public:
 
 	/*=====   3. Longest Substring Without Repeating Characters   =========*/
 
+	/*------   220824 10:22   --------*/
 	int lengthOfLongestSubstring(string s) {
+		int n = s.size();
+		if (s.empty()) return 0;
+		else if (n==1) return 1;
+
+		int dp = 1;
+		map<char, int> m;
+		int start = 0;
+		for (int i = 0; i < n; i++) {
+			if (!m[s[i]]) {
+				m[s[i]] = i+1;
+				dp = max(dp, i - start + 1);
+			}
+			else {
+				start = max(start, m[s[i]]);
+				m[s[i]] = i+1;
+				dp = max(dp, i - start + 1);
+			}
+		}
+		return dp;
+	}
+
+
+
+
+	int lengthOfLongestSubstring_0(string s) {
 		int r = 0;
 		int n = s.size();
 

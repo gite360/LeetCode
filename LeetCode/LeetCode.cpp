@@ -24,6 +24,15 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*==== 3. Longest Substring Without Repeating Characters ======*/
+	string s_3 = "wobgrovw";
+	s_3 = "dvdf";
+	s_3 = "abcabcbb";
+	s_3 = "pwwkew";
+	s_3 = "aab";
+
+	solution.lengthOfLongestSubstring(s_3);
+
 	/*===================          Contains Duplicate II 220822 11:34          =======================*/
 	vector<int> nums_containsNearbyDuplicate;
 	int k_containsNearbyDuplicate;
@@ -592,14 +601,7 @@ int main()
 
 	solution.largestNumber(nums_179);
 
-	/*==== 3. Longest Substring Without Repeating Characters ======*/
-	string s_3 = "wobgrovw";
-
-	s_3 = "dvdf";
-
-	//s_3 = "abcabcbb";
-	solution.lengthOfLongestSubstring(s_3);
-
+	
 	/*==============   1476. Subrectangle Queries  ================*/
 	
 	vector<vector<int>> rectangle_1476{{1, 2, 1}, {4, 3, 4}, {3, 2, 1}, {1, 1, 1}};
