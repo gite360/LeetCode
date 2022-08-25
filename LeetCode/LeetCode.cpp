@@ -24,7 +24,31 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 
+	/*====================     Merge Sorted Array  220825 12:09  =====================================*/
+	vector<int> nums1_220825;
+	int m_220825;
+	vector<int> nums2_220825;
+	int n_220825;
+
+	nums1_220825 = { 1,2,3 };
+	nums2_220825 = { 2,5,6 };
+
+	nums1_220825 = {};
+	nums2_220825 = { 1 };
+
+	m_220825 = nums1_220825.size();
+	n_220825 = nums2_220825.size();
+	solution.merge_220825(nums1_220825, m_220825, nums2_220825, n_220825);
+
+	/*================     Find Numbers with Even Number of Digits 220825 11:14      =================*/
+	vector<int> nums_findNumbers;
+
+	nums_findNumbers = { 12,345,2,6,7896 };
+
+	solution.findNumbers(nums_findNumbers);
+
 	/*==== 3. Longest Substring Without Repeating Characters ======*/
+		assert(0);
 	string s_3 = "wobgrovw";
 	s_3 = "dvdf";
 	s_3 = "abcabcbb";

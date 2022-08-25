@@ -4329,6 +4329,75 @@ public:
 		return s;
 	}
 	/*================================================================================================*/
+
+	/*================     Find Numbers with Even Number of Digits 220825 11:14      =================*/
+	int findNumbers(vector<int>& nums) {
+		int res = 0;
+
+		for (auto& au : nums) {
+			res += (int)log10(au) & 1;
+		}
+
+		return res;
+	}
+	/*================================================================================================*/
+
+	/*=====================     Squares of a Sorted Array 220825 11:30      ==========================*/
+	vector<int> sortedSquares(vector<int>& nums) {
+		vector<int> res(nums.size());
+		int l = 0, r = nums.size() - 1;
+		for (int k = nums.size() - 1; k >= 0; k--) {
+			if (abs(nums[r]) > abs(nums[l])) res[k] = nums[r] * nums[r--];
+			else res[k] = nums[l] * nums[l++];
+		}
+		return res;
+	}
+	/*================================================================================================*/
+
+	/*============================     Duplicate Zeros 220825 11:30      =============================*/
+	void duplicateZeros(vector<int>& arr) {
+		vector<int> res;
+		int n = arr.size();
+		for (auto& au : arr) {
+			if (res.size() > n) {
+				break;
+			}
+			if (au) {
+				res.emplace_back(au);
+			}
+			else {
+				res.emplace_back(0);
+				res.emplace_back(0);
+			}
+		}
+		while (res.size() > n) {
+			res.pop_back();
+		}
+		arr.swap(res);
+	}
+	/*================================================================================================*/
+
+	/*====================     Merge Sorted Array  220825 12:09  =====================================*/
+	void merge_220825(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+
+		for (int i = 0; i < n; i++) {
+			nums1.emplace_back(0);
+		}
+
+		int en = m + n;
+		int i = m - 1;
+		int j = n - 1;
+
+		for (int en = m + n - 1; en >= 0 &&  j >= 0; en--) {
+			if (i>=0 && nums1[i] >= nums2[j]) {
+				nums1[en] = nums1[i--];
+			}
+			else {
+				nums1[en] = nums2[j--];
+			}
+		}
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
