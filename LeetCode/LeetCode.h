@@ -5044,6 +5044,7 @@ Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode* l1, Solution::Li
 }
 
 //190107
+/*====================     Remove Duplicates from Sorted Array  220826 10:46  =====================================*/
 int Solution::removeDuplicates(vector<int>& nums) {
 	//auto* first_ptr=nums
 	//auto count = 0;
@@ -5059,13 +5060,23 @@ int Solution::removeDuplicates(vector<int>& nums) {
 	//	}
 	//		
 	//}
-
 	//return nums.size()-count;
-	nums.erase(unique(nums.begin(), nums.end()), nums.end());
-	return nums.size();
+
+	//nums.erase(unique(nums.begin(), nums.end()), nums.end());
+	//return nums.size();
+
+	int n = nums.size();
+	int i = 0;
+
+	for (int j = 1; j < n; j++) 
+		if (nums[i] != nums[j])
+			nums[++i] = nums[j];
+		
+	return i+1;
 }
 
 //190108
+/*====================     Remove Element  220826 10:32  =====================================*/
 int Solution::removeElement(vector<int>& nums, int val) {
 	/*int length = nums.size();
 	int i = 0;
@@ -5075,9 +5086,21 @@ int Solution::removeElement(vector<int>& nums, int val) {
 
 	return length;*/
 
-	while (find(nums.begin(), nums.end(), val) != nums.end())
+	/*while (find(nums.begin(), nums.end(), val) != nums.end())
 		nums.erase(find(nums.begin(), nums.end(), val));
-	return nums.size();
+	return nums.size();*/
+
+	int n = nums.size();
+	int i = n - 1;
+	int j = n;
+
+	while (j-- > 0) {
+		if (nums[j] == val) {
+			swap(nums[j], nums[i--]);
+		}
+	}
+
+	return i+1;
 }
 
 //190114

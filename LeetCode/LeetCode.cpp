@@ -23,8 +23,23 @@ int main()
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
+	vector<int> nums;
+	int k;
+
+	/*====================     Remove Duplicates from Sorted Array  220826 10:46  =====================================*/
+	nums = { 0,0,1,1,1,2,2,3,3,4 };
+	//nums = { 1,1 };
+
+	solution.removeDuplicates(nums);
+
+	/*====================     Remove Element  220826 10:32  =====================================*/
+	assert(0);
+	nums = { 3,2,2,3 };
+	k = 3;
+	solution.removeElement(nums, k);
 
 	/*====================     Merge Sorted Array  220825 12:09  =====================================*/
+	assert(0);
 	vector<int> nums1_220825;
 	int m_220825;
 	vector<int> nums2_220825;
@@ -41,6 +56,7 @@ int main()
 	solution.merge_220825(nums1_220825, m_220825, nums2_220825, n_220825);
 
 	/*================     Find Numbers with Even Number of Digits 220825 11:14      =================*/
+	assert(0);
 	vector<int> nums_findNumbers;
 
 	nums_findNumbers = { 12,345,2,6,7896 };
@@ -48,7 +64,7 @@ int main()
 	solution.findNumbers(nums_findNumbers);
 
 	/*==== 3. Longest Substring Without Repeating Characters ======*/
-		assert(0);
+	assert(0);
 	string s_3 = "wobgrovw";
 	s_3 = "dvdf";
 	s_3 = "abcabcbb";
@@ -943,8 +959,8 @@ int main()
 	solution.wordBreak(s_139, wordDict);
 	assert(0);
 	/*=================================*/
-	string s_sub = "baaabcb"; 
-	int k = 3;
+	string s_sub = "baaabcb";
+	k = 3;
 	int rrrrr;
 	int sssss = solution.longestSubstring(s_sub,k, rrrrr);
 	cout << rrrrr << endl;
@@ -1040,7 +1056,7 @@ int main()
 
 	assert(0);
 
-	vector<int> nums = { 1,1,2 };
+	
 	int target = 0;
 	bool modified = false;
 	string s = "()";
