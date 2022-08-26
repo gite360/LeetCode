@@ -5046,21 +5046,6 @@ Solution::ListNode* Solution::mergeTwoLists(Solution::ListNode* l1, Solution::Li
 //190107
 /*====================     Remove Duplicates from Sorted Array  220826 10:46  =====================================*/
 int Solution::removeDuplicates(vector<int>& nums) {
-	//auto* first_ptr=nums
-	//auto count = 0;
-
-	//if (nums.empty()) return count;
-	//for (int i = 1; i < nums.size();i++) {
-	//	if (nums[i] == nums[i-1]){
-	//		count++;
-	//	}
-	//	else{
-	//		nums[i-count]=nums[i];
-	//		//++it;
-	//	}
-	//		
-	//}
-	//return nums.size()-count;
 
 	//nums.erase(unique(nums.begin(), nums.end()), nums.end());
 	//return nums.size();
