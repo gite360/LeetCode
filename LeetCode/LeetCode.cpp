@@ -24,9 +24,25 @@ int main()
 	vector<int> preorder;
 	vector<int> postorder;
 	vector<int> nums;
+	vector<int> arr;
 	int k;
 
+	/*======================      Valid Mountain Array  220827 18:22      ============================*/
+	arr = { 0,3,2,1 };
+	arr = { 3,5,5};
+	//arr = { 2,0,2 };
+
+	solution.validMountainArray(arr);
+
+	/*====================  Check If N and Its Double Exist  220827 17:22  ===========================*/
+	arr = { 10,2,5,3 };
+	arr = { -16, -13, 8};
+	arr = {-10,12,-20,-8,15};
+
+	solution.checkIfExist(arr);
+
 	/*====================     Remove Duplicates from Sorted Array  220826 10:46  =====================================*/
+	assert(0);
 	nums = { 0,0,1,1,1,2,2,3,3,4 };
 	//nums = { 1,1 };
 
