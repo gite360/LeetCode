@@ -4443,6 +4443,57 @@ public:
 
 	}
 	/*================================================================================================*/
+
+	/*============ Replace Elements with Greatest Element on Right Side 220828 14:04 =================*/
+	vector<int> replaceElements(vector<int>& arr) {
+		int m =-1;
+		int n = arr.size() - 1;
+
+		if (!n) return vector<int>{-1};
+
+		for (int i = n; i >= 0; i--) {
+			m = max(m, exchange(arr[i], m));
+		}
+
+		return arr;
+	}
+	/*================================================================================================*/
+
+	/*==================================== Height Checker 220828 14:41 ===============================*/
+	int heightChecker(vector<int>& heights) {
+		int res = 0;
+		int n = heights.size();
+		vector<int> v(heights.begin(), heights.end());
+		sort(v.begin(), v.end());
+		
+		for (int i = 0; i < n; i++) {
+			if (heights[i] != v[i]) {
+				res++;
+			}
+		}
+		
+		return res;
+	}
+	/*================================================================================================*/
+
+	/*======================   Find All Numbers Disappeared in an Array 220828 14:41 =================*/
+	vector<int> findDisappearedNumbers(vector<int>& nums) {
+		vector<int> res;
+		for (auto& au : nums) {
+			if (nums[abs(au) - 1] > 0 ) {
+				nums[abs(au) - 1] *= -1;
+			}
+		}
+
+		for (int i = 0; i < nums.size(); i++) {
+			if (nums[i]> 0) {
+				res.emplace_back(i + 1);
+			}
+		}
+
+		return res;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

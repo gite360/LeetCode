@@ -27,7 +27,12 @@ int main()
 	vector<int> arr;
 	int k;
 
+	/*======================   Find All Numbers Disappeared in an Array 220828 14:41 =================*/
+	nums = { 4,3,2,7,8,2,3,1 };
+	solution.findDisappearedNumbers(nums);
+
 	/*======================      Valid Mountain Array  220827 18:22      ============================*/
+	assert(0);
 	arr = { 0,3,2,1 };
 	arr = { 3,5,5};
 	//arr = { 2,0,2 };
@@ -35,6 +40,7 @@ int main()
 	solution.validMountainArray(arr);
 
 	/*====================  Check If N and Its Double Exist  220827 17:22  ===========================*/
+	assert(0);
 	arr = { 10,2,5,3 };
 	arr = { -16, -13, 8};
 	arr = {-10,12,-20,-8,15};
