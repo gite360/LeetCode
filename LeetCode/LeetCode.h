@@ -100,6 +100,7 @@ public:
 	bool isPowerOfThree(int n);
 	//220225
 	int strStr(string haystack, string needle);
+	vector<int> find_KMP(const string& const needle);
 	//220412
 	string countAndSay(int n);
 	string count_and_say(int i, int& n, string temp);
@@ -4494,6 +4495,94 @@ public:
 		return res;
 	}
 	/*================================================================================================*/
+
+	/*======================       498. Diagonal Traverse 220830 11:22     ===========================*/
+	vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
+		int n = mat.size();
+		int m = mat[0].size();
+		vector<int> res;
+
+		int r = 0;
+		int c = 0;
+
+		for (int i = 0; i < n + m; i++) {
+			r = i;
+			c = 0;
+			vector<int> v;
+
+			if (i >= n) {
+				r = n - 1;
+				c = i - n + 1;
+			}
+
+			while (r >= 0 && c < m)
+				v.emplace_back(mat[r--][c++]);
+
+			if (i & 1) 
+				res.insert(res.end(), v.rbegin(), v.rend());
+			else 
+				res.insert(res.end(),v.begin(),v.end());
+		}
+
+		return res;
+	}
+	/*================================================================================================*/
+
+	/*===========================       Add Binary 220830 14:53       ================================*/
+	string addBinary(string a, string b) {
+		bool one = false;
+
+		int i = a.size();
+		int j = b.size();
+		if (i < j) {
+			swap(a, b);
+			swap(i, j);
+		}
+
+		while (--i >= 0 && --j >= 0) {
+			if (a[i] == '1' && a[i] == b[j]) {
+				a[i] = '0';
+				if (one) 
+					a[i] = '1';
+				one = true;
+			}
+			else if (a[i] == '0' && a[i] == b[j]) {
+				if (one) 
+					a[i] = '1';
+				one = false;
+			}
+			else if (a[i] == '0') {
+				a[i] = '1';
+				if (one) 
+					a[i] = '0';
+			}
+			else if (a[i] == '1') {
+				if (one) 
+					a[i] = '0';
+			}
+		}
+
+		while (i >= 0) {
+			if (a[i] == '1') {
+				if (one) 
+					a[i] = '0';				
+			}
+			else if (a[i] == '0') {
+				if (one) 
+					a[i] = '1';
+				one = false;
+				break;
+			}
+			i--;
+		}
+
+		if (i < 0 && one) {
+			a.insert(a.begin(), '1');
+		}
+
+		return a;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -5466,6 +5555,7 @@ bool Solution::isPowerOfThree(int n) {
 	else return false;
 }
 
+/*======================      Implement strStr() 220830 16:14      ============================*/
 //220225
 int Solution::strStr(string haystack, string needle) {
 
@@ -5507,26 +5597,63 @@ int Solution::strStr(string haystack, string needle) {
 		}
 	}
 
-	return -1;*/
+	return -1;
 
-	return 0;
+	return 0;*/
+
+	int n = haystack.size();
+	int	m = needle.size();
+
+	if (!m) return 0;
+
+	vector<int> lps = find_KMP(needle);
+
+	for (int i = 0, j = 0; i < n;) {
+
+		if (haystack[i] == needle[j]) {
+			i++;
+			j++;
+		}
+
+		if (j == m) {
+			return i - j;
+		}
+
+		if (i < n && haystack[i] != needle[j]) {
+			if (j) {
+				j = lps[j - 1];
+			}
+			else {
+				i++;
+			}
+		}
+	}
+	return -1;
 }
 
-//vector<int> Solution::find_KMP(const string& const needle) {
-	//vector<int> lsp;
-	//int len = 0;
-	//int i = 0;
-	/*while (i < needle.size()) {
-		if (needle[i] == needle[len]) {
-			vector.empalce_back(i);
+vector<int> Solution::find_KMP(const string& const needle) {
+	vector<int> lsp{0};
+	int n = needle.size();
+
+	int i = 1;
+	int longest_prefix = 0;
+	
+	while (i < n) {
+		if (needle[i] == needle[longest_prefix]) {
+			lsp.emplace_back(++longest_prefix);
 			i++;
-			len++;
 		}
-		else if (len > 0) {
-			len = needle[len--];
+		else if (longest_prefix > 0) {
+			longest_prefix = lsp[longest_prefix - 1];
 		}
-	}*/
-	//}
+		else {
+			lsp.emplace_back(0);
+			i++;
+		}
+	}
+
+	return lsp;
+}
 
 string Solution::countAndSay(int n) {
 	string temp = "1";

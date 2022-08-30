@@ -25,9 +25,38 @@ int main()
 	vector<int> postorder;
 	vector<int> nums;
 	vector<int> arr;
+	vector<vector<int>> mat;
 	int k;
 
+	string haystack;
+	string needle;
+
+	/*======================      Implement strStr() 220830 16:14      ============================*/
+
+	haystack = "AABAACAADAABAABA";
+	needle = "BAAB";
+
+	haystack = "ABABABCABABABCABABABC";
+	needle = "ABABAC";
+
+	solution.strStr(haystack, needle);
+
+	/*==============================      Add Binary 220830 15:19     ================================*/
+	string addBinary_a;
+	string addBinary_b;
+
+	addBinary_a = "1010";
+	addBinary_b = "1011";
+
+	solution.addBinary(addBinary_a, addBinary_b);
+
+	/*==============================   498. Diagonal Traverse 220830 11:22   =========================*/
+	assert(0);
+	mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	solution.findDiagonalOrder(mat);
+
 	/*======================   Find All Numbers Disappeared in an Array 220828 14:41 =================*/
+	assert(0);
 	nums = { 4,3,2,7,8,2,3,1 };
 	solution.findDisappearedNumbers(nums);
 
@@ -1087,8 +1116,7 @@ int main()
 	vector<string> strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;
 
-	string haystack = "a";
-	string needle = "a";
+	
 	solution.strStr(haystack, needle);
 	assert(0);
 
