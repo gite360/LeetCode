@@ -30,6 +30,12 @@ int main()
 
 	string haystack;
 	string needle;
+	vector<string> strs;
+
+	/*==================     220831 12:06 Longest Common Prefix     ================*/
+	strs = { "flower", "flow", "flight" };
+
+	solution.longestCommonPrefix(strs);
 
 	/*======================      Implement strStr() 220830 16:14      ============================*/
 
@@ -1113,7 +1119,7 @@ int main()
 	string s = "()";
 	//solution.twoSum(nums, target);
 
-	vector<string> strs = { "flower","flow","flight" };
+	strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;
 
 	

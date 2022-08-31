@@ -52,8 +52,37 @@ public:
 	bool isPalindrome(int x);
 	//190103
 	int romanToInt(string s);
+
+	/*==================     220831 12:06 Longest Common Prefix     ================*/
+	string longestCommonPrefix(vector<string>& strs) {
+		string res = divide_and_conquer(strs, 0, strs.size() - 1);
+		return res;
+	}
+
+	string divide_and_conquer(vector<string>& strs, int i, int j) {
+		if (i == j) {
+			return strs[i];
+		}
+		int m = (i + j) / 2;
+		string l = divide_and_conquer(strs, i, m);
+		string r = divide_and_conquer(strs, m+1, j);
+		string s;
+		int k = 0;
+		
+		while (k < l.size()&& k < r.size()) {
+			if (l[k] == r[k]) {
+				s += l[k++];
+				continue;
+			}
+			break;
+		}
+
+		return s;
+	}
+
 	//190104
-	string longestCommonPrefix(vector<string>& strs);
+	string longestCommonPrefix_0(vector<string>& strs);
+
 	//190105
 	bool isValid(string s);
 	//190106
@@ -5177,7 +5206,7 @@ int Solution::romanToInt(string s) {
 	return sum;
 }
 
-string Solution::longestCommonPrefix(vector<string>& strs) {
+string Solution::longestCommonPrefix_0(vector<string>& strs) {
 	string prefix = "";
 	for (int idx = 0; strs.size() > 0; prefix += strs[0][idx], idx++)
 		for (int i = 0; i < strs.size(); i++)
