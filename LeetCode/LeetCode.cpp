@@ -27,10 +27,17 @@ int main()
 	vector<int> arr;
 	vector<vector<int>> mat;
 	int k;
-
+	int target;
 	string haystack;
 	string needle;
 	vector<string> strs;
+
+	/*==================     220901 11:10 Two Sum II - Input array is sorted     ================*/
+	assert(0);
+	nums = { 2,7,11,15 };
+	target = 9;
+
+	solution.twoSum(nums, target);
 
 	/*==================     220831 12:06 Longest Common Prefix     ================*/
 	strs = { "flower", "flow", "flight" };
@@ -1114,10 +1121,10 @@ int main()
 	assert(0);
 
 	
-	int target = 0;
+	target = 0;
 	bool modified = false;
 	string s = "()";
-	//solution.twoSum(nums, target);
+	
 
 	strs = { "flower","flow","flight" };
 	cout << strs.size() << " "<< strs[1].size() << endl;

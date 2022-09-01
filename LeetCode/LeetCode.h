@@ -15,8 +15,6 @@
 using namespace std;
 
 
-
-
 class Solution {
 public:
 
@@ -45,7 +43,35 @@ public:
 	T* build_b_tree_level_order(vector<T>& node_vector, T* root);
 
 	//181230
-	vector<int> twoSum(vector<int>& nums, int target);
+	/*= ================ = 220831 12:06 Longest Common Prefix     ================*/
+	vector<int> twoSum_0(vector<int>& nums, int target);
+
+	vector<int> twoSum(vector<int>& numbers, int target) {
+		vector<int> dp;
+		int n = numbers.size() - 1;
+
+		while (numbers[0] + numbers[n] > target) {
+			n--;
+		}
+
+		int i = 0;
+		int j = n;
+
+		while (i < j) {
+			if (numbers[i] + numbers[j] == target) {
+				return vector<int>{i + 1, j + 1};;
+			}
+			else if (numbers[i] + numbers[j] > target) {
+				j--;
+			}
+			else {
+				i++;
+			}
+		}
+
+		return vector<int>{i + 1, j + 1};
+	}
+	/*======================================================================*/
 	//181231
 	int reverse(int x);
 	//190102
@@ -79,6 +105,7 @@ public:
 
 		return s;
 	}
+	/*======================================================================*/
 
 	//190104
 	string longestCommonPrefix_0(vector<string>& strs);
@@ -5156,7 +5183,7 @@ T* Solution::build_b_tree_level_order(vector<T>& node_vector, T* root) {
 }
 
 /*====================     Two Sum      =======================*/
-vector<int> Solution::twoSum(vector<int>& nums, int target) {
+vector<int> Solution::twoSum_0(vector<int>& nums, int target) {
 	map <int, pair<int, int>> mp;
 	int i;
 	vector <int> v;
