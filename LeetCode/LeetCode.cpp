@@ -32,6 +32,11 @@ int main()
 	string needle;
 	vector<string> strs;
 
+	/*===========================    Minimum Size Subarray Sum 220902 12:48   ========================*/
+	target = 7;
+	nums = { 2,3,1,2,4,3 };
+	solution.minSubArrayLen(target, nums);
+
 	/*==================     220901 11:10 Two Sum II - Input array is sorted     ================*/
 	assert(0);
 	nums = { 2,7,11,15 };
