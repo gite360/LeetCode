@@ -30,7 +30,12 @@ int main()
 	int target;
 	string haystack;
 	string needle;
+	string s;
 	vector<string> strs;
+
+	/*===========================    Reverse Words in a String 220903 19:23   ========================*/
+	s = "  hello world  ";
+	solution.reverseWords(s);
 
 	/*===========================    Minimum Size Subarray Sum 220902 12:48   ========================*/
 	target = 7;
@@ -1128,7 +1133,7 @@ int main()
 	
 	target = 0;
 	bool modified = false;
-	string s = "()";
+	s = "()";
 	
 
 	strs = { "flower","flow","flight" };

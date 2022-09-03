@@ -4664,6 +4664,40 @@ public:
 		return dp;
 	}
 	/*================================================================================================*/
+
+	/*===========================    Reverse Words in a String 220903 19:23   ========================*/
+	string reverseWords(string s) {
+		vector<string> str;
+		string temp;
+
+		for (auto& au : s) {
+			if (au != ' ') {
+				temp += au;
+			}
+			else {
+				if (!temp.empty()) {
+					str.emplace_back(temp);
+					temp.clear();
+				}
+			}
+		}
+
+		if (!temp.empty()) {
+			str.emplace_back(temp);
+			temp.clear();
+		}
+
+		std::reverse(str.begin(), str.end());
+
+		for (auto& au : str) {
+			temp += au + ' ';
+		}
+
+		temp.pop_back();
+
+		return temp;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
