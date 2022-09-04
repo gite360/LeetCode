@@ -4698,6 +4698,34 @@ public:
 		return temp;
 	}
 	/*================================================================================================*/
+
+	/*=======================    Reverse Words in a String III 220904 13:23   ========================*/
+	string reverseWords_3(string s) {
+		string res;
+		vector<char> word;
+
+		for (auto& au : s) {
+			word.emplace_back(au);
+			if (au == ' ') {
+				for_each(word.rbegin(), word.rend(), [&res](char& a) {
+					res += a;
+					});
+					word.clear();
+			}
+		}
+
+		if (!res.empty()) {
+			res.erase(res.begin());
+			res += ' ';
+		}
+		
+		for_each(word.rbegin(), word.rend(), [&res](char& a) {
+			res += a;
+			});
+
+		return res;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
