@@ -26,12 +26,20 @@ int main()
 	vector<int> nums;
 	vector<int> arr;
 	vector<vector<int>> mat;
+	vector<vector<int>> queries;
 	int k;
 	int target;
 	string haystack;
 	string needle;
 	string s;
 	vector<string> strs;
+	vector<string> nums_str;
+
+	/*===================    Query Kth Smallest Trimmed Number 220907 17:52   ========================*/
+	nums_str = { "102", "473", "251", "814" };
+	queries = { {1, 1}, {2, 3}, {4, 2}, {1, 2}};
+
+	solution.smallestTrimmedNumbers(nums_str, queries);
 
 	/*=======================    Reverse Words in a String III 220904 13:23   ========================*/
 	s = "Let's take LeetCode contest";

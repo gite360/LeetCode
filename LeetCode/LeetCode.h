@@ -4726,6 +4726,36 @@ public:
 		return res;
 	}
 	/*================================================================================================*/
+
+	/*===================    Query Kth Smallest Trimmed Number 220907 17:52   ========================*/
+	vector<int> smallestTrimmedNumbers(vector<string>& nums, vector<vector<int>>& queries) {
+		vector<int> res;
+		int n = nums.size();
+		int m = nums[0].size();
+
+		for (auto& au : queries) {
+			int k = au[0];
+			int trim = au[1];
+			multimap<string, int> map_sort;
+			int od = 0;
+			for (auto& a : nums) {
+				int index = m - trim;
+				map_sort.emplace(a.substr(index, trim), od);
+				od++;
+			}
+			int min_count = 1;
+			for (auto& aaa : map_sort) {
+				if (min_count == k) {
+					res.emplace_back(aaa.second);
+					break;
+				}
+				min_count++;
+			}
+		}
+
+		return res;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
