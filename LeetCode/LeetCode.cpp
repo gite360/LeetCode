@@ -35,6 +35,11 @@ int main()
 	vector<string> strs;
 	vector<string> nums_str;
 
+	/*=======================        Binary Search 220909 13:14         ==============================*/
+	nums = {2,5};
+	target = 5;
+	solution.search_220909(nums, target);
+
 	/*===================    Query Kth Smallest Trimmed Number 220907 17:52   ========================*/
 	nums_str = { "102", "473", "251", "814" };
 	queries = { {1, 1}, {2, 3}, {4, 2}, {1, 2}};
