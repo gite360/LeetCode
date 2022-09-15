@@ -29,11 +29,18 @@ int main()
 	vector<vector<int>> queries;
 	int k;
 	int target;
+	int num;
 	string haystack;
 	string needle;
 	string s;
 	vector<string> strs;
 	vector<string> nums_str;
+
+	/*=======================        Valid Perfect Square 220915 10:34         ==============================*/
+	num = 16;
+	num = 14;
+	num = 5;
+	solution.isPerfectSquare(num);
 
 	/*=======================        Binary Search 220909 13:14         ==============================*/
 	nums = {2,5};
