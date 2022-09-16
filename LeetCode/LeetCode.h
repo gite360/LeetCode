@@ -4810,6 +4810,29 @@ public:
 		return false;
 	}
 	/*================================================================================================*/
+
+	/*====================  Find Smallest Letter Greater Than Target 220916 14:47  ===================*/
+	char nextGreatestLetter(vector<char>& letters, char target) {
+		if (target == 'z') return letters[0];
+		int l = 1;
+		int r = letters.size() - 1;
+		int m = 0;
+
+		while (l <= r) {
+			m = l + (r - l) / 2;
+
+			if (letters[m - 1] <= target && target < letters[m]) {
+				return letters[m];
+			}
+			else if (letters[m - 1] > target) {
+				r = m-1;
+			}
+			else
+				l = m + 1;
+		}
+		return letters[m-1];
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

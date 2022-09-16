@@ -20,6 +20,10 @@ int main()
 
 	Solution solution;
 	Node_Graph node_graph;
+
+	int k;
+	int target;
+	int num;
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
@@ -27,14 +31,21 @@ int main()
 	vector<int> arr;
 	vector<vector<int>> mat;
 	vector<vector<int>> queries;
-	int k;
-	int target;
-	int num;
+	
+
+	char target_char;
+	vector<char> letters_char_v;
 	string haystack;
 	string needle;
 	string s;
 	vector<string> strs;
 	vector<string> nums_str;
+
+	/*====================  Find Smallest Letter Greater Than Target 220916 14:47  ===================*/
+	letters_char_v = { 'c', 'f', 'j' };
+	target_char = 'a';
+	target_char = 'c';
+	solution.nextGreatestLetter(letters_char_v, target_char);
 
 	/*=======================        Valid Perfect Square 220915 10:34         ==============================*/
 	num = 16;
