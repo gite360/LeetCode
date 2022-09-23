@@ -5306,7 +5306,7 @@ public:
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&        Design HashSet 220817 09:53       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&        Design MyHashMap 220817 09:53       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 class MyHashMap {
 public:
 
@@ -5329,6 +5329,38 @@ public:
 
 	void remove(int key) {
 		v[key] = -1;
+	}
+};
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+/*&&&&&&&&&&&&&&&&&&&&&        Binary Search Tree Iterator 220923 11:19       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class BSTIterator {
+public:
+
+	vector<Solution::TreeNode*> inoder_trav;
+	stack<Solution::TreeNode*> s;
+	int od = 0;
+
+	void inorder_traverse(Solution::TreeNode* root, stack<Solution::TreeNode*>& s) {
+		while (root) {
+			s.emplace(root);
+			root->left;
+		}
+	}
+
+	BSTIterator(Solution::TreeNode* root) {
+		inorder_traverse(root,s);
+	}
+
+	int next() {
+		Solution::TreeNode* t = s.top();
+		s.pop();
+		inorder_traverse(t->right, s);
+		return t->val;
+	}
+
+	bool hasNext() {
+		return !s.empty();
 	}
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/

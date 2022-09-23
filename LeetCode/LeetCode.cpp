@@ -41,7 +41,18 @@ int main()
 	vector<string> strs;
 	vector<string> nums_str;
 
+	Solution::TreeNode* root = nullptr;
+	vector<Solution::TreeNode> node_vector;
+
 	/*====================  Find Smallest Letter Greater Than Target 220916 14:47  ===================*/
+	node_vector = { 7, 3, 15, INT_MIN, INT_MIN, 9, 20};
+	root = &node_vector[0];
+	solution.build_b_tree_level_order(node_vector, root);
+
+	BSTIterator* obj_BSTIterator = new BSTIterator(root);
+
+	/*====================  Find Smallest Letter Greater Than Target 220916 14:47  ===================*/
+	assert(0);
 	letters_char_v = { 'c', 'f', 'j' };
 	target_char = 'a';
 	target_char = 'c';
@@ -419,7 +430,7 @@ int main()
 	solution.findTargetSumWays(nums_target_sum_vector, target_target_sum);
 
 	/*======== Graph Node 220721 10:05 =======*/
-		assert(0);
+	assert(0);
 	vector<Node_Graph> node_graph_vecor;
 	vector<vector<int>> od_node_graph_vector;
 
