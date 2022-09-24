@@ -4833,6 +4833,24 @@ public:
 		return letters[m-1];
 	}
 	/*================================================================================================*/
+
+	/*====================     Insert into a Binary Search Tree 220924 12:02     =====================*/
+	TreeNode* insertIntoBST(TreeNode* root, int val) {
+		return insert_BST_recursive(root, val);
+	}
+
+	TreeNode* insert_BST_recursive(TreeNode* root, int& val) {
+
+		if (!root) return new TreeNode(val);
+		
+		if (val < root->val)
+			root->left = insert_BST_recursive(root->left, val);
+		else 
+			root->right = insert_BST_recursive(root->right, val);
+		
+		return root;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

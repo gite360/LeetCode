@@ -22,8 +22,10 @@ int main()
 	Node_Graph node_graph;
 
 	int k;
-	int target;
+	int val;
 	int num;
+	int target;
+
 	vector<int> inorder;
 	vector<int> preorder;
 	vector<int> postorder;
@@ -43,6 +45,10 @@ int main()
 
 	Solution::TreeNode* root = nullptr;
 	vector<Solution::TreeNode> node_vector;
+
+	/*====================     Insert into a Binary Search Tree 220924 12:02     =====================*/
+	val = 5;
+	solution.insertIntoBST(root, val);
 
 	/*====================  Find Smallest Letter Greater Than Target 220916 14:47  ===================*/
 	node_vector = { 7, 3, 15, INT_MIN, INT_MIN, 9, 20};
