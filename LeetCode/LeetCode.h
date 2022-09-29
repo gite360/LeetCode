@@ -4851,6 +4851,30 @@ public:
 		return root;
 	}
 	/*================================================================================================*/
+
+	/*=========================     Balanced Binary Tree 220929 11:53     ============================*/
+	bool isBalanced(TreeNode* root) {
+		bool if_height = true;
+		is_height_BST(root, if_height);
+		return if_height;
+	}
+
+	int is_height_BST(TreeNode* root, bool& if_height) {
+		if (!root) return 0;
+
+		if (if_height) {
+			int left_height = is_height_BST(root->left, if_height);
+			int right_height = is_height_BST(root->right, if_height);
+
+			if (abs(left_height - right_height) > 1) 
+				if_height = false;
+
+			return max(left_height, right_height) + 1;
+		}
+
+		return -1;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 

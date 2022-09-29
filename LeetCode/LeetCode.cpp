@@ -46,6 +46,13 @@ int main()
 	Solution::TreeNode* root = nullptr;
 	vector<Solution::TreeNode> node_vector;
 
+	/*=========================     Balanced Binary Tree 220929 11:53     ============================*/
+	node_vector = { 1, 2, 2, 3, 3, INT_MIN, INT_MIN, 4, 4 };
+	root = &node_vector[0];
+	solution.build_b_tree_level_order(node_vector, root);
+
+	solution.isBalanced(root);
+
 	/*====================     Insert into a Binary Search Tree 220924 12:02     =====================*/
 	val = 5;
 	solution.insertIntoBST(root, val);
