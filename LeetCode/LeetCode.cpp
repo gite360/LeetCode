@@ -46,6 +46,11 @@ int main()
 	Solution::TreeNode* root = nullptr;
 	vector<Solution::TreeNode> node_vector;
 
+	/*=====================     N-ary Tree Preorder Traversal 2201001 20:15     ======================*/
+	node_vector = { 1,INT_MIN,3,2,4,INT_MIN,5,6 };
+	root = &node_vector[0];
+	solution.preorder(root);
+
 	/*=========================     Balanced Binary Tree 220929 11:53     ============================*/
 	node_vector = { 1, 2, 2, 3, 3, INT_MIN, INT_MIN, 4, 4 };
 	root = &node_vector[0];

@@ -32,10 +32,14 @@ public:
 		TreeNode* left;
 		TreeNode* right;
 		TreeNode* next;
+		vector<TreeNode*> children;
 		TreeNode() : val(0), left(nullptr), right(nullptr), next(nullptr) {}
 		TreeNode(int x) : val(x), left(nullptr), right(nullptr), next(nullptr) {}
 		TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
-
+		TreeNode(int _val, vector<TreeNode*> _children) {
+			val = _val;
+			children = _children;
+		}
 	};
 
 	//220623 build a binary search tree (BST) from level-first order.
@@ -4873,6 +4877,24 @@ public:
 		}
 
 		return -1;
+	}
+	/*================================================================================================*/
+
+	/*=====================     N-ary Tree Preorder Traversal 2201001 20:15     ======================*/
+	vector<int> preorder(TreeNode* root) {
+		vector<int> preorder_v;
+
+		preorder_Nary(root, preorder_v);
+
+		return preorder_v;
+	}
+
+	void preorder_Nary(TreeNode* root, vector<int>& preorder_v) {
+		if (!root) return;
+		preorder_v.emplace_back(root->val);
+		for (auto& au : root->children) {
+			preorder_Nary(au, preorder_v);
+		}
 	}
 	/*================================================================================================*/
 };
