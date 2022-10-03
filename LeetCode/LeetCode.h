@@ -4897,6 +4897,36 @@ public:
 		}
 	}
 	/*================================================================================================*/
+
+	/*==================     N-ary Tree Level Order Traversal 2201003 09:41     ======================*/
+	vector<vector<int>> levelOrder_Nary(TreeNode* root) {
+		
+		if (!root) return {};
+
+		vector<vector<int>> res;
+		queue<TreeNode*> q;
+		q.emplace(root);
+
+		while (!q.empty()) {
+
+			res.emplace_back();
+			
+			for (int i = q.size(); i >= 0; i--) {
+				TreeNode* c = q.front();
+
+				q.pop();
+
+				res.back().emplace_back(c->val);
+
+				for (TreeNode* au : c->children) {
+					q.emplace(au);
+				}
+			}
+		}
+
+		return res;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
