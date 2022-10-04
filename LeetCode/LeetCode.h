@@ -46,6 +46,10 @@ public:
 	template <typename T>
 	T* build_b_tree_level_order(vector<T>& node_vector, T* root);
 
+	//221004 build a Nary tree from level-first order.
+	template <typename T>
+	T* build_Nary_tree_level_order(vector<T>& node_vector, T* root);
+
 	//181230
 	/*= ================ = 220831 12:06 Longest Common Prefix     ================*/
 	vector<int> twoSum_0(vector<int>& nums, int target);
@@ -4927,6 +4931,21 @@ public:
 		return res;
 	}
 	/*================================================================================================*/
+
+	/*===================       Maximum Depth of N-ary Tree 2201004 13:27      =======================*/
+	int maxDepth(TreeNode* root) {
+
+		if (!root) return 0;
+
+		int h = 0;
+
+		for (auto& au : root->children) {
+			h = max(h, maxDepth(au));
+		}
+
+		return h + 1;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -5534,6 +5553,34 @@ T* Solution::build_b_tree_level_order(vector<T>& node_vector, T* root) {
 		if (i < n && node_vector[i].val != INT_MIN) {
 			temp_node->right = &node_vector[i];
 			q.emplace(temp_node->right);
+		}
+	}
+
+	return root;
+}
+
+template <typename T>
+T* Solution::build_Nary_tree_level_order(vector<T>& node_vector, T* root) {
+
+	root = &node_vector[0];
+
+	const int n = node_vector.size();
+
+	queue<TreeNode*> q;
+	q.emplace(&node_vector[0]);// root
+
+	int i = 1;
+	
+	while (i < n) {
+		if (node_vector[i].val == INT_MIN) {
+			Solution::TreeNode* temp_node = q.front();
+			q.pop();
+			i++;
+			while (i < n && node_vector[i].val != INT_MIN) {
+				temp_node->children.emplace_back(&node_vector[i]);
+				q.emplace(temp_node->children.back());
+				i++;
+			}
 		}
 	}
 

@@ -46,6 +46,13 @@ int main()
 	Solution::TreeNode* root = nullptr;
 	vector<Solution::TreeNode> node_vector;
 
+	/*===================       Maximum Depth of N-ary Tree 2201004 13:27      =======================*/
+	node_vector = { 1,INT_MIN,3,2,4,INT_MIN,5,6 };
+	solution.build_Nary_tree_level_order(node_vector, root);
+	root = &node_vector[0];
+	int test = solution.maxDepth(root);
+	cout << test;
+	assert(0);
 	/*=====================     N-ary Tree Preorder Traversal 2201001 20:15     ======================*/
 	node_vector = { 1,INT_MIN,3,2,4,INT_MIN,5,6 };
 	root = &node_vector[0];
