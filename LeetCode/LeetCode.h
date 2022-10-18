@@ -5478,7 +5478,6 @@ public:
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-
 /*&&&&&&&&&&&&&&&&&&&&&     Kth Largest Element in a Stream 220926 10:46    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 class KthLargest {
 public:
@@ -5516,6 +5515,34 @@ public:
 	}
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       MapSum 221016 10:46       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class MapSum {
+public:
+
+	map<string, int> m;
+
+	MapSum() {
+	}
+
+	void insert(string key, int val) {
+		m[key] = val;
+	}
+
+	int sum(string prefix) {
+		int sum_v = 0;
+		int n = prefix.size();
+
+		for (auto it = m.lower_bound(prefix); it != m.end() && it->first.substr(0, n) == prefix; it++) {
+			sum_v += it->second;
+		}
+
+		return sum_v;
+	}
+};
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+
 /**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList obj = new MyLinkedList();
