@@ -37,14 +37,21 @@ int main()
 
 	char target_char;
 	vector<char> letters_char_v;
+	string sentence;
 	string haystack;
 	string needle;
 	string s;
 	vector<string> strs;
 	vector<string> nums_str;
+	vector<string> dictionary;
 
 	Solution::TreeNode* root = nullptr;
 	vector<Solution::TreeNode> node_vector;
+
+	/*=======================       Replace Words 221018 11:46      ==================================*/
+	dictionary = { "cat","bat","rat" };
+	sentence = "the cattle was rattled by the battery";
+	solution.replaceWords(dictionary, sentence);
 
 	/*===================       Maximum Depth of N-ary Tree 2201004 13:27      =======================*/
 	node_vector = { 1,INT_MIN,3,2,4,INT_MIN,5,6 };

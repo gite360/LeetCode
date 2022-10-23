@@ -4946,6 +4946,38 @@ public:
 		return h + 1;
 	}
 	/*================================================================================================*/
+
+	/*=======================       Replace Words 221018 11:46      ==================================*/
+	string replaceWords(vector<string>& dictionary, string sentence) {
+		sort(dictionary.begin(), dictionary.end());
+		vector<string> sentence_v;
+		string res;
+		string temp;
+
+		for (auto&& au : sentence) {
+			if (au != ' ') {
+				temp += au;
+			}
+			else {
+				sentence_v.emplace_back(temp);
+				temp.clear();
+			}
+		}
+
+		sentence_v.emplace_back(temp);
+
+		for (auto&& au : dictionary) {
+			auto it = std::lower_bound(sentence_v.begin(), sentence_v.end(), au);
+			if (it != sentence_v.end()) {// && sentence_v[distance(sentence_v.begin(), it)].substr(0,au.size()) == au
+				sentence_v[distance(sentence_v.begin(), it)] = au;
+			}
+			
+		}
+
+		return res;
+
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
