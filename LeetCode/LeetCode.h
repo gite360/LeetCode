@@ -4976,7 +4976,7 @@ public:
 
 		//return res;
 
-		trie t;
+		Trie t;
 		string res;
 
 		for (auto s : dictionary){
@@ -5593,12 +5593,25 @@ public:
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
-/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       MapSum 221016 10:46       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-class trie {
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       Trie 221016 10:46       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class TrieNode {
+public:
+	bool is_word;
+
+	TrieNode* children[26];
+
+	TrieNode() {
+		is_word = false;
+		memset(children, NULL, sizeof(children));
+	}
+};
+
+
+class Trie {
 public:
 
 	bool isRoot = false;
-	trie* l[26] = {};
+	Trie* l[26] = {};
 
 	void insert(string& word, int ch, int sz) {
 
@@ -5607,7 +5620,7 @@ public:
 		if (!isRoot) { // stop at the shortest root
 
 			if (l[word[ch] - 'a'] == nullptr) {
-				l[word[ch] - 'a'] = new trie();
+				l[word[ch] - 'a'] = new Trie();
 			}
 
 			l[word[ch] - 'a']->insert(word, ch + 1, sz);
@@ -5627,6 +5640,50 @@ public:
 		}
 
 		return l[word[st + ch] - 'a']->root(word, st, ch+1, sz);
+	}
+};
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       WordDictionary 221025 11:46       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class WordDictionary {
+
+	TrieNode* root = new TrieNode();
+
+	WordDictionary() {}
+
+	void addWord(string word) {
+		TrieNode* node = root;
+
+		for (char c : word) {
+			if (!node->children[c - 'a']) {
+				node->children[c - 'a'] = new TrieNode();
+			}
+			node = node->children[c - 'a'];
+		}
+
+		node->is_word = true;
+	}
+
+	bool search(string word) {
+		return search(word.c_str(), root);
+	}
+
+	bool search(const char* word, TrieNode* node) {
+		for (int i = 0; word[i] && node; i++) {
+			if (word[i] != '.') {
+				node = node->children[word[i] - 'a'];
+			}
+			else {
+				TrieNode* temp_node = node;
+				for (int j = 0; j < 26; j++) {
+					node = temp_node->children[j];
+					if (search(word + i + 1, node)) {
+						return true;
+					}
+				}
+			}
+		}
+		return node && node->is_word;
 	}
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
