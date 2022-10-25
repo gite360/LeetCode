@@ -4949,31 +4949,51 @@ public:
 
 	/*=======================       Replace Words 221018 11:46      ==================================*/
 	string replaceWords(vector<string>& dictionary, string sentence) {
-		sort(dictionary.begin(), dictionary.end());
-		vector<string> sentence_v;
+		//sort(dictionary.begin(), dictionary.end());
+		//vector<string> sentence_v;
+		//string res;
+		//string temp;
+
+		//for (auto&& au : sentence) {
+		//	if (au != ' ') {
+		//		temp += au;
+		//	}
+		//	else {
+		//		sentence_v.emplace_back(temp);
+		//		temp.clear();
+		//	}
+		//}
+
+		//sentence_v.emplace_back(temp);
+
+		//for (auto&& au : dictionary) {
+		//	auto it = std::lower_bound(sentence_v.begin(), sentence_v.end(), au);
+		//	if (it != sentence_v.end()) {// && sentence_v[distance(sentence_v.begin(), it)].substr(0,au.size()) == au
+		//		sentence_v[distance(sentence_v.begin(), it)] = au;
+		//	}
+		//	
+		//}
+
+		//return res;
+
+		trie t;
 		string res;
-		string temp;
 
-		for (auto&& au : sentence) {
-			if (au != ' ') {
-				temp += au;
-			}
-			else {
-				sentence_v.emplace_back(temp);
-				temp.clear();
-			}
+		for (auto s : dictionary){
+			t.insert(s, 0, s.size());
 		}
 
-		sentence_v.emplace_back(temp);
-
-		for (auto&& au : dictionary) {
-			auto it = std::lower_bound(sentence_v.begin(), sentence_v.end(), au);
-			if (it != sentence_v.end()) {// && sentence_v[distance(sentence_v.begin(), it)].substr(0,au.size()) == au
-				sentence_v[distance(sentence_v.begin(), it)] = au;
+		for (int i = 0; i < sentence.size(); ) {
+			if (sentence[i] == ' ') {
+				res += sentence[i++];
 			}
-			
-		}
+				
+			auto chars = t.root(sentence, i, 0, sentence.size());
 
+			res += sentence.substr(i, chars);
+
+			for (i += chars; i < sentence.size() && sentence[i] != ' '; ++i);
+		}
 		return res;
 
 	}
@@ -5154,7 +5174,6 @@ public:
 
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-
 
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&     1476. Class Subrectangle Queries    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 class SubrectangleQueries {
@@ -5574,6 +5593,43 @@ public:
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&       MapSum 221016 10:46       &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+class trie {
+public:
+
+	bool isRoot = false;
+	trie* l[26] = {};
+
+	void insert(string& word, int ch, int sz) {
+
+		isRoot |= ch == sz;
+
+		if (!isRoot) { // stop at the shortest root
+
+			if (l[word[ch] - 'a'] == nullptr) {
+				l[word[ch] - 'a'] = new trie();
+			}
+
+			l[word[ch] - 'a']->insert(word, ch + 1, sz);
+		}
+	}
+
+	int root(string& word, int st, int ch, int sz) {
+		if (st + ch == sz || word[st+ch] == ' ' || this->isRoot) {
+			return ch;
+		}
+
+		if (l[word[st + ch] - 'a'] == nullptr) {// root was not found 
+			while (st+ ch < sz && word[st+ch] != ' ') {
+				++ch;
+			}
+			return ch;
+		}
+
+		return l[word[st + ch] - 'a']->root(word, st, ch+1, sz);
+	}
+};
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
