@@ -5013,6 +5013,68 @@ public:
 		return ans;
 	}
 	/*================================================================================================*/
+
+	/*=======================         Find Words 221028 14:35        =================================*/
+	struct TrieNode_FindWords {
+		TrieNode_FindWords* children[26] = {};
+		string* word;
+		void addWord(string& word) {
+
+			TrieNode_FindWords* cur = this;
+
+			for (char c : word) {
+				c -= 'a';
+				if (!cur->children[c]) {
+					cur->children[c] = new TrieNode_FindWords();
+				}
+				cur = cur->children[c];
+			}
+			cur->word = &word;
+		}
+	};
+
+	vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+		int m = board.size(); 
+		int n = board[0].size();
+		vector<string> ans;
+
+		TrieNode_FindWords trieNode;
+
+		for (string& word : words) {
+			trieNode.addWord(word);
+		} 
+
+		for (int r = 0; r < m; ++r)
+			for (int c = 0; c < n; ++c)
+				dfs_findWords(board, r, c, &trieNode, ans);
+
+		return ans;
+	}
+
+	void dfs_findWords(vector<vector<char>>& board, int r, int c, TrieNode_FindWords* trieNode, vector<string>& ans) {
+		int m = board.size();
+		int n = board[0].size();
+		int DIR[5] = { 0, 1, 0, -1, 0 };
+
+		if (r < 0 || r == m || c < 0 || c == n || board[r][c] == '#' || trieNode->children[board[r][c] - 'a'] == nullptr) {
+			return;
+		}
+
+		char orgChar = board[r][c];
+		trieNode = trieNode->children[orgChar - 'a'];
+
+		if (!trieNode->word) {
+			ans.emplace_back(*trieNode->word);
+			trieNode->word = nullptr; // Avoid duplication!
+		}
+		board[r][c] = '#'; // mark as visited!
+		for (int i = 0; i < 4; ++i) {
+			dfs_findWords(board, r + DIR[i], c + DIR[i + 1], trieNode, ans);
+		}
+
+		board[r][c] = orgChar; // restore org state
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
