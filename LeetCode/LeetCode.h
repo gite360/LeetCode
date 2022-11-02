@@ -5075,6 +5075,78 @@ public:
 		board[r][c] = orgChar; // restore org state
 	}
 	/*================================================================================================*/
+
+	/*=======================      Palindrome Pairs 221102 16:02        ==============================*/
+	void add_palindrome(TrieNode& root, string& s, int i) {
+		auto node = &root;
+
+		for (int j = s.size() - 1; j >= 0; --j) {
+
+			if (isPalindrome_palindrome(s, 0, j)) {
+				node->palindromeIndexes.push_back(i); // A[i]'s prefix forms a palindrome
+			} 
+
+			int c = s[j] - 'a';
+
+			if (!node->next[c]) {
+				node->next[c] = new TrieNode();
+			} 
+
+			node = node->next[c];
+		}
+
+		node->index = i;
+		node->palindromeIndexes.push_back(i); // A[i]'s prefix is empty string here, which is a palindrome.
+	}
+
+	bool isPalindrome_palindrome(string& s, int i, int j) {
+
+		while (i < j && s[i] == s[j]) {
+			++i;
+			--j;
+		} 
+
+		return i >= j;
+	}
+
+	vector<vector<int>> palindromePairs(vector<string>& A) {
+		TrieNode root;
+		vector<vector<int>> ans;
+		int N = A.size();
+
+		for (int i = 0; i < N; ++i) {
+			add_palindrome(root, A[i], i);
+		} 
+
+		for (int i = 0; i < N; ++i) {
+
+			auto s = A[i];
+			auto node = &root;
+
+			for (int j = 0; j < s.size() && node; ++j) {
+				if (node->index != -1 && node->index != i && isPalindrome_palindrome(s, j, s.size() - 1)) {
+					ans.push_back({ i, node->index });
+				} 
+				// A[i]'s prefix matches this word and A[i]'s suffix forms a palindrome
+				node = node->next[s[j] - 'a'];
+			}
+
+			if (!node) {
+				continue;
+			} 
+
+			for (int j : node->palindromeIndexes) {
+				// A[i] is exhausted in the matching above. 
+				// If a word whose prefix is palindrome after matching its suffix with A[i], 
+				// then this is also a valid pair
+				if (i != j) {
+					ans.push_back({ i, j });
+				} 
+			}
+		}
+		return ans;
+	}
+	/*================================================================================================*/
 };
 /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -5674,6 +5746,12 @@ public:
 	bool is_word;
 
 	TrieNode* children[26];
+
+	/*--- 221102 palindromePairs ---*/
+	TrieNode* next[26] = {};
+	int index = -1;
+	vector<int> palindromeIndexes;
+	/*-----------------------------*/
 
 	TrieNode() {
 		is_word = false;
